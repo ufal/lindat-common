@@ -68,6 +68,26 @@
         ga('create', 'UA-27008245-2', 'cuni.cz');
         ga('send', 'pageview');
   </script>
+
+  <!-- Piwik LINDAT/CLARIN tracker -->
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+    _paq.push(["setCookieDomain", "*.mff.cuni.cz"]);
+    _paq.push(["setDomains", ["*.mff.cuni.cz"]]);
+    _paq.push(['setCustomVariable', 1, "source", "common-theme", "page"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u="//ufal.mff.cuni.cz/piwik/";
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', 2]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+  <noscript><p><img src="//ufal.mff.cuni.cz/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+  <!-- End Piwik Code -->
 		
 </div>
 <!-- FOOTER END -->
