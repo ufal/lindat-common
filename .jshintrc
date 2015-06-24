@@ -1,0 +1,26 @@
+{
+  "globalstrict": false,
+  "bitwise": true,
+  "camelcase": true,
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "strict": false,
+  "trailing": true,
+  "smarttabs": true,
+  "white": true,
+  "validthis": true,
+  "globals": {
+    "angular": false,
+    // Angular Mocks
+    "inject": false,
+    "module": false
+  }
+}
