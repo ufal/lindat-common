@@ -22,29 +22,23 @@ Use in Angular projects
 1. Include CSS and Javascript in your html
 1. Add `lindat` to the modules
         
-        ```javascript
         angular.module('yourApp', ['lindat', ... ])
-        ```
         
 1. Directives `lindat-header` and `lindat-footer` will be available
 
-        ```html
         <header lindat-header></header>
         
         ... your content ...
         
         <footer lindat-footer></footer>
-        ```
 
     Element style will also work:
   
-        ```html
         <lindat-header></lindat-header>
         
         ... your content ...
         
         <lindat-footer></lindat-footer>
-        ```
         
 1. Google Analytics and Piwik tracking are already included and should work out of the box. See [angular-piwik](https://github.com/mike-spainhower/angular-piwik) and [angular-google-analytics](https://github.com/revolunet/angular-google-analytics) for more info.
 
