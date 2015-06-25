@@ -96,7 +96,6 @@ body {
       color: #000;
       &:hover {
         outline: 0;
-        background-color: darken(@header-bg, 10%);
       }
     }
   }
@@ -105,6 +104,9 @@ body {
     &.lindat-open {
       display: flex;
       flex-direction: column;
+      &>li>a:hover {
+        background-color: darken(@header-bg, 10%);
+      }
     }
   }
 
