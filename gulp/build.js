@@ -49,6 +49,7 @@ module.exports = function(options) {
       }))
       .pipe($.angularTemplatecache('templateCacheHtml.js', {
         module: 'lindat',
+        root: 'partials/',
         standalone: false
       }))
       .pipe(gulp.dest(options.tmp + '/serve/scripts/'));
