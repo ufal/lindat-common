@@ -80,4 +80,13 @@ This repo is based on https://redmine.ms.mff.cuni.cz/projects/lindat-common thes
         
 - To build a new distribution
 
-        gulp build
+        gulp build && gulp tag
+
+Making new release
+------------------
+
+| Task             | Version                                |
+|------------------|----------------------------------------|
+| gulp tag         | v0.0.1 -> v0.0.2 + commit + tag + push |
+| gulp tag --minor | v0.0.1 -> v0.1.0 + commit + tag + push |
+| gulp tag --major | v0.0.1 -> v1.0.1 + commit + tag + push |
