@@ -26,7 +26,6 @@
   <body id="lindat-home">
     <!-- HEADER -->
     <header>
-      <!-- @include partials/header.html -->
     </header>
     <section class="lindat lindat-container">
       <h1>LINDAT/CLARIN Common Theme</h1>
@@ -34,7 +33,14 @@
         Select the theme you want...
       </p>
       <p>
-        <label>Select active project:</label>
+        <label for="lang-select">Select Language:</label>
+        <select id="lang-select">
+          <option value="en">English</option>
+          <option value="cs">Czech</option>
+        </select>
+      </p>
+      <p>
+        <label for="selector">Select active project:</label>
         <select id="selector">
           <option value="lindat-home">Home</option>
           <option value="lindat-repository">Repository</option>
@@ -44,12 +50,55 @@
       </p>
     </section>
     <footer>
-      <!-- @include partials/footer.html -->
     </footer>
     <script>
-      document.querySelector('#selector').addEventListener('click', function () {
-        document.body.setAttribute('id', this.value);
-      });
+      function ajax(selector, url) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+            if (xmlhttp.status == 200) {
+              document.querySelector(selector).innerHTML = xmlhttp.responseText;
+            } else if (xmlhttp.status == 404) {
+              alert('Template not found');
+            } else {
+              alert('GET: ' + url + '\nReturned: '+xmlhttp.status);
+            }
+          }
+        };
+        xmlhttp.open('GET', url, true);
+        xmlhttp.send();
+      }
+
+      function switchLang(lang) {
+        ajax('header', '/' + lang + '/partials/header.html');
+        ajax('footer', '/' + lang + '/partials/footer.html');
+      }
+
+      function init() {
+        var langSelect = document.getElementById('lang-select');
+        var selector = document.getElementById('selector');
+
+        langSelect.addEventListener('change', function() {
+          localStorage.setItem('lang', this.value);
+          switchLang(this.value);
+        });
+
+        selector.addEventListener('change', function () {
+          localStorage.setItem('project', this.value);
+          document.body.setAttribute('id', this.value);
+        });
+
+        var lang = localStorage.getItem('lang') || 'en';
+        var project = localStorage.getItem('project') || 'lindat-home';
+
+        langSelect.value = lang;
+        selector.value = project;
+
+        document.body.setAttribute('id', project);
+        switchLang(localStorage.getItem('lang') || 'en');
+      }
+
+      init();
     </script>
   </body>
 </html>

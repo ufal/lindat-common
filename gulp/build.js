@@ -17,16 +17,26 @@ module.exports = function(options) {
       .pipe(gulp.dest(options.public + '/css/'));
   });
 
-  gulp.task('html', ['preprocess'], function () {
-    return gulp.src(options.tmp + '/serve/partials/*.html')
+  function processHtml(dest, lang) {
+    return gulp.src(options.tmp + '/serve-' + lang + '/partials/*.html')
       .pipe($.minifyHtml({
         empty: true,
         spare: true,
         quotes: true,
         conditionals: true
       }))
-      .pipe(gulp.dest(options.dist + '/'));
+      .pipe(gulp.dest(dest));
+  }
+
+  gulp.task('html:cs', ['preprocess'], function () {
+    return processHtml(options.dist + '/cs/', 'cs');
   });
+
+  gulp.task('html:en', ['preprocess'], function () {
+    return processHtml(options.dist + '/', 'en');
+  });
+
+  gulp.task('html', ['html:cs', 'html:en']);
 
   gulp.task('angular:templates', ['preprocess'], function () {
     return gulp.src([
@@ -71,11 +81,16 @@ module.exports = function(options) {
       .pipe(gulp.dest(options.public + '/images/'));
   });
 
+  gulp.task('locales', function () {
+    return gulp.src(options.src + '/locale/*.json')
+      .pipe(gulp.dest(options.dist + '/locale/'));
+  });
+
   gulp.task('clean', function (done) {
     $.del([options.dist + '/', options.tmp + '/'], done);
   });
 
-  gulp.task('assemble', ['images', 'html', 'css', 'angular']);
+  gulp.task('assemble', ['images', 'html', 'css', 'locales', 'angular']);
 
   gulp.task('build', ['clean'], function () {
     gulp.start('assemble');

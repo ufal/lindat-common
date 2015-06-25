@@ -16,14 +16,16 @@ module.exports = function(options) {
         baseDir: baseDir,
         index: angular ? 'angular-index.html' : 'index.html',
         routes : {
-          '/bower_components': 'bower_components'
+          '/bower_components': 'bower_components',
+          '/en': options.tmp + '/serve-en',
+          '/cs': options.tmp + '/serve-cs'
         }
       }
     });
   }
 
   gulp.task('serve', ['watch'], function () {
-    browserSyncInit([options.tmp + '/serve', options.src]);
+    browserSyncInit([options.tmp + '/serve', options.inject, options.src]);
   });
 
   gulp.task('serve:angular', ['watch'], function () {

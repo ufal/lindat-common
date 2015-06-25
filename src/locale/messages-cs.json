@@ -1,0 +1,142 @@
+{
+  "header": {
+    "home": "Úvod",
+    "repository": "Repozitář",
+    "pml": "TreeQuery",
+    "treex": "Treex",
+    "toolsnservices": "Aplikace",
+    "clarin": "CLARIN",
+    "contact": "Kontakty",
+    "events": "Akce",
+    "about": "O nás"
+  },
+
+  "footer": {
+    "partners": "Partneři, koordinace, financování",
+    "partner1": "Katedra kybernetiky, Západočeská univerzita",
+    "partner2": "Ústav formální a aplikované lingvistiky (Praha)",
+    "partner3": "Ústav pro jazyk český (Praha)",
+    "partner4": "Centrum zpracování přirozeného jazyka, Masarykova univerzita (Brno)",
+    "partner5": "Ministerstvo školství, mládeže a tělovýchovy České republiky",
+    "repository": "Repozitář",
+    "mainpage": "Hlavní stránka",
+    "contact": "Kontakty",
+    "submission": "Fáze ukládání dat",
+    "faq": "Často kladené dotazy",
+    "aboutnpolicies": "O projektu",
+    "more": "Více",
+    "clarin": "CLARIN",
+    "metanet": "META-Net",
+    "monitoring": "Status Služeb",
+    "auth": "Autentizace",
+    "copyright": {
+      "line1": "Projekt LINDAT/CLARIN (LM2010013) je plně podporován Ministerstvem školství,",
+      "line2": "mládeže a tělovýchovy České republiky v rámci programu \"velkých infrastruktur\".",
+      "line3": "Copyright (c) 2015 ÚFAL MFF UK. Všechna práva vyhrazena."
+    }
+  },
+
+  "index": {
+    "deposit": {
+      "heading": "ULOŽIT",
+      "para1": "Uložte svá data a zajistěte si tak, že budou bezpečně archivovaná, dohledatelná, používaná a korektně citovaná. Pro uložení dat je vyžadováno přihlášení. Ukládání dat zahájíte",
+      "linktext": "kliknutím sem"
+    },
+    "search": {
+      "heading": "HLEDAT",
+      "para1": "Hledejte jazyková data, nástroje a služby v repozitáři LINDAT/CLARIN",
+      "buttontext": "Hledat"
+    },
+    "services": {
+      "heading": "SLUŽBY",
+      "para1": "Podívejte se na dostupné",
+      "linktext": "nástroje a služby"
+    },
+    "welcome": {
+      "heading": "Vítejte na LINDAT/CLARIN",
+      "para1": "Centrum jazykové výzkumné infrastruktury v České republice",
+      "para2": "LINDAT/CLARIN Centrum jazykové výzkumné infrastruktury poskytuje technické zázemí a pomoc institucím nebo výzkumným pracovníkům, kteří chtějí sdílet, vytvářet a modernizovat své nástroje a data užívaná ve výzkumu v oblasti lingvistiky a dalších souvisejících oblastech. Projekt také poskytuje otevřený digitální repozitář a archiv, který je dispozici všem akademikům, kteří chtějí, aby jejich práce byla zachována, propagována a široce dostupná.",
+      "para3": "LINDAT/CLARIN je financován Ministerstvem školství, mládeže a tělovýchovy České republiky."
+    },
+    "news": "Aktuality",
+    "documents": "Dokumenty"
+  },
+
+  "contact": {
+    "general": {
+      "heading": "Obecné dotazy",
+      "para1": "V případě obecných dotazů prosím kontaktujte náš",
+      "linktext": "Helpdesk"
+    },
+    "technical": {
+      "heading": "Technické dotazy / Repozitář",
+      "para1": "V případě technických problémů nebo problémů týkajících se repozitáře zašlete e-mail na",
+      "linktext": "technickou podporu LINDAT"
+    },
+    "address": {
+      "heading": "Kontakt"
+    }
+  },
+
+  "news": {
+    "item1": {
+      "heading": "LINDAT / CLARIN je nyní Clarin Centrem typu B",
+      "detail": "Pro více informací klikněte na obrázek."
+    },
+    "item2": {
+      "heading": "Digitální repozitář LINDAT / CLARIN získal 10. ledna 2014 Data Seal of Approval.",
+      "detail": "<div style='text-align: justify;'><p>Rada Data Seal of Approval tímto potvrzuje, že důvěryhodný digitální repozitář LINDAT-Clarin - Centrum jazykové výzkumné infrastruktury v České republice splňuje požadavky Data Seal of Approval verze 2 z roku 2013. Uvedný repozitář proto získal 10. ledna 2014 Data Seal of Approval 2013. </p> <p>Důvěryhodnému digitálnímu repozitáři je povoleno umístit logo Data Seal of Approval odpovídající verze na své internetové stránky. Toto logo musí odkazovat na tento soubor, který je umístěn na stránkách Data Seal of Aprroval.</p> <p>S pozdravem, </p> <p> Rada Data Seal of Approval </p> </div>"
+    }
+  },
+
+  "service": {
+    "treex-web": {
+      "heading":"Treex :: Web - Vysoce modulární NLP Framework online",
+      "description":"Treex (formerly TectoMT) is a highly modular NLP software system implemented in Perl programming language under Linux.<br/>It is primarily aimed at Machine Translation, making use of the ideas and technology created during the Prague Dependency Treebank project. At the same time, it is also hoped to significantly facilitate and accelerate development of software solutions of many other NLP tasks, especially due to re-usability of the numerous integrated processing modules (called blocks), which are equipped with uniform object-oriented interfaces."
+    },
+    "cesilko": {
+      "heading":"Cesilko - Strojový překlad systému pro příbuzné jazyky",
+      "description":"The system Česílko was designed as a tool enabling the fast and efficient translation from one source language into many target languages, which are mutually related. The system receives as its input a high quality human translation of the original into Czech (from any language). It translates the Czech input into a number of languages related to Czech. The system contains at the moment 5 language pairs, 4 of them only as experiments, namely Czech into Polish, Lithuanian, Macedonian and Lower Sorbian. Unfortunately, the system cannot be tested on arbitrary texts for these language pairs due to a small size of all dictionaries. The only working language pair (and at the same time also exploitable outside of the above mentioned setup) is the fifth one, Czech to Slovak. Similarly to other MT systems, Česílko requires human post-editing. The system is being developed since 1998"
+    },
+    "pmltq": {
+      "heading":"PML-Tree Query (vyhledávací nástroj pro všechny druhy lingvisticky anotovaných stromových korpusů)",
+      "description":"PML-TQ is a powerful open-source search tool for all kinds of linguistically annotated tree-banks with several client interfaces and two search back-ends (one based on a SQL database and one based on Perl and the TrEd toolkit). The tool works natively with tree-banks encoded in the PML data format (conversion scripts are available for many established tree-bank formats)."
+    },
+    "PDT-Vallex": {
+      "heading":"PDT-VALLEX: Česká Valenční slovník souvisí s stromových korpusů",
+      "description":"The valency lexicon PDT-Vallex has been built in close connection with the annotation of the Prague Dependency Treebank project (PDT) and its successors (mainly the Prague Czech-English Dependency Treebank project, PCEDT). It contains over 11000 valency frames for more than 7000 verbs which occurred in the PDT or PCEDT. It is available in electronically processable format (XML) together with the aforementioned treebanks (to be viewed and edited by TrEd, the PDT/PCEDT main annotation tool), and also in more human readable form including corpus examples (see the WEBSITE link below). The main feature of the lexicon is its linking to the annotated corpora - each occurrence of each verb is linked to the appropriate valency frame with additional (generalized) information about its usage and surface morphosyntactic form alternatives."
+    },
+    "EngVallex": {
+      "heading":"EngVallex - English Valency Lexicon",
+      "description":"EngVallex is the English counterpart of the PDT-Vallex valency lexicon, using the same view of valency, valency frames and the description of a surface form of verbal arguments. EngVallex contains links also to PropBank and Verbnet, two existing English predicate-argument lexicons used, i.a., for the PropBank project. The EngVallex lexicon is fully linked to the English side of the PCEDT parallel treebank, which is in fact the PTB re-annotated using the Prague Dependency Treebank style of annotation. The EngVallex is available in an XML format in our repository, and also in a searchable form (see the WEBSITE link below) with examples from the PCEDT."
+    },
+    "czecmorphanalyzer": {
+      "heading":"Česká morfologický analyzátor a Tagger",
+      "description":"<p>This interface connects you to a morphological server, which performs morphological analysis of words forms for Czech. The results are presented in a tabular, color-coded form where everything can by converted to a more detailed, human-readable description by a single click.<br/>The main features of the interface and of the morpholgical server are:</p><p>It is 100% compatible with the HMAnalyze.pl program for batch morpholgical processing, using the 50k version of the Czech morpholgical dictionary (including input text tokenization)</p><p>The possibility to run a tagger instead of a plain morphological analyzer; the tagger uses a more advanced morphological dictionary and statistically based rules for disambiguation. Current version of the morphology the tagger uses is CZ11122a. The possibility to display basic frequency information about word forms and lemmas, as computed from the large Czech National Corpus. The interface allows various coding options, both for input of word forms and output (displaying) of results, in case you have difficulty entering and/or displaying the Czech characters (which are part of the Latin 2 character set).</p><p>The interface allows to pass 'Content Filtering' options to the morphological analyzer, ensuring the same set of filtering rules is applied as if using the 'batch' version. It is also 100% compatible with HMAnalyze.pl filtering options.</p><p>The interface contains links to various Help/Description pages. In addition, the results are all presented as live 'links' to scripts which produce and display a breakdown of the tags and lemma-related information in human-readable form.</p>"
+    },
+    "MorphoDiTa": {
+      "heading":"MorphoDiTa: Morfologické slovník a Tagger",
+      "description":"MorphoDiTa: Morphological Dictionary and Tagger is an open-source tool for morphological analysis of natural language texts. It performs morphological analysis, morphological generation, tagging and tokenization and is distributed as a standalone tool or a library, along with trained linguistic models.  In the Czech language, MorphoDiTa achieves state-of-the-art results with a throughput around 10-200K words per second. MorphoDiTa is a free software under <a href='http://www.gnu.org/licenses/lgpl.html'>LGPL</a> license and the linguistic models are free for non-commercial use and distributed under <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>CC BY-NC-SA</a> license, although for some models the original data used to create the model may impose additional licensing conditions."
+    },
+    "NameTag": {
+      "heading":"NameTag",
+      "description":"NameTag is an open-source tool for named entity recognition (NER). NameTag identifies proper names in text and classifies them into predefined categories, such as names of persons, locations, organizations, etc. NameTag is distributed as a standalone tool or a library, along with trained linguistic models. In the Czech language, NameTag achieves state-of-the-art performance (<a href='http://ufal.mff.cuni.cz/~straka/papers/2013-tsd_ner.pdf'>Straková et. al. 2013</a>). NameTag is a free software under <a href='http://www.gnu.org/licenses/lgpl.html'>LGPL</a> license and the linguistic models are free for non-commercial use and distributed under <a href='http://creativecommons.org/licenses/by-nc-sa/3.0/'>CC BY-NC-SA</a> license, although for some models the original data used to create the model may impose additional licensing conditions."
+    },
+    "ILRB": {
+      "heading":"The Internet Language Reference Book",
+      "description":"<p>The ILRB has been created by two cooperating teams - by the team of the Institute of Czech Language, Czech Academy of Sciences and the team of the NLP Centre at the Faculty of Informatics, Masaryk University (2004-2008).</p><p>The tool consists of two sections: wordlist and reference (explanatory) one. Comments and remarks are welcome and should be send to the address <a href='mailto:poradna@ujc.cas.cz' target='_top'>poradna@ujc.cas.cz</a>.</p><p>1. Wordlist section<br/>It contains more than 60 000 dictionary entries and is based on the glossary of the School Rules of Czech Orthography, the Dictionary of the Literary Czech and selected entries from the New Dictionary of Words of Foreign Origin and Dictionary of Neologisms. The entries typically include information that is asked about frequently by the users. Also inflectional forms of the particular words forms are offered in the form of tables thanks to the morphological analyzer ajka created at the Faculty of Informatics, MU. The dictionary part is linked to the explanatory one through the hypertext links.</p><p>2. Reference section<br/>It comprises the explanations about linguistic phenomena described in the Rules of Czech Orthography and contemporary Czech grammars, frequently and repeatedly asked by the users turning to the Linguistic Advisory Line in the Institute of Czech Language. In the offered explanations some typical spelling problems are dealt with including the appropriate recommendations. The ILRB is regularly updated and completed, new expressions are added and made more precise.</p>"
+    },
+    "ElixirFM": {
+      "heading":"ElixirFM",
+      "description":"ElixirFM is a high-level implementation of Functional Arabic Morphology. ElixirFM can process words of Modern Written Arabic using four different modes. Here, you can learn how to use these modes for various purposes."
+    },
+    "Dialogy_Org": {
+      "heading":"Dialogy.Org",
+      "description":"he Dialogy.Org system allows users to search texts (transcripts), watch video recordings and view F0 acoustic wave forms. The Dialogy.Org system works on the principle of web-based interface, so installation of additional programs on your computer is not necessary. You must have Flash Player for playing video recordings."
+    },
+    "Korektor": {
+      "heading":"Korektor",
+      "description":"Korektor is a statistical spell- and (occasional) grammar-checker. This spellchecker strarted with Michal Richter's diploma thesis Advanced Czech Spellchecker, but it is being developed further. There are two versions: a unix command line utility (tested on Debian, Ubuntu and OS X) and an OS X SpellServer with a System Service, that integrates with native OS X GUI applications."
+    }
+  }
+}

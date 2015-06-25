@@ -1,0 +1,28 @@
+---
+menu:
+- href: 'http://lindat.mff.cuni.cz/'
+  class: lindat-logo
+  id: lindat-home-item
+  text: header.home
+- href: 'https://lindat.mff.cuni.cz/repository/xmlui/'
+  id: lindat-repository-item
+  text: header.repository
+- href: 'https://lindat.mff.cuni.cz/services/pmltq/'
+  id: lindat-pmltq-item
+  text: header.pml
+- href: 'https://lindat.mff.cuni.cz/services/treex-web/run/'
+  id: lindat-treex-item
+  text: header.treex
+- href: 'https://lindat.mff.cuni.cz/services'
+  id: lindat-tools-item
+  text: header.toolsnservices
+- href: 'https://lindat.mff.cuni.cz/en/events'
+  id: lindat-events-item
+  text: header.events
+- href: 'https://lindat.mff.cuni.cz/en/about-lindat-clarin'
+  id: lindat-about-item
+  text: header.about
+- href: 'http://www.clarin.eu'
+  class: 'clarin-logo'
+  id: lindat-clarin-menu
+  text: header.clarin

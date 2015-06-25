@@ -29,6 +29,6 @@ module.exports = function(options) {
       }
     });
 
-    gulp.watch([options.src + '/**/*.html', 'bower.json'], ['preprocess']);
+    gulp.watch([options.src + '/**/*.{html,yml,json}', 'bower.json'], ['preprocess']);
   });
 };

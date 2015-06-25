@@ -1,0 +1,28 @@
+---
+column1:
+  header: footer.partners
+  items:
+  - 'http://www.kky.zcu.cz/en': footer.partner1
+  - 'http://ufal.mff.cuni.cz': footer.partner2
+  - 'http://www.ujc.cas.cz': footer.partner3
+  - 'http://nlp.fi.muni.cz': footer.partner4
+  - 'http://www.msmt.cz': footer.partner5
+column2:
+  header: footer.repository
+  items:
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/': footer.mainpage
+  - 'https://lindat.mff.cuni.cz/en/about-lindat-clarin': footer.contact
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/item-lifecycle': footer.submission
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/faq': footer.faq
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/about': footer.aboutnpolicies
+column3:
+  header: footer.more
+  items:
+  - 'http://www.clarin.eu/': footer.clarin
+  - 'http://www.meta-net.eu/': footer.metanet
+  - 'https://lindat.mff.cuni.cz/en/monitoring': footer.monitoring
+  - 'https://lindat.mff.cuni.cz/en/blocked-idps': footer.auth
+footer:
+  - footer.copyright.line1
+  - footer.copyright.line2
+copyright: footer.copyright.line3
