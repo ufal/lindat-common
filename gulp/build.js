@@ -86,7 +86,7 @@ module.exports = function(options) {
     $.del([options.dist + '/', options.tmp + '/'], done);
   });
 
-  gulp.task('assemble', ['images', 'html', 'css', 'locales', 'angular']);
+  gulp.task('assemble', ['images', 'html', 'css', 'angular']);
 
   gulp.task('build', ['clean'], function () {
     gulp.start('assemble');
