@@ -19,12 +19,12 @@ module.exports = function(options) {
 
   function processHtml(dest, lang) {
     return gulp.src(options.tmp + '/serve-' + lang + '/partials/*.html')
-      .pipe($.minifyHtml({
-        empty: true,
-        spare: true,
-        quotes: true,
-        conditionals: true
-      }))
+      //.pipe($.minifyHtml({
+      //  empty: true,
+      //  spare: true,
+      //  quotes: true,
+      //  conditionals: true
+      //}))
       .pipe(gulp.dest(dest));
   }
 
@@ -80,11 +80,6 @@ module.exports = function(options) {
         interlaced: true
       }))
       .pipe(gulp.dest(options.public + '/images/'));
-  });
-
-  gulp.task('locales', function () {
-    return gulp.src(options.src + '/locale/*.json')
-      .pipe(gulp.dest(options.dist + '/locale/'));
   });
 
   gulp.task('clean', function (done) {

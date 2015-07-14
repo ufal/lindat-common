@@ -20,7 +20,7 @@
   <ul class="lindat-menu">
     {%- for item in menu %}
     <li class="{{item.id}}">
-      <a href="{{item.href}}" {%- if item.class -%}class="{{item.class}}"{%- endif -%}>{{localize('span', item.text)}}</a>
+      <a href="{{item.href}}" {%- if item.class -%}class="{{item.class}}"{%- endif -%}><span>{{item.text}}</span></a>
     </li>
     {%- endfor %}
   </ul>

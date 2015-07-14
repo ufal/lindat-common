@@ -1,28 +1,28 @@
 ---
 column1:
-  header: footer.partners
+  header: "Partneři, koordinace, financování"
   items:
-  - 'http://www.kky.zcu.cz/en': footer.partner1
-  - 'http://ufal.mff.cuni.cz': footer.partner2
-  - 'http://www.ujc.cas.cz': footer.partner3
-  - 'http://nlp.fi.muni.cz': footer.partner4
-  - 'http://www.msmt.cz': footer.partner5
+  - 'http://www.kky.zcu.cz/en': "Katedra kybernetiky, Západočeská univerzita"
+  - 'http://ufal.mff.cuni.cz': "Ústav formální a aplikované lingvistiky (Praha)"
+  - 'http://www.ujc.cas.cz': "Ústav pro jazyk český (Praha)"
+  - 'http://nlp.fi.muni.cz': "Centrum zpracování přirozeného jazyka, Masarykova univerzita (Brno)"
+  - 'http://www.msmt.cz': "Ministerstvo školství, mládeže a tělovýchovy České republiky"
 column2:
-  header: footer.repository
+  header: "Repozitář"
   items:
-  - 'https://lindat.mff.cuni.cz/repository/xmlui/': footer.mainpage
-  - 'https://lindat.mff.cuni.cz/cs/o-lindat-clarin': footer.contact
-  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/item-lifecycle': footer.submission
-  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/faq': footer.faq
-  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/about': footer.aboutnpolicies
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/': "Hlavní stránka"
+  - 'https://lindat.mff.cuni.cz/cs/o-lindat-clarin': "Kontakty"
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/item-lifecycle': "Fáze ukládání dat"
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/faq': "Často kladené dotazy"
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/about': "O projektu"
 column3:
-  header: footer.more
+  header: "Více"
   items:
-  - 'http://www.clarin.eu/': footer.clarin
-  - 'http://www.meta-net.eu/': footer.metanet
-  - 'https://lindat.mff.cuni.cz/cs/monitoring': footer.monitoring
-  - 'https://lindat.mff.cuni.cz/cs/blokovani-idps': footer.auth
+  - 'http://www.clarin.eu/': "CLARIN"
+  - 'http://www.meta-net.eu/': "META-Net"
+  - 'https://lindat.mff.cuni.cz/cs/monitoring': "Status Služeb"
+  - 'https://lindat.mff.cuni.cz/cs/blokovani-idps': "Autentizace"
 footer:
-  - footer.copyright.line1
-  - footer.copyright.line2
-copyright: footer.copyright.line3
+  - "Projekt LINDAT/CLARIN (LM2010013) je plně podporován Ministerstvem školství,"
+  - "mládeže a tělovýchovy České republiky v rámci programu \"velkých infrastruktur\"."
+copyright: "Copyright (c) 2015 ÚFAL MFF UK. Všechna práva vyhrazena."
