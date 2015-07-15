@@ -1,10 +1,10 @@
 <!-- FOOTER -->
-{%- macro makeColumn(column) %}
-  {{localize('h1', column.header)}}
+{%- macro makeColumn(column) -%}
+  <h1>{{column.header}}</h1>
   <ul>
   {%- for item in column.items -%}
     {%- for href, text in item -%}
-    <li>{{localize('a', text, {href: href})}}</li>
+    <li><a href="{{href}}">{{text}}</a></li>
     {%- endfor -%}
   {%- endfor -%}
   </ul>
@@ -37,12 +37,12 @@
     <p>
       <strong>
         {%- for text in footer -%}
-        {{localize('span', text)}}
+        <span>{{text}}</span>
         {%- if not loop.last -%}<br>{%- endif -%}
         {%- endfor -%}
       </strong>
     </p>
-    {{localize('p', copyright)}}
+    <p>{{copyright}}</p>
   </div>
 </div>
 
