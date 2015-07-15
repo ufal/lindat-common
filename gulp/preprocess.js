@@ -3,30 +3,27 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var fs = require('fs');
-var path = require('path');
 var _ = require('lodash');
 var yaml = require('js-yaml');
 
 var $ = require('gulp-load-plugins')();
 
 module.exports = function(options) {
-  var htmlSources = [
-    options.inject + '/**/*.html'
-  ];
+  var htmlSources = [options.inject + '/**/*.html', '!'+ options.inject +'/standalone-template.html'];
 
   function preprocess(dest, lang, angular) {
     return gulp.src(htmlSources)
       .pipe($.data(function (file) {
         var data = {lang: lang, angular: !!angular};
 
-        var ymlFile = options.src + '/partials/' + path.basename(file.path, '.html') + '.' + lang + '.yml';
+        var ymlFile = options.src + '/' + file.relative.substr(0, file.relative.length - 5) + '.' + lang + '.yml';
         if (fs.existsSync(ymlFile)) {
           _.extend(data, yaml.safeLoad(fs.readFileSync(ymlFile, 'utf8')));
         }
 
         return data;
       }))
-      .pipe($.swig())
+      .pipe($.swig()).on('error', options.errorHandler('Swig'))
       .pipe(gulp.dest(dest))
       .pipe(browserSync.reload({ stream: true }));
   }

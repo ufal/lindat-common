@@ -5,6 +5,8 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'del']
 });
+var through = require('through');
+var path = require('path');
 
 module.exports = function(options) {
   gulp.task('css', ['styles'], function () {
@@ -25,7 +27,19 @@ module.exports = function(options) {
       //  quotes: true,
       //  conditionals: true
       //}))
-      .pipe(gulp.dest(dest));
+      .pipe(gulp.dest(dest))
+      .pipe(through(function (file, enc, cb) {
+        if (file.isNull()) {
+          return cb(null, file);
+        }
+
+        gulp.src(options.src + '/standalone-template.html')
+          .pipe($.swig({data: {file: file.path}}))
+          .pipe($.rename(function (filePath) {
+            filePath.basename = path.basename(file.path, '.html') + '-services-standalone';
+          }))
+          .pipe(gulp.dest(dest));
+      }));
   }
 
   gulp.task('html:cs', ['preprocess'], function () {
@@ -90,6 +104,5 @@ module.exports = function(options) {
 
   gulp.task('build', ['clean'], function () {
     gulp.start('assemble');
-    gulp.start('angular');
   });
 };
