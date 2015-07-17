@@ -49,56 +49,76 @@
         </select>
       </p>
     </section>
+    <section class="lindat lindat-container">
+      <h1>Citation Box</h1>
+      <div class="citation-box"
+           uri="http://hdl.handle.net/11234/1-1507"
+           oai="https://lindat.mff.cuni.cz/repository/oai"
+           handle="11234/1-1507"
+           title="Aspect-Term Annotated Customer Reviews in Czech">
+      </div>
+    </section>
     <footer>
     </footer>
+    <!-- bower:js -->
+    <!-- js bower dependencies will be automatically insert here -->
+    <!-- endbower -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject-->
     <script>
-      function ajax(selector, url) {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function () {
-          if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-            if (xmlhttp.status == 200) {
-              document.querySelector(selector).innerHTML = xmlhttp.responseText;
-            } else if (xmlhttp.status == 404) {
-              alert('Template not found');
-            } else {
-              alert('GET: ' + url + '\nReturned: '+xmlhttp.status);
+      (function() {
+        function ajax(selector, url) {
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == XMLHttpRequest.DONE) {
+              if (xmlhttp.status == 200) {
+                document.querySelector(selector).innerHTML = xmlhttp.responseText;
+              } else if (xmlhttp.status == 404) {
+                alert('Template not found');
+              } else {
+                alert('GET: ' + url + '\nReturned: '+xmlhttp.status);
+              }
             }
-          }
-        };
-        xmlhttp.open('GET', url, true);
-        xmlhttp.send();
-      }
+          };
+          xmlhttp.open('GET', url, true);
+          xmlhttp.send();
+        }
 
-      function switchLang(lang) {
-        ajax('header', '/' + lang + '/partials/header.html');
-        ajax('footer', '/' + lang + '/partials/footer.html');
-      }
+        function switchLang(lang) {
+          ajax('header', '/' + lang + '/partials/header.html');
+          ajax('footer', '/' + lang + '/partials/footer.html');
+        }
 
-      function init() {
-        var langSelect = document.getElementById('lang-select');
-        var selector = document.getElementById('selector');
+        function init() {
+          var langSelect = document.getElementById('lang-select');
+          var selector = document.getElementById('selector');
 
-        langSelect.addEventListener('change', function() {
-          localStorage.setItem('lang', this.value);
-          switchLang(this.value);
-        });
+          langSelect.addEventListener('change', function() {
+            localStorage.setItem('lang', this.value);
+            switchLang(this.value);
+          });
 
-        selector.addEventListener('change', function () {
-          localStorage.setItem('project', this.value);
-          document.body.setAttribute('id', this.value);
-        });
+          selector.addEventListener('change', function () {
+            localStorage.setItem('project', this.value);
+            document.body.setAttribute('id', this.value);
+          });
 
-        var lang = localStorage.getItem('lang') || 'en';
-        var project = localStorage.getItem('project') || 'lindat-home';
+          var lang = localStorage.getItem('lang') || 'en';
+          var project = localStorage.getItem('project') || 'lindat-home';
 
-        langSelect.value = lang;
-        selector.value = project;
+          langSelect.value = lang;
+          selector.value = project;
 
-        document.body.setAttribute('id', project);
-        switchLang(localStorage.getItem('lang') || 'en');
-      }
+          document.body.setAttribute('id', project);
+          switchLang(localStorage.getItem('lang') || 'en');
 
-      init();
+          // Citation box
+          var box = new LindatCitationBox(document.querySelector('.citation-box'));
+        }
+
+        init();
+      }());
     </script>
   </body>
 </html>

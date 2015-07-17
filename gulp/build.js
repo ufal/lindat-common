@@ -71,7 +71,7 @@ module.exports = function(options) {
 
   gulp.task('angular:scripts', ['scripts', 'angular:templates'], function () {
    return gulp.src([
-     options.src + '/scripts/*.js',
+     options.src + '/angular/*.js',
      options.tmp + '/serve/scripts/templateCacheHtml.js'
     ])
      .pipe($.angularFilesort()).on('error', options.errorHandler('AngularFilesort'))
