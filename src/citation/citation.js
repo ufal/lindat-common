@@ -90,12 +90,12 @@ function CitationBox(container, options) {
       });
   });
 
-  var tpl = $(CitationBox.template);
+  var tpl = citationBox.body = $(CitationBox.template);
   tpl.find('[citation-box-formats]').append(formats);
   tpl.find('[citation-box-shares]').append(shares);
 
   citationBox.text = tpl.find('[citation-box-text]');
-  citationBox.copyButton = tpl.find('[copy-button]');
+  citationBox.copyButton = tpl.find('[citation-box-copy-button]');
 
   $(container).empty().append(tpl);
   citationBox.init();
@@ -103,7 +103,8 @@ function CitationBox(container, options) {
 
 CitationBox.prototype.init = function() {
   var citationBox = this,
-    textNode = citationBox.text;
+    textNode = citationBox.text,
+    copyButton = citationBox.copyButton;
 
   function handleFailure() {
     textNode.empty().html("<a href='" + citationBox.uri + "'>" +  citationBox.uri + "</a>");
@@ -112,6 +113,11 @@ CitationBox.prototype.init = function() {
   citationBox.request('html')
     .done(function(data) {
       textNode.empty().append(data);
+      copyButton.on('click', function (e) {
+        e.preventDefault();
+        citationBox.modal(citationBox.title, data);
+      });
+      citationBox.body.removeClass('lindat-loading');
     })
     .fail(handleFailure);
 };
