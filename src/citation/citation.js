@@ -29,7 +29,7 @@ var shareButtons = [
 
 /**
  * @param {String} url
- * @param {String} context
+ * @param {Object} context
  * @return {String}
  */
 function makeUrl(url, context) {
@@ -60,7 +60,19 @@ function CitationBox(container, options) {
 
   var formats = EXPORT_FORMATS.map(function (format) {
     return $('<a></a>')
-      .attr('href', citationBox.oai + "/cite?metadataPrefix=" + format + "&handle=" + citationBox.handle)
+      .attr('href', citationBox.oai + '/cite?metadataPrefix=' + format + '&handle=' + citationBox.handle)
+      .on('click', function (e) {
+        e.preventDefault();
+        citationBox.request(format)
+          .done(function(data) {
+            if ($.type(data) !== 'string') {
+              data = data[0].documentElement.outerHTML;
+            } else {
+              data = $.trim(data);
+            }
+            citationBox.modal(citationBox.title, data);
+          });
+      })
       .text(format);
   });
 
@@ -86,29 +98,117 @@ function CitationBox(container, options) {
   citationBox.copyButton = tpl.find('[copy-button]');
 
   $(container).empty().append(tpl);
-  citationBox.loadText();
+  citationBox.init();
 }
 
-CitationBox.prototype.loadText = function() {
+CitationBox.prototype.init = function() {
   var citationBox = this,
-    url = citationBox.oai + "/cite?metadataPrefix=html&handle=" + citationBox.handle,
     textNode = citationBox.text;
 
   function handleFailure() {
     textNode.empty().html("<a href='" + citationBox.uri + "'>" +  citationBox.uri + "</a>");
   }
 
-  $.ajax({url: url, context: document.body, dataType : 'xml'})
+  citationBox.request('html')
     .done(function(data) {
-      data = $(data);
-      var error = data.find('error');
-      if (error.length) {
-        console.log("CitationBox: LoadText error '" + error.text() + "'");
-        handleFailure();
-      } else {
-        textNode.empty().append($(data).find('html').html());
-      }
-    }).fail(handleFailure);
+      textNode.empty().append(data);
+    })
+    .fail(handleFailure);
+};
+
+/**
+ * Fetches metadata in specified format
+ * @param {String} format
+ * @return {jQuery.Deferred}
+ */
+CitationBox.prototype.request = function(format) {
+  var url = this.oai + '/cite?metadataPrefix=' + format + '&handle=' + this.handle,
+    deferred = $.Deferred();
+
+    $.ajax(url, {dataType: 'xml', cache: true})
+      .done(function (data) {
+        data = $(data);
+        var error = data.find('error');
+        if (error.length) {
+          deferred.reject();
+        } else {
+          var content = data.find(format);
+          deferred.resolve(content.length ? content.html() : data);
+        }
+      })
+      .fail(deferred.reject);
+
+  return deferred;
+};
+
+/**
+ * Creates super simple modal window
+ *
+ * TODO: refactor to class (maybe)
+ * @param {String} title
+ * @param {String} content
+ * @return {Function}
+ */
+CitationBox.prototype.modal = function (title, content) {
+  var overlay, modal, btn, modalClicked, textarea, openClass = 'lindat-modal-open';
+
+  var html = $('html');
+  if (html.hasClass(openClass)) {
+    return;
+  }
+
+  html.addClass(openClass);
+
+  function destroy() {
+    if (modalClicked) {
+      modalClicked = false;
+      return;
+    }
+    html.removeClass(openClass);
+    overlay.remove();
+    $(document).off('.lindat');
+    $(window).off('.lindat');
+  }
+
+  function selectText() {
+    textarea.focus().select();
+  }
+
+  overlay = $('<div class="lindat-overlay"></div>')
+    .on('click', destroy)
+    .appendTo(document.body);
+
+  modal = $('<div class="lindat-modal" role="dialog"></div>')
+    .on('click', function () {
+      modalClicked = true;
+    })
+    .appendTo(overlay);
+
+  btn = $('<div class="lindat-modal-close-button">&#xD7;</div>')
+    .on('click', destroy);
+
+  $('<div class="lindat-modal-header"></div>')
+    .append($('<h3></h3>').text(title).append($('<p>Press <kbd>ctrl + c</kbd> to copy</p>')))
+    .append(btn)
+    .appendTo(modal);
+
+  textarea = $('<textarea readonly="readonly"></textarea>')
+    .on('mouseover', selectText)
+    .text(content);
+
+  $('<div class="lindat-modal-body"></div>').append(textarea).appendTo(modal);
+
+  selectText();
+
+  // Handles the keydown event
+  $(document).on('keydown.lindat', function(e) {
+    if (e.keyCode === 27) {
+      destroy();
+    }
+  });
+
+  // Handles the hashchange event
+  $(window).on('hashchange.lindat', destroy);
 };
 
 window.LindatCitationBox = CitationBox;
