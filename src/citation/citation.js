@@ -125,7 +125,7 @@ CitationBox.prototype.init = function() {
 /**
  * Fetches metadata in specified format
  * @param {String} format
- * @return {jQuery.Deferred}
+ * @return {Deferred}
  */
 CitationBox.prototype.request = function(format) {
   var url = this.oai + '/cite?metadataPrefix=' + format + '&handle=' + this.handle,
