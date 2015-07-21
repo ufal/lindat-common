@@ -4,7 +4,7 @@ var shareButtons = [
   {
     name: 'facebook',
     popup: {
-      url: 'http://www.facebook.com/sharer/sharer.php?u={url}',
+      url: 'http://www.facebook.com/sharer/sharer.php?u={uri}',
       width: 600,
       height: 500
     }
@@ -12,7 +12,7 @@ var shareButtons = [
   {
     name: 'twitter',
     popup: {
-      url: 'http://twitter.com/intent/tweet?url={url}&text={title}',
+      url: 'http://twitter.com/intent/tweet?url={uri}&text={title}',
       width: 600,
       height: 450
     }
@@ -20,61 +20,12 @@ var shareButtons = [
   {
     name: 'google-plus',
     popup: {
-      url: 'https://plus.google.com/share?url={url}',
+      url: 'https://plus.google.com/share?url={uri}',
       width: 700,
       height: 500
     }
   }
 ];
-
-/* jqml - jQuery JSONML Plugin
-* Author: Trevor Norris
-* This document is licensed as free software under the terms of the
-* MIT License: http://www.opensource.org/licenses/mit-license.php */
-function dom(elem) {
-  // generate new fragment to store all generated
-  var fragment = document.createDocumentFragment(),
-    i = 0, j, selector;
-  // check if is an element or array of elements
-  if (typeof elem[0] === 'string') {
-    selector = document.createElement(elem[0]);
-    i = 1;
-  }
-  // loop through all elements in array
-  for (; i < elem.length; i++) {
-    // if array create new element
-    if ($.isArray(elem[i]) && elem[i].length > 0) {
-      // to simplify creation of templates, check for array of elements
-      if ($.isArray(elem[i][0])) {
-        for (j = 0; j < elem[i].length; j++) {
-          fragment.appendChild(dom(elem[i][j]));
-        }
-      } else {
-        fragment.appendChild(dom(elem[i]));
-      }
-      // if object set element attributes
-    } else if ($.isPlainObject(elem[i])) {
-      // trick to have jQuery assign attributes without creating a new jQuery object
-      $.fn.attr.call([selector], elem[i], true);
-      // if string or number insert text node
-    } else if (typeof elem[i] === 'number' || typeof elem[i] === 'string') {
-      fragment.appendChild(document.createTextNode(elem[i]));
-      // if is an element append to fragment
-    } else if (elem[i].nodeType) {
-      fragment.appendChild(elem[i]);
-    }
-  }
-  // if a selector is set append children and return
-  if (selector) {
-    // check if fragment has children to append (thanks IE)
-    if (fragment.hasChildNodes()) {
-      selector.appendChild(fragment);
-    }
-    return selector;
-  }
-  // otherwise return children of fragment
-  return fragment.childNodes;
-}
 
 /**
  * @param {String} url
@@ -108,21 +59,28 @@ function CitationBox(container, options) {
   });
 
   var formats = EXPORT_FORMATS.map(function (format) {
-    return ['a', format, {
-      href: citationBox.oai + "/cite?metadataPrefix=" + citationBox.format + "&handle=" + citationBox.handle
-    }];
+    return $('<a></a>')
+      .attr('href', citationBox.oai + "/cite?metadataPrefix=" + format + "&handle=" + citationBox.handle)
+      .text(format);
   });
 
   var shares = shareButtons.map(function (social) {
-    return ['a', {
-      'class': 'lindat-icon lindat-icon-' + social.name + ' lindat-share-' + social.name,
-      href: '#'
-    }];
+    var popup = social.popup,
+      url = makeUrl(popup.url, citationBox);
+
+    return $('<a></a>')
+      .attr('class', 'lindat-icon lindat-icon-' + social.name + ' lindat-share-' + social.name)
+      .attr('href', url)
+      .on('click', function (e) {
+        e.preventDefault();
+        window.open(url, citationBox.title,
+          'height:' + popup.height + ',width:' + popup.width);
+      });
   });
 
   var tpl = $(CitationBox.template);
-  tpl.find('[citation-box-formats]').append(dom(formats));
-  tpl.find('[citation-box-shares]').append(dom(shares));
+  tpl.find('[citation-box-formats]').append(formats);
+  tpl.find('[citation-box-shares]').append(shares);
 
   citationBox.text = tpl.find('[citation-box-text]');
   citationBox.copyButton = tpl.find('[copy-button]');
