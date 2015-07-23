@@ -161,7 +161,7 @@ CitationBox.prototype.init = function() {
       textNode.empty().append(data);
       copyButton.on('click', function (e) {
         e.preventDefault();
-        citationBox.modal(citationBox.title, data);
+        citationBox.modal(citationBox.title, textNode.text());
       });
       citationBox.body.removeClass('lindat-loading');
     })
