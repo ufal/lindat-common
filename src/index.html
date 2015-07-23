@@ -9,9 +9,9 @@
           Natural Language Processing, Multimedia, Czech language, Computational
           Linguistics, Speech, Text, Corpus, Corpora" />
     <meta name="description" content="LINDAT CLARIN Research Infrastructure" />
-    <!-- inject:css-->
-    <!-- css files will be automatically insert here-->
-    <!-- endinject-->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
     <style>
       body {
         display: flex;
@@ -73,7 +73,10 @@
           xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
               if (xmlhttp.status == 200) {
-                document.querySelector(selector).innerHTML = xmlhttp.responseText;
+                var html = xmlhttp.responseText;
+                html = html.replace(/<script[^>]*>/gi, ' <!-- ');
+                html = html.replace(/<\/script>/gi, ' --> ');
+                document.querySelector(selector).innerHTML = html;
               } else if (xmlhttp.status == 404) {
                 alert('Template not found');
               } else {

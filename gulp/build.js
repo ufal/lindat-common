@@ -5,49 +5,58 @@ var gulp = require('gulp');
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'del']
 });
-var through = require('through');
 var path = require('path');
+var runSequence = require('run-sequence');
+
+var flatten = function() {
+  return $.rename(function (path) {
+    path.dirname = ''; // flatten directory structure
+  });
+};
 
 module.exports = function(options) {
-  gulp.task('css', ['styles'], function () {
-    return gulp.src(options.tmp + '/serve/lindat-common.css')
+
+  function processCss(src, name) {
+    return gulp.src(src)
       .pipe($.replace('images/', '../images/'))
-      .pipe($.rename('lindat.css'))
+      .pipe($.replace('fonts/', '../fonts/'))
+      .pipe($.concat(name + '.css'))
       .pipe(gulp.dest(options.public + '/css/'))
       .pipe($.csso(true /* structureMinimization: true */))
-      .pipe($.rename('lindat.min.css'))
+      .pipe($.rename({suffix: '.min'}))
       .pipe(gulp.dest(options.public + '/css/'));
+  }
+
+  gulp.task('css', ['styles'], function () {
+    return processCss(options.tmp + '/serve/lindat.css', 'lindat');
   });
 
   function processHtml(dest, lang) {
     return gulp.src(options.tmp + '/serve-' + lang + '/partials/*.html')
-      //.pipe($.minifyHtml({
-      //  empty: true,
-      //  spare: true,
-      //  quotes: true,
-      //  conditionals: true
-      //}))
-      .pipe(gulp.dest(dest))
-      .pipe(through(function (file, enc, cb) {
-        if (file.isNull()) {
-          return cb(null, file);
-        }
-
-        gulp.src(options.src + '/standalone-template.html')
-          .pipe($.swig({data: {file: file.path}}))
-          .pipe($.rename(function (filePath) {
-            filePath.basename = path.basename(file.path, '.html') + '-services-standalone';
-          }))
-          .pipe(gulp.dest(dest));
-      }));
+      .pipe($.tap(function (file, t) {
+        t.through(function () {
+          return gulp.src(options.src + '/standalone.html')
+            .pipe($.swig({data: {file: file.path}})).on('error', options.errorHandler('Swig'))
+            .pipe($.rename(function (filePath) {
+              filePath.basename = path.basename(file.path, '.html') + '-services-standalone';
+            }))
+            .pipe(gulp.dest(dest));
+        }, []);
+      }))
+      .pipe(gulp.dest(dest));
   }
 
   gulp.task('html:cs', ['preprocess'], function () {
     return processHtml(options.dist + '/cs/', 'cs');
   });
 
-  gulp.task('html:en', ['preprocess'], function () {
-    return processHtml(options.dist + '/', 'en');
+  gulp.task('html:en-generate', ['preprocess'], function () {
+    return processHtml(options.dist + '/en/', 'en');
+  });
+
+  gulp.task('html:en', ['html:en-generate'], function () {
+    return gulp.src(options.dist + '/en/*.*')
+      .pipe(gulp.dest(options.dist + '/'));
   });
 
   gulp.task('html', ['html:cs', 'html:en']);
@@ -86,6 +95,19 @@ module.exports = function(options) {
 
   gulp.task('angular', ['angular:scripts']);
 
+  gulp.task('citation', ['scripts'], function () {
+    return gulp.src([
+      options.src + '/citation/*.js',
+      options.tmp + '/serve/citation/citationHtml.js'
+    ])
+      .pipe($.concat('lindat-citation.js'))
+      .pipe($.wrap(options.iifeJQueryTemplate))
+      .pipe(gulp.dest(options.public + '/js/'))
+      .pipe($.uglify()).on('error', options.errorHandler('Uglify'))
+      .pipe($.rename('lindat-citation.min.js'))
+      .pipe(gulp.dest(options.public + '/js/'));
+  });
+
   gulp.task('images', function () {
     return gulp.src([options.src + '/images/**/*.+(png|jpg|gif|jpeg)'])
       .pipe($.imageOptimization({
@@ -96,13 +118,19 @@ module.exports = function(options) {
       .pipe(gulp.dest(options.public + '/images/'));
   });
 
-  gulp.task('clean', function (done) {
-    $.del([options.dist + '/', options.tmp + '/'], done);
+  gulp.task('fonts', function () {
+    return gulp.src(options.src + '/**/*.+(eot|ttf|woff)')
+      .pipe(flatten())
+      .pipe(gulp.dest(options.public + '/fonts/'))
   });
 
-  gulp.task('assemble', ['images', 'html', 'css', 'angular']);
+  gulp.task('clean', function (done) {
+    $.del([options.dist + '/', options.tmp + '/', options.pages + '/'], done);
+  });
 
-  gulp.task('build', ['clean'], function () {
-    gulp.start('assemble');
+  gulp.task('assemble', ['images', 'fonts', 'html', 'css', 'angular', 'citation']);
+
+  gulp.task('build', function (cb) {
+    runSequence('clean', 'assemble', cb);
   });
 };

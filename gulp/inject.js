@@ -9,7 +9,7 @@ module.exports = function(options) {
   gulp.task('inject', ['styles', 'scripts'], function () {
 
     var injectStyles = gulp.src([
-      options.tmp + '/serve/**/*.css'
+      options.tmp + '/serve/*.css'
     ], { read: false });
 
 

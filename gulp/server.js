@@ -14,7 +14,7 @@ module.exports = function(options) {
       browser: browser,
       server: {
         baseDir: baseDir,
-        index: angular ? 'angular-index.html' : 'index.html',
+        index: angular ? 'angular.html' : 'index.html',
         routes : {
           '/bower_components': 'bower_components',
           '/en': options.tmp + '/serve-en',
@@ -32,7 +32,7 @@ module.exports = function(options) {
     browserSyncInit([options.tmp + '/serve-angular', options.tmp + '/serve', options.src], true);
   });
 
-  gulp.task('serve:dist', ['build'], function () {
-    browserSyncInit(options.dist);
+  gulp.task('serve:pages', ['pages'], function () {
+    browserSyncInit([options.pages]);
   });
 };

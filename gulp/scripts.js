@@ -19,10 +19,15 @@ module.exports = function(options) {
 
   gulp.task('scripts:generate', function () {
     return gulp.src(options.src + '/citation/citation.html')
+      .pipe($.minifyHtml({
+        empty: true,
+        spare: true,
+        quotes: true
+      }))
       .pipe($.angularTemplatecache('citationHtml.js', {
-        templateHeader: '(function(lcb) {',
-        templateBody: 'lcb.template = "<%= contents %>";',
-        templateFooter: '})(LindatCitationBox);'
+        templateHeader: '\n',
+        templateBody: 'window.LindatCitationBox.template = "<%= contents %>";',
+        templateFooter: '\n'
       }))
       .pipe(gulp.dest(options.tmp + '/serve/citation/'));
   });
