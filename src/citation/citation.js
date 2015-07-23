@@ -1,4 +1,48 @@
-var EXPORT_FORMATS = [ 'bibtex', 'cmdi' ];
+
+var exportFormats = [
+  {
+    name: 'bibtex',
+    // will format bibtex (TODO: maybe it should come already formatted)
+    extract: function (data) {
+      var indent = '', res = [];
+      data = $.trim(data).replace(/\n\s+/gm, '\n').split('\n');
+
+      for (var i=0; i < data.length; i++) {
+        var line = data[i], indentChange = 0;
+
+        for (var j = 0; j < line.length; j++) {
+          var c = line[j];
+          if (c === '{') {
+            indentChange += 1;
+          }
+          else if (c === '}') {
+            indentChange -= 1;
+          }
+        }
+
+        if (indentChange < 0) {
+          indent = indent.slice(0, -2 * Math.abs(indentChange));
+          res.push(indent + line);
+        } else if (indentChange > 0) {
+          res.push(indent + line);
+          for (var k = 0; k < indentChange; k++) {
+            indent += '  ';
+          }
+        } else {
+          res.push(indent + line);
+        }
+      }
+
+      return res.join('\n');
+    }
+  },
+  {
+    name: 'cmdi',
+    extract: function (data) {
+      return data[0].documentElement.outerHTML;
+    }
+  }
+];
 
 var shareButtons = [
   {
@@ -62,22 +106,20 @@ function CitationBox(container, options) {
     citationBox[name] = opt;
   });
 
-  var formats = EXPORT_FORMATS.map(function (format) {
+  var formats = exportFormats.map(function (format) {
     return $('<a></a>')
-      .attr('href', citationBox.oai + '/cite?metadataPrefix=' + format + '&handle=' + citationBox.handle)
+      .attr('href', citationBox.oai + '/cite?metadataPrefix=' + format.name + '&handle=' + citationBox.handle)
       .on('click', function (e) {
         e.preventDefault();
-        citationBox.request(format)
+        citationBox.request(format.name)
           .done(function(data) {
-            if ($.type(data) !== 'string') {
-              data = data[0].documentElement.outerHTML;
-            } else {
-              data = $.trim(data);
+            if (format.extract) {
+              data = format.extract(data);
             }
             citationBox.modal(citationBox.title, data);
           });
       })
-      .text(format);
+      .text(format.name);
   });
 
   var shares = shareButtons.map(function (social) {
