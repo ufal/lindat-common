@@ -1,0 +1,22 @@
+language: node_js
+sudo: false
+node_js: '0.11'
+before_deploy: "npm pages && bash ./ci/build_release.sh"
+deploy:
+- provider: releases
+  api_key:
+    secure: UyTYLCcdkf+F3VlEIRYm/hBwPGRfN1cA+HfjG4qLsYjLLb67xyXuekDo9fVz6QdZq/lTJY5nzuk8G2Wnah4XbuXyWd9p7Mtvv2mT0GlHgCFjm2hsVk22d1qCVl0ZJEllNs9NWzDSPr5bLjz9HUvUqKcH8CNnZW98exJLwACN7OhO5Q9Rwt6jiVwLe2Rn5IDf4Nro1PExuU2y1vAfqnWRYc6GNWdR8mVdf6gzUXZUOLD6+hWRRY3GOnv5xQTp440JqF1D3L52pdy5Ua5HodO6S+kU1QAOyCeXpTAdS/mP99ehNr+RnXhi+nxCfInqstQ5WQBt3WED5MIdx2XBydyQaKT+tqYAH7Ike2koRcYeLkeBLnC3TebiRawQKCcixZnl0TNd2jQGVySrDr0CfeJ5OyDyFs+HRwvh9hhNLhL2zbJx+AMu+REfliGOpMMCwBtgB0WeHZFwxVQcseS6rGSW1inZnR/DcB0ova3HloI1TMigwUvOZsg02UYy+rEGFystBnQH8Yo64fZEQ4APJWPBSuONG1F3ywcvpvlx2wZ0xlo2fohm+5xw3zWnIrU2Gkv3F2H36CJAhYatLqu6HU4T3vtICG8md07Y+EBjvgiSKTTizPq9bxddh+6WPwom1tH70H3qT7/X99A5YqX8l/DGerLh23lxMX1LP1NXdpwmvdM=
+  file:
+    - 'dist.tar.gz'
+    - 'dist.zip'
+  skip_cleanup: true
+  on:
+    tags: true
+- provider: script
+  script: ci/update_pages.sh
+  on:
+    branch: master
+
+env:
+  global:
+    secure: kQE+nA/FOSWs9/5dXB0fMEBvLTsDPsUY00e3a4Ni/DhNr5E6jfeaUH8ejbC39+fBry2T/gRFF+LhlZbB0PCIEpvxzOkJeMRb+A9Du8JHh+M7MXj7x9Wg/2Noi7z+szPouxMRAHow6dzkk6DRviEm3Ew5Hew2yaVZu9dse/qK6c6U94uStoWTQVvhPulWvtmJFMjgcoqHCK76YzFhW1HrmOCrBmseH4xpheaKyeOp2TXnIvfvWGtQ0Tq755p6KYT4S87t+Mn4eUa8VCGPq/o2SI+SOlYpzTqD16TXtqiI3BXx2Fczr5bw+WMdQlqhApGVAjP7l/F1IVrU9C6E1uaJQ7UBcCUuy4pCzjmSFdyJyvgupEYApeDmGq7gvTzym+Hgc1NAXqsOIbayIrjxvwVt2wh1KUnX16gcE/hMoxBOC2A5U5ydd9vnhSiwAh1Ed1EEVLj7SfmJ8Nwb51jrYfEm/q5LJyItbVtlpJPbzZZ5w3AtezPGDsmqCddmhvbnPUuaKo3Hrp8vjS6K3KM0IFFFvcAcsVCcrNUd6lWuJ7hcCODmBrfsAyw2Zsd82JG+V//dQtzMoc/FX+oaUexudPrk4E6hfYDvU+gyV0fb2FEHkx53SDmmQwFEf4gAO9tCn6kBJkngZgbzo+s2aMhGpHc7vX2zX5mc6bBTlZngBP4iK8Q=

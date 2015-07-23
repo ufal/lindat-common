@@ -3,7 +3,9 @@
   "version": "1.0.1",
   "dependencies": {},
   "scripts": {
-    "build": "gulp"
+    "build": "gulp build",
+    "pages": "gulp pages",
+    "test": "exit 0"
   },
   "devDependencies": {
     "browser-sync": "~2.7.13",
