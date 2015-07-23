@@ -10,9 +10,11 @@ var options = {
   src: 'src',
   dist: 'dist',
   'public': 'dist/public',
+  pages: 'pages',
   tmp: '.tmp',
   inject: '.tmp/inject',
   iifeTemplate: '(function(){\n<%= contents %>\n}());',
+  iifeJQueryTemplate: '(function($){\n<%= contents %>\n}(jQuery));',
   errorHandler: function(title) {
     return function(err) {
       gutil.log(gutil.colors.red('[' + title + ']'), err.toString());

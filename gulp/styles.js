@@ -16,7 +16,7 @@ module.exports = function(options) {
 
     var injectFiles = gulp.src([
       options.src + '/**/*.less',
-      '!' + options.src + '/lindat-common.less'
+      '!' + options.src + '/lindat.less'
     ], { read: false });
 
     var injectOptions = {
@@ -28,7 +28,7 @@ module.exports = function(options) {
       addRootSlash: false
     };
 
-    var indexFilter = $.filter('lindat-common.less');
+    var indexFilter = $.filter('lindat.less');
 
     return gulp.src([
       options.src + '/*.less',

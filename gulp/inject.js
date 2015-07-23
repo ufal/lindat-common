@@ -13,9 +13,12 @@ module.exports = function(options) {
     ], { read: false });
 
 
-    var injectScripts = gulp.src([
-      options.src + '/scripts/*.js'
-    ]).pipe($.angularFilesort()).on('error', options.errorHandler('AngularFilesort'));
+    var injectScripts = $.merge(gulp.src([
+        options.src + '/angular/*.js'
+      ])
+        .pipe($.angularFilesort()).on('error', options.errorHandler('AngularFilesort')),
+      gulp.src([options.src + '/citation/*.js', options.tmp + '/serve/citation/citationHtml.js'], { read: false})
+    );
 
     var injectOptions = {
       ignorePath: [options.src, options.tmp + '/serve'],
@@ -25,7 +28,7 @@ module.exports = function(options) {
     var wiredepOptions = {
       directory: 'bower_components',
       ignorePath: '../',
-      exclude: [/bootstrap\.(css|js)/, /jquery\.js/]
+      exclude: [/bootstrap\.(css|js)/]
     };
 
     return gulp.src(options.src + '/**/*.html')

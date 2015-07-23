@@ -9,7 +9,7 @@ var yaml = require('js-yaml');
 var $ = require('gulp-load-plugins')();
 
 module.exports = function(options) {
-  var htmlSources = [options.inject + '/**/*.html', '!'+ options.inject +'/standalone-template.html'];
+  var htmlSources = [options.inject + '/**/*.html', '!'+ options.inject +'/standalone.html'];
 
   function preprocess(dest, lang, angular) {
     return gulp.src(htmlSources)
