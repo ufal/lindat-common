@@ -48,6 +48,10 @@ function CitationBox(container, options) {
 
   if (!options) { options = {}; }
 
+  if (!(citationBox instanceof CitationBox)) {
+    return new CitationBox(container, options);
+  }
+
   // Init all options from the container element or options object
   ['uri', 'oai', 'handle', 'title'].forEach(function (name) {
     var opt = options[name] || container.getAttribute(name);
@@ -218,3 +222,14 @@ CitationBox.prototype.modal = function (title, content) {
 };
 
 window.LindatCitationBox = CitationBox;
+
+$.fn.lindatCitationBox = function() {
+  var DATA_KEY = 'lindat-citation-box';
+  this.each(function () {
+    var el = $(this), box = el.data(DATA_KEY);
+    if (!box) {
+      el.data(DATA_KEY, new CitationBox(this));
+    }
+  });
+  return this;
+};

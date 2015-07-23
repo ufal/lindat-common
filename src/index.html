@@ -117,7 +117,7 @@
           switchLang(localStorage.getItem('lang') || 'en');
 
           // Citation box
-          var box = new LindatCitationBox(document.querySelector('.citation-box'));
+          var box = $('.citation-box').lindatCitationBox();
         }
 
         init();
