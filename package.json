@@ -5,7 +5,7 @@
   "scripts": {
     "build": "gulp build",
     "pages": "gulp pages",
-    "test": "exit 0"
+    "test": "gulp test"
   },
   "devDependencies": {
     "browser-sync": "~2.7.13",
@@ -40,6 +40,7 @@
     "js-yaml": "^3.3.1",
     "jshint-stylish": "~2.0.1",
     "lodash": "^3.10.0",
+    "protractor": "^2.1.0",
     "require-dir": "~0.3.0",
     "run-sequence": "^1.1.2",
     "wiredep": "^3.0.0-beta",

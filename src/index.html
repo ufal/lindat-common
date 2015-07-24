@@ -13,13 +13,44 @@
     <!-- css files will be automatically insert here -->
     <!-- endinject -->
     <style>
-      body {
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
+      html {
+        height: 100%;
       }
+      body {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        height: 100%;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column
+      }
+
+      footer, header {
+        -webkit-box-flex: 0;
+        -webkit-flex: none;
+        -ms-flex: none;
+        flex: none
+      }
+
       section {
-        flex: 1;
+        -webkit-box-flex: 1;
+        -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+        flex: 1 0 auto;
+        width: 100%
+      }
+
+      section::after {
+        content: '\00a0';
+        display: block;
+        height: 0;
+        clear: both;
+        margin-top: 3.5em;
+        visibility: hidden
       }
     </style>
   </head>
@@ -33,23 +64,17 @@
         Select the theme you want...
       </p>
       <p>
-        <label for="lang-select">Select Language:</label>
-        <select id="lang-select">
-          <option value="en">English</option>
-          <option value="cs">Czech</option>
-        </select>
+        <label>Select Language:</label>
+        <button class="lang-select" value="en">English</button>
+        <button class="lang-select" value="cs">Czech</button>
       </p>
       <p>
-        <label for="selector">Select active project:</label>
-        <select id="selector">
-          <option value="lindat-home">Home</option>
-          <option value="lindat-repository">Repository</option>
-          <option value="lindat-pmltq">PML-TQ</option>
-          <option value="lindat-tools">Any</option>
-        </select>
+        <label>Select active project:</label>
+        <button class="project-select" value="lindat-home">Home</button>
+        <button class="project-select" value="lindat-repository">Repository</button>
+        <button class="project-select" value="lindat-pmltq">PML-TQ</button>
+        <button class="project-select" value="lindat-tools">Any</button>
       </p>
-    </section>
-    <section class="lindat lindat-container">
       <h1>Citation Box</h1>
       <div class="citation-box"
            uri="http://hdl.handle.net/11234/1-1507"
@@ -89,32 +114,36 @@
         }
 
         function switchLang(lang) {
-          ajax('header', '/' + lang + '/partials/header.html');
-          ajax('footer', '/' + lang + '/partials/footer.html');
+          try {
+            ajax('header', '/' + lang + '/partials/header.html');
+            ajax('footer', '/' + lang + '/partials/footer.html');
+          } catch (e) {
+            console.log(e);
+          }
         }
 
         function init() {
-          var langSelect = document.getElementById('lang-select');
-          var selector = document.getElementById('selector');
-
-          langSelect.addEventListener('change', function() {
-            localStorage.setItem('lang', this.value);
-            switchLang(this.value);
+          Array.prototype.slice.call(document.querySelectorAll('.lang-select')).forEach(function(elm) {
+            var value = elm.getAttribute('value');
+            elm.addEventListener('click', function() {
+              localStorage.setItem('lang', value);
+              switchLang(value);
+            });
           });
 
-          selector.addEventListener('change', function () {
-            localStorage.setItem('project', this.value);
-            document.body.setAttribute('id', this.value);
+          Array.prototype.slice.call(document.querySelectorAll('.project-select')).forEach(function(elm) {
+            var value = elm.getAttribute('value');
+            elm.addEventListener('click', function() {
+              localStorage.setItem('project', value);
+              document.body.setAttribute('id', value);
+            });
           });
 
           var lang = localStorage.getItem('lang') || 'en';
           var project = localStorage.getItem('project') || 'lindat-home';
 
-          langSelect.value = lang;
-          selector.value = project;
-
           document.body.setAttribute('id', project);
-          switchLang(localStorage.getItem('lang') || 'en');
+          switchLang(lang);
 
           // Citation box
           var box = $('.citation-box').lindatCitationBox();

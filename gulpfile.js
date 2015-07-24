@@ -12,6 +12,7 @@ var options = {
   'public': 'dist/public',
   pages: 'pages',
   tmp: '.tmp',
+  test: 'test',
   inject: '.tmp/inject',
   iifeTemplate: '(function(){\n<%= contents %>\n}());',
   iifeJQueryTemplate: '(function($){\n<%= contents %>\n}(jQuery));',
