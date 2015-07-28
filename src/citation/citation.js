@@ -97,7 +97,7 @@ function CitationBox(container, options) {
   }
 
   // Init all options from the container element or options object
-  ['uri', 'oai', 'handle', 'title'].forEach(function (name) {
+  ['uri', 'oai', 'handle', 'title', 'rest'].forEach(function (name) {
     var opt = options[name] || container.getAttribute(name);
     container.removeAttribute(name);
     if (!opt) {
@@ -166,7 +166,43 @@ CitationBox.prototype.init = function() {
       citationBox.body.removeClass('lindat-loading');
     })
     .fail(handleFailure);
+
+  citationBox.services()
+      .done(function(data) {
+          if(data.length > 0){
+              data.forEach(function(service){
+                  var anchor = "<a href='"+service.url+"'>"+service.name+"</a>"; 
+                  $('.lindat-cb-services').append(anchor);
+              });
+              $(".lindat-cb-noservice").remove();
+          }
+      });
 };
+
+/**
+ * Fetche services for this.handle
+ * @param {String} format
+ * @return {Deferred}
+ */
+CitationBox.prototype.services = function() {
+    var url = this.rest+"/handle/"+this.handle+"?expand=metadata"; 
+    var deferred = $.Deferred();
+    $.getJSON(url)
+        .done(function(item){
+            var services = [];
+            item.metadata.filter(function(entry){
+                return entry.key === 'local.featured.service';
+            }).forEach(function(entry){
+                var delimiter_idx = entry.value.indexOf(';');
+                var name = entry.value.substring(0,delimiter_idx);
+                var url = entry.value.substring(delimiter_idx + 1);
+                services.push({'url':url,'name':name});
+            });
+            deferred.resolve(services);
+        })
+        .fail(deferred.reject);
+    return deferred;
+}
 
 /**
  * Fetches metadata in specified format
@@ -176,7 +212,6 @@ CitationBox.prototype.init = function() {
 CitationBox.prototype.request = function(format) {
   var url = this.oai + '/cite?metadataPrefix=' + format + '&handle=' + this.handle,
     deferred = $.Deferred();
-
     $.ajax(url, {dataType: 'xml', cache: true})
       .done(function (data) {
         data = $(data);
