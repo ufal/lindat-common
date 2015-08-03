@@ -5,7 +5,7 @@
 set -e
 
 : ${TRAVIS:?'This should only be run on Travis CI'}
-GITHUB_TOKEN=${1:?'Must provide github token'}
+GH_TOKEN=${GH_TOKEN:?'Must provide github token'}
 
 rev=$(git rev-parse --short HEAD)
 
@@ -19,4 +19,4 @@ touch .
 
 git add -A .
 git commit -m "Rebuild Github pages at ${rev}"
-git push --force -q "https://$GITHUB_TOKEN@github.com/ufal/lindat-common.git" master:gh-pages > /dev/null 2>&1
+git push --force -q "https://$GH_TOKEN@github.com/ufal/lindat-common.git" master:gh-pages > /dev/null 2>&1

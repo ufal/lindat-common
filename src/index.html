@@ -115,8 +115,8 @@
 
         function switchLang(lang) {
           try {
-            ajax('header', '/' + lang + '/partials/header.html');
-            ajax('footer', '/' + lang + '/partials/footer.html');
+            ajax('header', './' + lang + '/header.html');
+            ajax('footer', './' + lang + '/footer.html');
           } catch (e) {
             console.log(e);
           }

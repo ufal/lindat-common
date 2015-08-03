@@ -6,6 +6,6 @@ set -e
 
 cd dist
 
-tar -zcvf "../dist.tar.gz" *
-zip "../dist.zip" *
+tar -zcvf "../dist.tar.gz" * > /dev/null 2>&1
+zip "../dist.zip" * > /dev/null 2>&1
 

@@ -17,8 +17,8 @@ module.exports = function(options) {
         index: angular ? 'angular.html' : 'index.html',
         routes : {
           '/bower_components': 'bower_components',
-          '/en': options.tmp + '/serve-en',
-          '/cs': options.tmp + '/serve-cs'
+          '/en': options.tmp + '/serve-en/partials',
+          '/cs': options.tmp + '/serve-cs/partials'
         }
       }
     }, function(err, bs) {
