@@ -6,12 +6,12 @@ var definedBrowser = process.env.BROWSER;
 
 module.exports = function(options) {
 
-  function browserSyncInit(baseDir, angular) {
+  function browserSyncInit(baseDir, angular, cb) {
     var browser = definedBrowser ? definedBrowser : undefined;
 
     browserSync.instance = browserSync.init({
       startPath: '/',
-      browser: browser,
+      browser: process.env.TRAVIS ? null : browser,
       server: {
         baseDir: baseDir,
         index: angular ? 'angular.html' : 'index.html',
@@ -21,18 +21,24 @@ module.exports = function(options) {
           '/cs': options.tmp + '/serve-cs'
         }
       }
+    }, function(err, bs) {
+      if (err && err.message) {
+        console.error(err.message);
+      }
+      process.env.BASE_URL = bs.options.getIn(["urls", "local"]);
+      cb();
     });
   }
 
-  gulp.task('serve', ['watch'], function () {
-    browserSyncInit([options.tmp + '/serve', options.inject, options.src]);
+  gulp.task('serve', ['watch'], function (done) {
+    browserSyncInit([options.tmp + '/serve', options.inject, options.src], false, done);
   });
 
-  gulp.task('serve:angular', ['watch'], function () {
-    browserSyncInit([options.tmp + '/serve-angular', options.tmp + '/serve', options.src], true);
+  gulp.task('serve:angular', ['watch'], function (done) {
+    browserSyncInit([options.tmp + '/serve-angular', options.tmp + '/serve', options.src], true, done);
   });
 
-  gulp.task('serve:pages', ['pages'], function () {
-    browserSyncInit([options.pages]);
+  gulp.task('serve:pages', ['pages'], function (done) {
+    browserSyncInit([options.pages], false, done);
   });
 };
