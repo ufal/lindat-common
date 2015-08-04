@@ -54,7 +54,7 @@
       }
     </style>
   </head>
-  <body id="lindat-home">
+  <body>
     <!-- HEADER -->
     <header>
     </header>
@@ -94,14 +94,17 @@
     <script>
       (function() {
         function ajax(selector, url) {
-          var xmlhttp = new XMLHttpRequest();
+          var xmlhttp = new XMLHttpRequest(),
+              elem = document.querySelector(selector);
+
+          elem.innerHTML = '';
           xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == XMLHttpRequest.DONE) {
               if (xmlhttp.status == 200) {
                 var html = xmlhttp.responseText;
                 html = html.replace(/<script[^>]*>/gi, ' <!-- ');
                 html = html.replace(/<\/script>/gi, ' --> ');
-                document.querySelector(selector).innerHTML = html;
+                elem.innerHTML = html;
               } else if (xmlhttp.status == 404) {
                 alert('Template not found');
               } else {

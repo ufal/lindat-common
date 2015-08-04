@@ -29,19 +29,18 @@ describe('Lindat Common', function() {
   });
 
   afterEach(function() {
-    browser.executeScript('window.sessionStorage.clear();');
-    browser.executeScript('window.localStorage.clear();');
+    browser.executeScript('window.sessionStorage.clear(); window.localStorage.clear();');
   });
 
   it('should load', function() {
-    browser.wait(EC.presenceOf(footer), waitingTime);
-    browser.wait(EC.presenceOf(header), waitingTime);
+    browser.wait(EC.visibilityOf(footer), waitingTime);
+    browser.wait(EC.visibilityOf(header), waitingTime);
 
     expect(browser.getTitle()).toEqual('LINDAT/CLARIN Research Infrastructure');
   });
 
   it('should have Lindat header', function () {
-    browser.wait(EC.presenceOf(header), waitingTime);
+    browser.wait(EC.visibilityOf(header), waitingTime);
     expect(header.isPresent()).toBeTruthy();
 
     var menu = element(by.css('.lindat-menu'));
@@ -51,13 +50,14 @@ describe('Lindat Common', function() {
   });
 
   it('should switch projects', function () {
-    browser.wait(EC.presenceOf(header), waitingTime);
+    browser.wait(EC.visibilityOf(header), waitingTime);
 
     var homeItem, repositoryItem;
 
     element(by.css('[value="lindat-home"]')).click();
-    browser.wait(EC.presenceOf(element(by.css('#lindat-home'))), waitingTime);
-
+    browser.sleep(100);
+    browser.wait(EC.visibilityOf(element(by.css('#lindat-home'))), waitingTime);
+    
     homeItem = element(by.css('.lindat-home-item a'));
     repositoryItem = element(by.css('.lindat-repository-item a'));
     expect(body.getAttribute('id')).toEqual('lindat-home');
@@ -65,7 +65,8 @@ describe('Lindat Common', function() {
     expect(repositoryItem.getCssValue('border-bottom-color')).toBeTransparent();
 
     element(by.css('[value="lindat-repository"]')).click();
-    browser.wait(EC.presenceOf(element(by.css('#lindat-repository'))), waitingTime);
+    browser.sleep(100);
+    browser.wait(EC.visibilityOf(element(by.css('#lindat-repository'))), waitingTime);
 
     homeItem = element(by.css('.lindat-home-item a'));
     repositoryItem = element(by.css('.lindat-repository-item a'));
@@ -75,18 +76,15 @@ describe('Lindat Common', function() {
   });
 
   it('should switch languages', function () {
-    browser.wait(EC.presenceOf(header), waitingTime);
+    browser.wait(EC.visibilityOf(header), waitingTime);
 
-    var repositoryItem;
-
-    element(by.css('[value="en"]')).click();
-    repositoryItem = element(by.css('.lindat-repository-item'));
-    browser.wait(EC.textToBePresentInElement(repositoryItem, 'Repository'), waitingTime);
+    var repositoryItem = element(by.css('.lindat-repository-item'));
     expect(repositoryItem.getText()).toEqual('Repository');
 
     element(by.css('[value="cs"]')).click();
+    browser.sleep(100);
+    browser.wait(EC.visibilityOf(header), waitingTime);
     repositoryItem = element(by.css('.lindat-repository-item'));
-    browser.wait(EC.textToBePresentInElement(repositoryItem, 'Repozitář'), waitingTime);
     expect(repositoryItem.getText()).toEqual('Repozitář');
   });
 });
