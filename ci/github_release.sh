@@ -4,6 +4,7 @@ set -e
 
 : ${TRAVIS:?'This should only be run on Travis CI'}
 
+cp -u *.md dist/
 cd dist
 
 tar -zcvf "../dist.tar.gz" * > /dev/null 2>&1
