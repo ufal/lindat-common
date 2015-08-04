@@ -4,7 +4,7 @@ describe('Lindat Common', function() {
   var body = element(by.tagName('body'));
   var EC = protractor.ExpectedConditions;
   var waitingTime = 5000;
-  var sleepTime = 2000;
+  var sleepTime = 3000;
 
   beforeEach(function() {
     jasmine.addMatchers({
