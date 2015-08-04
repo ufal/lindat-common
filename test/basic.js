@@ -4,6 +4,7 @@ describe('Lindat Common', function() {
   var body = element(by.tagName('body'));
   var EC = protractor.ExpectedConditions;
   var waitingTime = 5000;
+  var sleepTime = 2000;
 
   beforeEach(function() {
     jasmine.addMatchers({
@@ -55,7 +56,7 @@ describe('Lindat Common', function() {
     var homeItem, repositoryItem;
 
     element(by.css('[value="lindat-home"]')).click();
-    browser.sleep(100);
+    browser.sleep(sleepTime);
     browser.wait(EC.visibilityOf(element(by.css('#lindat-home'))), waitingTime);
     
     homeItem = element(by.css('.lindat-home-item a'));
@@ -65,7 +66,7 @@ describe('Lindat Common', function() {
     expect(repositoryItem.getCssValue('border-bottom-color')).toBeTransparent();
 
     element(by.css('[value="lindat-repository"]')).click();
-    browser.sleep(100);
+    browser.sleep(sleepTime);
     browser.wait(EC.visibilityOf(element(by.css('#lindat-repository'))), waitingTime);
 
     homeItem = element(by.css('.lindat-home-item a'));
@@ -82,7 +83,7 @@ describe('Lindat Common', function() {
     expect(repositoryItem.getText()).toEqual('Repository');
 
     element(by.css('[value="cs"]')).click();
-    browser.sleep(100);
+    browser.sleep(sleepTime);
     browser.wait(EC.visibilityOf(header), waitingTime);
     repositoryItem = element(by.css('.lindat-repository-item'));
     expect(repositoryItem.getText()).toEqual('Repozitář');
