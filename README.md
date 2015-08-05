@@ -1,23 +1,61 @@
-LINDAT/CLARIN Common Theme
-==========================
+# LINDAT/CLARIN Common Theme
 
-This is a fork of [Lindat Common Theme](https://redmine.ms.mff.cuni.cz/projects/lindat-common) made available for bower and AngularJS. This version is also a standalone in a sense that is has zero dependencies (not counting Angular). Neither jQuery nor Bootstrap is required or installed by default!
+Files common for all Lindat projects. The repository has been migrated from [UFAL Redmine](https://redmine.ms.mff.cuni.cz/projects/lindat-common). Here is short description on how to use Lindat Common Theme, for more detailed info see [Redmine wiki](https://redmine.ms.mff.cuni.cz/projects/lindat-common/wiki). 
 
-More info for old style of use: https://redmine.ms.mff.cuni.cz/projects/lindat-common/wiki
+## Installation
 
-Installation
-------------
+You can get common theme to your project in several ways:
+
+### 1 Using this repository as a git submodule
+
+```.bash
+git submodule add https://github.com/ufal/lindat-common.git lindat-common
+git submodule init
+git submodule update
+```
+
+To update to the newest version run following:
+
+```.bash
+git submodule update --remote --merge
+```
+
+Please note:
+> The original idea was to use common theme the same way as `svn:externals` but the git doesn't work the same way. The submodule is always fixed to the specific commit SHA so you have to always manually update the submodule and also commit the change.
+
+### 2 Using releases here on Github
+
+Go [here](https://github.com/ufal/lindat-common/releases) and download the latest release or use command line:
+
+```.bash
+mkdir lindat-common
+cd lindat-common
+REPO="https://github.com/ufal/lindat-common"
+TAG=`git ls-remote --tags $REPO | grep -v '\^{}' | sed -e 's/.*refs\/tags\/\(.*\)/\1/p' | sort -Vk2 | tail -n1`
+curl "$REPO/releases/download/$TAG/dist.tar.gz" | tar -xz
+```
+
+### 3 Using the [Bower](http://bower.io/)
+
+Use 
   
     bower install lindat-common --save
     
-or
+to install and
 
     bower --force update
     
-to force the newest version.
+to force update to the newest version.
+
+All files are in the `dist` directory.
+
+## How to Use Common Theme
+
+All you have to do is include the header/footer html in your page layout together with css styles. You should also set `<body id="lindat-tools">`. If you can't set `id` on the `body`, any other common parent element should work. 
+
+NOTE: `lindat.css` will set body margin and padding to *zero* pixels. This should stay zero to ensure proper look, if you need padding or margin on your page please use other elements. The header and footer requires only these.
     
-Use in Angular projects
------------------------
+## Use in Angular projects
 
 1. Include CSS and Javascript in your html
 1. Add `lindat` to the modules
@@ -42,10 +80,7 @@ Use in Angular projects
         
 1. Google Analytics and Piwik tracking are already included and should work out of the box. See [angular-piwik](https://github.com/mike-spainhower/angular-piwik) and [angular-google-analytics](https://github.com/revolunet/angular-google-analytics) for more info.
 
-Development
------------
-
-This repo is based on https://redmine.ms.mff.cuni.cz/projects/lindat-common these two should be the same.
+## Development
 
 - Clone the repository
         
@@ -74,8 +109,7 @@ This repo is based on https://redmine.ms.mff.cuni.cz/projects/lindat-common thes
 
         gulp serve:angular
         
-Making new release
-------------------
+## Making new release
 
 | Task                 | Version                                |
 |----------------------|----------------------------------------|
