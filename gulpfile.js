@@ -4,8 +4,6 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var wrench = require('wrench');
 
-require('gulp-release-tasks')(gulp);
-
 var options = {
   src: 'src',
   dist: 'dist',

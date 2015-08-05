@@ -40,7 +40,17 @@ git config user.email "$git_email"
 
 touch .
 
+git remote add origin "https://$GH_TOKEN@github.com/ufal/lindat-common.git"
+# Fetch remote refs to a specific branch, equivalent to a pull without checkout
+git fetch --update-head-ok origin releases:master
+# Make the current working tree the branch HEAD without checking out files
+git symbolic-ref HEAD refs/heads/master
+# Make sure the stage is clean
+git reset
+
+# Track releases branch
+git branch --set-upstream-to=origin/releases master
+
 git add -A .
 git commit -m "Release build based on ${rev}"
-git push --force -q "https://$GH_TOKEN@github.com/ufal/lindat-common.git" master:releases > /dev/null 2>&1
-
+git push -q origin master:releases > /dev/null 2>&1
