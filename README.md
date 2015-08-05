@@ -55,6 +55,8 @@ This repo is based on https://redmine.ms.mff.cuni.cz/projects/lindat-common thes
 - Install NodeJS environment (unless you already have one)
         
         curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
+        nvm install stable
+        nvm use stable
 
 - Install build tools Bower and Gulp
 
@@ -72,15 +74,11 @@ This repo is based on https://redmine.ms.mff.cuni.cz/projects/lindat-common thes
 
         gulp serve:angular
         
-- To build a new distribution
-
-        gulp build && gulp tag
-
 Making new release
 ------------------
 
-| Task             | Version                                |
-|------------------|----------------------------------------|
-| gulp tag         | v0.0.1 -> v0.0.2 + commit + tag + push |
-| gulp tag --minor | v0.0.1 -> v0.1.0 + commit + tag + push |
-| gulp tag --major | v0.0.1 -> v1.0.1 + commit + tag + push |
+| Task                 | Version                                |
+|----------------------|----------------------------------------|
+| gulp release         | v0.0.1 -> v0.0.2 + commit + tag + push |
+| gulp release --minor | v0.0.1 -> v0.1.0 + commit + tag + push |
+| gulp release --major | v0.0.1 -> v1.0.1 + commit + tag + push |
