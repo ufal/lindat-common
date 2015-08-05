@@ -42,12 +42,18 @@ module.exports = function(options) {
 
   gulp.task('add', ['add:dist', 'add:version']);
 
-  gulp.task('release', ['add'], function() {
+  gulp.task('commit', ['add'], function() {
     var pkg = getPackageJson();
-    return gulp.src('./package.json')
-      .pipe($.git.commit('Releasing version ' + pkg.version))     
-      .pipe($.tagVersion())
-      .pipe($.git.push('origin', 'master', {args: '--tags'}));
+    return gulp.src('.')
+      .pipe($.git.commit('Releasing version ' + pkg.version));     
   });
 
+  gulp.task('tag', ['commit'], function() { 
+    return gulp.src('./package.json')
+      .pipe($.tagVersion());
+  });
+
+  gulp.task('release', ['tag'], function(done) {
+    $.git.push('origin', 'master', {args: '--tags'}, done);
+  });
 };

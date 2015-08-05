@@ -51,6 +51,10 @@ git reset
 # Track releases branch
 git branch --set-upstream-to=origin/releases master
 
-git add -A .
-git commit -m "Release build based on ${rev}"
-git push -q origin master:releases > /dev/null 2>&1
+# Chech if there are things to commit
+STATUS=`git status --porcelain`
+if [ -n "$STATUS" ]; then
+	git add -A .
+	git commit -m "Release build based on ${rev}"
+	git push -q origin master:releases > /dev/null 2>&1	
+fi

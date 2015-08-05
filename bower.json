@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git://github.com/ufal/lindat-common.git"
   },
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": [
     "dist/public/js/angular-lindat.js",
     "dist/public/css/lindat.css"
