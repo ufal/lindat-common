@@ -2,7 +2,7 @@
 function LindatFooterDirective() {
   return {
     restrict: 'AE',
-    templateUrl: 'partials/footer.html'
+    templateUrl: 'partials/footer.htm'
   };
 }
 

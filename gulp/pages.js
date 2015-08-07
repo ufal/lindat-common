@@ -14,7 +14,7 @@ var flatten = function() {
 
 module.exports = function(options) {
   gulp.task('pages:copy', ['assemble'], function () {
-    return gulp.src([options.dist + '/**/*.*', '!' + options.dist + '/*.html'])
+    return gulp.src([options.dist + '/**/*.*', '!' + options.dist + '/*.htm'])
       .pipe(gulp.dest(options.pages + '/'));
   });
 

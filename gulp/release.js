@@ -22,7 +22,7 @@ module.exports = function(options) {
       return 'major';
     }
     return 'patch';
-  };
+  }
 
   gulp.task('bump', function() {
     return gulp.src(files)
@@ -32,7 +32,7 @@ module.exports = function(options) {
 
   gulp.task('add:dist', ['build'], function() {
     return gulp.src( options.dist + '/**')
-      .pipe($.git.add({args: '-f'}));
+      .pipe($.git.add({args: '--all -f'}));
   });
 
   gulp.task('add:version', ['bump'], function() {
@@ -45,10 +45,10 @@ module.exports = function(options) {
   gulp.task('commit', ['add'], function() {
     var pkg = getPackageJson();
     return gulp.src('.')
-      .pipe($.git.commit('Releasing version ' + pkg.version));     
+      .pipe($.git.commit('Releasing version ' + pkg.version));
   });
 
-  gulp.task('tag', ['commit'], function() { 
+  gulp.task('tag', ['commit'], function() {
     return gulp.src('./package.json')
       .pipe($.tagVersion());
   });

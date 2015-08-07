@@ -13,7 +13,7 @@ function LindatHeaderDirective() {
 
   return {
     restrict: 'AE',
-    templateUrl: 'partials/header.html',
+    templateUrl: 'partials/header.htm',
     link: linkFn
   };
 }

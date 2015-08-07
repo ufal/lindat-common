@@ -32,16 +32,15 @@ module.exports = function(options) {
   });
 
   function processHtml(dest, lang) {
-    return gulp.src(options.tmp + '/serve-' + lang + '/partials/*.html')
-      .pipe($.tap(function (file, t) {
-        t.through(function () {
-          return gulp.src(options.src + '/standalone.html')
-            .pipe($.swig({data: {file: file.path}})).on('error', options.errorHandler('Swig'))
-            .pipe($.rename(function (filePath) {
-              filePath.basename = path.basename(file.path, '.html') + '-services-standalone';
-            }))
-            .pipe(gulp.dest(dest));
-        }, []);
+    return gulp.src(options.tmp + '/serve-' + lang + '/partials/*.htm')
+      .pipe($.tap(function (file) {
+        gulp.src(options.src + '/standalone.html')
+          .pipe($.swig({data: {file: file.path}})).on('error', options.errorHandler('Swig'))
+          .pipe($.rename(function (filePath) {
+            filePath.extname = '.htm';
+            filePath.basename = path.basename(file.path, '.htm') + '-services-standalone';
+          }))
+          .pipe(gulp.dest(dest));
       }))
       .pipe(gulp.dest(dest));
   }
@@ -63,7 +62,7 @@ module.exports = function(options) {
 
   gulp.task('angular:templates', ['preprocess'], function () {
     return gulp.src([
-      options.tmp + '/serve-angular/partials/*.html'
+      options.tmp + '/serve-angular/partials/*.htm'
     ])
       .pipe($.minifyHtml({
         empty: true,
@@ -121,7 +120,7 @@ module.exports = function(options) {
   gulp.task('fonts', function () {
     return gulp.src(options.src + '/**/*.+(eot|ttf|woff)')
       .pipe(flatten())
-      .pipe(gulp.dest(options.public + '/fonts/'))
+      .pipe(gulp.dest(options.public + '/fonts/'));
   });
 
   gulp.task('clean', function (done) {

@@ -31,7 +31,7 @@ module.exports = function(options) {
       exclude: [/bootstrap\.(css|js)/]
     };
 
-    return gulp.src(options.src + '/**/*.html')
+    return gulp.src([options.src + '/**/*.html', options.src + '/**/*.htm'])
       .pipe($.inject(injectStyles, injectOptions))
       .pipe($.inject(injectScripts, injectOptions))
       .pipe(wiredep(wiredepOptions))
