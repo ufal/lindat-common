@@ -50,15 +50,16 @@ body {
     margin: 0; padding: 0;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 .lindat-common {
   font-family: "Droid Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   font-size: 14px;
+
+  // Scope box-sizing because it can break BS3 styles
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
 }
 
 .lindat-container {
