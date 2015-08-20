@@ -107,8 +107,12 @@ function CitationBox(container, options) {
     citationBox[name] = opt;
   });
 
-  var formats = exportFormats.map(function (format) {
-    return $('<a></a>')
+  var tpl = citationBox.body = $(CitationBox.template);
+  var formatsContainer = tpl.find('[citation-box-formats]');
+  var sharesContainer = tpl.find('[citation-box-shares]');
+
+  exportFormats.forEach(function (format) {
+    var el = $('<a></a>')
       .attr('href', citationBox.oai + '/cite?metadataPrefix=' + format.name + '&handle=' + citationBox.handle)
       .on('click', function (e) {
         e.preventDefault();
@@ -121,13 +125,14 @@ function CitationBox(container, options) {
           });
       })
       .text(format.name);
+    formatsContainer.append(el);
   });
 
   var shares = shareButtons.map(function (social) {
     var popup = social.popup,
       url = makeUrl(popup.url, citationBox);
 
-    return $('<a></a>')
+    var el = $('<a></a>')
       .attr('class', 'lindat-icon lindat-icon-' + social.name + ' lindat-share-' + social.name)
       .attr('href', url)
       .on('click', function (e) {
@@ -135,11 +140,8 @@ function CitationBox(container, options) {
         window.open(url, citationBox.title,
           'height:' + popup.height + ',width:' + popup.width);
       });
+    sharesContainer.append(el);
   });
-
-  var tpl = citationBox.body = $(CitationBox.template);
-  tpl.find('[citation-box-formats]').append(formats);
-  tpl.find('[citation-box-shares]').append(shares);
 
   citationBox.text = tpl.find('[citation-box-text]');
   citationBox.copyButton = tpl.find('[citation-box-copy-button]');
