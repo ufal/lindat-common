@@ -97,8 +97,8 @@ function CitationBox(container, options) {
   }
 
   // Init all options from the container element or options object
-  ['uri', 'oai', 'handle', 'title'].forEach(function (name) {
-    var opt = options[name] || container.getAttribute(name);
+  ['handle', 'title'].forEach(function (name) {
+    var opt = container.getAttribute(name);
     container.removeAttribute(name);
     if (!opt) {
       throw new Error("CitationBox: Option '" + name + "' not specified.");
@@ -109,6 +109,12 @@ function CitationBox(container, options) {
   var tpl = citationBox.body = $(CitationBox.template);
   var formatsContainer = tpl.find('[citation-box-formats]');
   var sharesContainer = tpl.find('[citation-box-shares]');
+  Object.keys(options).forEach(function(name){
+    citationBox[name] = options[name];
+  });
+
+  //should be used only as failsafe when rest does not return anything.
+  citationBox['uri'] = 'http://hdl.handle.net/' + citationBox['handle'];
 
   exportFormats.forEach(function (format) {
     var el = $('<a></a>')
@@ -267,13 +273,24 @@ CitationBox.prototype.modal = function (title, content) {
 
 window.LindatCitationBox = CitationBox;
 
-$.fn.lindatCitationBox = function() {
+$.fn.lindatCitationBox = function(opts) {
+  var options = $.extend({},{
+    //defaults
+    rest: 'https://lindat.mff.cuni.cz/repository/rest',
+    oai: 'https://lindat.mff.cuni.cz/repository/oai',
+  }, opts);
   var DATA_KEY = 'lindat-citation-box';
   this.each(function () {
     var el = $(this), box = el.data(DATA_KEY);
     if (!box) {
-      el.data(DATA_KEY, new CitationBox(this));
+      el.data(DATA_KEY, new CitationBox(this, options));
     }
   });
   return this;
 };
+$(document).ready(function(){
+  if(!window.LindatCitationBoxConfig){
+    window.LindatCitationBoxConfig = {}
+  }
+  $(".citationbox").lindatCitationBox(window.LindatCitationBoxConfig);
+});
