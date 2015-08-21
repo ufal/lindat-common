@@ -98,8 +98,8 @@ function CitationBox(container, options) {
   }
 
   // Init all options from the container element or options object
-  ['uri', 'oai', 'handle', 'title'].forEach(function (name) {
-    var opt = options[name] || container.getAttribute(name);
+  ['handle', 'title'].forEach(function (name) {
+    var opt = container.getAttribute(name);
     container.removeAttribute(name);
     if (!opt) {
       throw new Error("CitationBox: Option '" + name + "' not specified.");
@@ -110,6 +110,12 @@ function CitationBox(container, options) {
   var tpl = citationBox.body = $(CitationBox.template);
   var formatsContainer = tpl.find('[citation-box-formats]');
   var sharesContainer = tpl.find('[citation-box-shares]');
+  Object.keys(options).forEach(function(name){
+    citationBox[name] = options[name];
+  });
+
+  //should be used only as failsafe when rest does not return anything.
+  citationBox['uri'] = 'http://hdl.handle.net/' + citationBox['handle'];
 
   exportFormats.forEach(function (format) {
     var el = $('<a></a>')
@@ -268,16 +274,27 @@ CitationBox.prototype.modal = function (title, content) {
 
 window.LindatCitationBox = CitationBox;
 
-$.fn.lindatCitationBox = function() {
+$.fn.lindatCitationBox = function(opts) {
+  var options = $.extend({},{
+    //defaults
+    rest: 'https://lindat.mff.cuni.cz/repository/rest',
+    oai: 'https://lindat.mff.cuni.cz/repository/oai',
+  }, opts);
   var DATA_KEY = 'lindat-citation-box';
   this.each(function () {
     var el = $(this), box = el.data(DATA_KEY);
     if (!box) {
-      el.data(DATA_KEY, new CitationBox(this));
+      el.data(DATA_KEY, new CitationBox(this, options));
     }
   });
   return this;
 };
+$(document).ready(function(){
+  if(!window.LindatCitationBoxConfig){
+    window.LindatCitationBoxConfig = {}
+  }
+  $(".citationbox").lindatCitationBox(window.LindatCitationBoxConfig);
+});
 
 
 window.LindatCitationBox.template = "<div class=\"lindat-citation-box lindat-loading\"><div class=\"lindat-cb-top\"><div class=\"lindat-cb-header\"><div class=\"lindat-icon lindat-header-icon lindat-icon-quote\"></div><h3>Please use the following text to cite this item or export to a predefined format:</h3><div class=\"lindat-cb-formats\" citation-box-formats=\"\"></div></div><div class=\"lindat-cb-body\"><div class=\"lindat-cb-text\" citation-box-text=\"\"><div class=\"lindat-loader\"><div></div><div></div><div></div></div></div><div><button class=\"lindat-cb-copy lindat-icon lindat-icon-copy\" citation-box-copy-button=\"\"></button></div></div></div><div class=\"lindat-cb-footer\"><div class=\"lindat-cb-integration\"><div class=\"lindat-cb-header\"><div class=\"lindat-icon lindat-header-icon lindat-icon-puzzle\"></div><h3>This resource is also integrated in following services:</h3></div><div class=\"lindat-cb-services\"><a href=\"#\">PML-TQ</a> <a href=\"#\">KonText</a></div></div><div class=\"lindat-cb-share\"><div class=\"lindat-cb-header\"><div class=\"lindat-icon lindat-header-icon lindat-icon-share\"></div><h3>Share:</h3></div><div class=\"lindat-cb-shares\" citation-box-shares=\"\"></div></div></div></div>";
