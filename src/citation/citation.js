@@ -192,7 +192,7 @@ CitationBox.prototype.request = function(format) {
         if (error.length) {
           deferred.reject();
         } else {
-          var content = data.find(format);
+          var content = format === 'html' ? data.contents() : data.find(format);
           deferred.resolve(content.length ? content.html() : data);
         }
       })
@@ -290,7 +290,7 @@ $.fn.lindatCitationBox = function(opts) {
 };
 $(document).ready(function(){
   if(!window.LindatCitationBoxConfig){
-    window.LindatCitationBoxConfig = {}
+    window.LindatCitationBoxConfig = {};
   }
   $(".citationbox").lindatCitationBox(window.LindatCitationBoxConfig);
 });
