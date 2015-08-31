@@ -19,7 +19,7 @@ describe('Lindat Common', function() {
     browser.wait(EC.presenceOf(header), waitingTime);
 
     var menu = element(by.css('.lindat-menu'));
-    expect(menu.getCssValue('height')).toBe('56px');
+    expect(menu.getCssValue('height')).toBe('53px');
     var menuItems = element.all(by.css('.lindat-menu li'));
     expect(menuItems.count()).toEqual(8);
   });

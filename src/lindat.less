@@ -145,7 +145,7 @@ body {
 
   @media (min-width: @screen-sm-min) {
     display: flex;
-    height: 56px;
+    height: 53px;
 
     &>li {
       display: flex;
@@ -172,18 +172,18 @@ body {
 }
 
 .lindat-logo {
-  .header-logo("images/lindat-logo.png");
+  .header-logo("images/lindat-logo-menu.png");
 }
 
 .clarin-logo {
-  .header-logo("images/clarin-logo-inline.png");
+  .header-logo("images/clarin-logo-menu.png");
 }
 
 .header-logo(@image) {
 
   @media (min-width: @screen-sm-min) {
     background: url(@image) no-repeat center;
-    background-size: contain;
+    // background-size: contain;
     min-width: 100px;
   }
 
