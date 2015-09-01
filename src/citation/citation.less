@@ -192,6 +192,7 @@ html.lindat-modal-open {
   line-height: 15px;
   background: #ccc;
   text-align: center;
+  margin: 0 0 0 10px;
 }
 
 .lindat-citation-box {
@@ -221,17 +222,6 @@ html.lindat-modal-open {
   padding: 10px 10px 5px 10px;
   border-radius: 6px 6px 0 0;
 }
-
-// .lindat-cb-headers {
-//   display: flex;
-//   flex-direction: column-reverse;
-//   justify-content: flex-start;
-
-//   @media (min-width: @screen-md-min) {
-//     flex-direction: row;
-//     justify-content: space-between;
-//   }
-// }
 
 .lindat-cb-formats {
   padding: 0 5px;
@@ -313,12 +303,21 @@ html.lindat-modal-open {
   border-radius: 0 0 6px 6px;
 
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
+  flex-direction: column;
+
+  @media (min-width: @screen-sm-min) {
+    flex-direction: row;
+  }
 }
 
 .lindat-cb-integration {
   flex: 1 0 auto;
+  margin-bottom: 10px;
+
+  @media (min-width: @screen-sm-min) {
+    margin-bottom: 0;
+  }
 }
 
 .lindat-cb-services {
