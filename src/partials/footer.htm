@@ -44,7 +44,9 @@
     </p>
     <p>{{copyright}}</p>
   </div>
-  {% if not angular %}
+  {% if angular %}
+  <ngp-piwik ngp-set-js-url="//ufal.mff.cuni.cz/piwik/piwik.js"> </ngp-piwik>
+  {% else %}
   <script type="text/javascript">
     //<![CDATA[
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
