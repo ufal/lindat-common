@@ -1,16 +1,15 @@
+@refbox-bg: #fcf8e3;
+@refbox-text: #c09853;
+@refbox-border: #fbeed5;
 
-@citation-box-bg: #fcf8e3;
-@citation-box-text: #c09853;
-@citation-box-border: #fbeed5;
+@refbox-body-text: #999999;
 
-@citation-text: #999999;
+@refbox-footer-text: #3388AA;
+@refbox-footer-bg: #D8EDF6;
+@refbox-footer-border: darken(spin(@refbox-footer-bg, -10), 7%);
 
-@citation-box-footer-text: #3388AA;
-@citation-box-footer-bg: #D8EDF6;
-@citation-box-footer-border: darken(spin(@citation-box-footer-bg, -10), 7%);
-
-@citation-box-link: #428bca;
-@citation-box-link-hover: #2a6496;
+@refbox-link: #428bca;
+@refbox-link-hover: #2a6496;
 
 @facebook-color: #395a93;
 @twitter-color: #00AEE8;
@@ -35,12 +34,13 @@
 @container-lg: (1140px + @grid-gutter-width);
 
 @font-face {
-  font-family: 'citation-icons';
-  src: url('fonts/citation-icons.eot');
+  font-family: 'refbox-icons';
+  src: url('fonts/refbox-icons.eot');
 }
+
 @font-face {
-  font-family: 'citation-icons';
-  src: data-uri('application/x-font-ttf;charset=utf-8;base64', 'citation/fonts/citation-icons.ttf');
+  font-family: 'refbox-icons';
+  src: data-uri('application/x-font-ttf;charset=utf-8;base64', 'refbox/fonts/refbox-icons.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -84,7 +84,7 @@
     animation: lindat-scale 0.75s 0s infinite cubic-bezier(.2, .68, .18, 1.08);
   }
   & > div {
-    background-color: @citation-box-text;
+    background-color: @refbox-text;
     width: 15px;
     height: 15px;
     border-radius: 100%;
@@ -106,9 +106,12 @@ html.lindat-modal-open {
   width: 100%;
   z-index: 10000;
 
-  display: flex;
   justify-content: center;
   align-items: flex-start;
+
+  @media (min-width: @screen-sm-min) {
+    display: flex;
+  }
 
   background: rgba(0, 0, 0, 0.5);
 
@@ -140,7 +143,8 @@ html.lindat-modal-open {
     min-width: @container-md;
   }
 
-  textarea {
+  .lindat-modal-body > textarea {
+    font-family: monospace;
     width: 100%;
     height: 300px;
     background-color: #eeeeee;
@@ -149,11 +153,17 @@ html.lindat-modal-open {
     border-radius: 4px;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     padding: 6px 12px;
-    white-space: pre;
     word-wrap: normal;
     overflow-x: scroll;
     resize: none;
     outline: 0;
+    word-break: break-all;
+    white-space: pre-wrap;
+  }
+
+  .lindat-modal-footer {
+    text-align: right;
+    text-transform: uppercase;
   }
 }
 
@@ -172,7 +182,7 @@ html.lindat-modal-open {
 
   p {
     padding: 0;
-    margin: 5px 0;
+    margin: 10px 0 0 0;
     font-size: 13px;
   }
 
@@ -195,7 +205,7 @@ html.lindat-modal-open {
   margin: 0 0 0 10px;
 }
 
-.lindat-citation-box {
+.lindat-refbox {
   font-family: "Droid Sans", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
@@ -214,16 +224,16 @@ html.lindat-modal-open {
   }
 }
 
-.lindat-cb-top {
-  background-color: @citation-box-bg;
-  border: 1px solid @citation-box-border;
-  color: @citation-box-text;
+.lindat-refbox-top {
+  background-color: @refbox-bg;
+  border: 1px solid @refbox-border;
+  color: @refbox-text;
 
   padding: 10px 10px 5px 10px;
   border-radius: 6px 6px 0 0;
 }
 
-.lindat-cb-formats {
+.lindat-refbox-formats {
   padding: 0 5px;
   flex: 1 0 auto;
   text-align: right;
@@ -243,27 +253,29 @@ html.lindat-modal-open {
     text-decoration: none;
     text-shadow: none;
 
-    &:hover {
+    &:hover, &:focus {
       background-color: darken(#999999, 10%);
+      color: #ffffff;
+      text-decoration: none;
     }
   }
 }
 
-.lindat-cb-header {
+.lindat-refbox-header {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.lindat-cb-body {
+.lindat-refbox-body {
   padding: 10px;
 
   display: flex;
   flex-direction: row;
 }
 
-.lindat-cb-text {
-  color: @citation-text;
+.lindat-refbox-text {
+  color: @refbox-body-text;
   font-weight: bold;
 
   flex: 1 1 auto;
@@ -278,8 +290,8 @@ html.lindat-modal-open {
   }
 }
 
-.lindat-cb-copy {
-  background: @citation-box-text;
+.lindat-refbox-copy {
+  background: @refbox-text;
   border: none;
   border-radius: 50%;
   width: 1.3em;
@@ -289,15 +301,19 @@ html.lindat-modal-open {
   cursor: pointer;
   color: #ffffff;
 
+  &:focus {
+    outline: 0;
+  }
+
   &:hover {
-    background-color: darken(@citation-box-text, 10%);
+    background-color: darken(@refbox-text, 10%);
   }
 }
 
-.lindat-cb-footer {
-  background-color: @citation-box-footer-bg;
-  border: 1px solid @citation-box-footer-border;
-  color: @citation-box-footer-text;
+.lindat-refbox-footer {
+  background-color: @refbox-footer-bg;
+  border: 1px solid @refbox-footer-border;
+  color: @refbox-footer-text;
 
   padding: 5px 10px 10px 10px;
   border-radius: 0 0 6px 6px;
@@ -311,7 +327,7 @@ html.lindat-modal-open {
   }
 }
 
-.lindat-cb-integration {
+.lindat-refbox-integration {
   flex: 1 0 auto;
   margin-bottom: 10px;
 
@@ -320,33 +336,18 @@ html.lindat-modal-open {
   }
 }
 
-.lindat-cb-services {
-  margin: 0 0 0 2.3em;
-  a {
-    display: inline-block;
-    padding: .4em .8em .5em;
-    margin: 0 2px;
-    font-weight: bold;
-    line-height: 1;
-    color: #ffffff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25em;
-    background-color: @citation-box-link;
-    font-size: 14px;
-    text-decoration: none;
-    text-shadow: none;
-    &:hover {
-      background-color: @citation-box-link-hover;
-    }
-  }
+.lindat-refbox-services {
+  margin: 0 0 0 3em;
 }
 
-.lindat-cb-shares {
+.lindat-refbox-shares {
   a {
     text-decoration: none;
     font-size: 3em;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
@@ -371,7 +372,7 @@ html.lindat-modal-open {
 }
 
 .lindat-icon {
-  font-family: 'citation-icons';
+  font-family: 'refbox-icons';
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -392,28 +393,142 @@ html.lindat-modal-open {
 .lindat-icon-twitter:before {
   content: @lindat-icon-twitter;
 }
+
 .lindat-icon-facebook:before {
   content: @lindat-icon-facebook;
 }
+
 .lindat-icon-google-plus:before {
   content: @lindat-icon-google-plus;
 }
+
 .lindat-icon-quote:before {
   content: @lindat-icon-quote;
 }
+
 .lindat-icon-puzzle:before {
   content: @lindat-icon-puzzle;
 }
+
 .lindat-icon-share:before {
   content: @lindat-icon-share;
 }
+
 .lindat-icon-copy:before {
   content: @lindat-icon-copy;
 }
 
+.lindat-button {
+  display: inline-block;
+  cursor: pointer;
+  padding: .4em .8em .5em;
+  margin: 0 2px;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+  background-color: @refbox-link;
+  font-size: 14px;
+  text-decoration: none;
+  text-shadow: none;
+  border: 1px solid darken(@refbox-link, 5%);
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    background-color: @refbox-link-hover;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+.lindat-dropdown-caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border-top: 4px solid;
+  border-right: 4px solid rgba(0, 0, 0, 0);
+  border-left: 4px solid rgba(0, 0, 0, 0);
+}
+
+.lindat-dropdown {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  & > .lindat-button {
+    position: relative;
+    float: left;
+    margin: 0;
+  }
+
+  & > .lindat-button + .lindat-dropdown-toggle {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  & > .lindat-button + .lindat-button {
+    margin-left: -1px;
+  }
+
+  & > .lindat-dropdown-toggle:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  & > .lindat-button:first-child:not(:last-child):not(.lindat-dropdown-toggle) {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.lindat-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, .15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+  background-clip: padding-box;
+
+  & > li > a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+      color: #262626;
+      background-color: #f5f5f5;
+    }
+  }
+}
+
 // This should be down here
 .lindat-loading {
-  .lindat-cb-footer, .lindat-cb-copy, .lindat-cb-formats {
+  .lindat-refbox-footer, .lindat-refbox-copy, .lindat-refbox-formats {
     display: none;
   }
 }

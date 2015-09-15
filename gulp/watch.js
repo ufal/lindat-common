@@ -21,7 +21,7 @@ module.exports = function(options) {
 
     gulp.watch([
       options.src + '/**/*.js',
-      options.src + '/citation/citation.html'
+      options.src + '/refbox/refbox.html'
     ], function(event) {
       if(isOnlyChange(event)) {
         gulp.start('scripts');
@@ -33,7 +33,7 @@ module.exports = function(options) {
     gulp.watch([
       options.src + '/**/*.{html,yml,json}',
       'bower.json',
-      '!' + options.src + '/citation/citation.html'
+      '!' + options.src + '/refbox/refbox.html'
     ], ['preprocess']);
   });
 };

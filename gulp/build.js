@@ -94,16 +94,16 @@ module.exports = function(options) {
 
   gulp.task('angular', ['angular:scripts']);
 
-  gulp.task('citation', ['scripts'], function () {
+  gulp.task('refbox', ['scripts'], function () {
     return gulp.src([
-      options.src + '/citation/*.js',
-      options.tmp + '/serve/citation/citationHtml.js'
+      options.src + '/refbox/*.js',
+      options.tmp + '/serve/refbox/refboxHtml.js'
     ])
-      .pipe($.concat('lindat-citation.js'))
+      .pipe($.concat('lindat-refbox.js'))
       .pipe($.wrap(options.iifeJQueryTemplate))
       .pipe(gulp.dest(options.public + '/js/'))
       .pipe($.uglify()).on('error', options.errorHandler('Uglify'))
-      .pipe($.rename('lindat-citation.min.js'))
+      .pipe($.rename('lindat-refbox.min.js'))
       .pipe(gulp.dest(options.public + '/js/'));
   });
 
@@ -127,7 +127,7 @@ module.exports = function(options) {
     $.del([options.dist + '/', options.tmp + '/', options.pages + '/'], done);
   });
 
-  gulp.task('assemble', ['images', 'fonts', 'html', 'css', 'angular', 'citation']);
+  gulp.task('assemble', ['images', 'fonts', 'html', 'css', 'angular', 'refbox']);
 
   gulp.task('build', function (cb) {
     runSequence('clean', 'assemble', cb);

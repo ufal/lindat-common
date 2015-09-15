@@ -16,6 +16,19 @@
       html {
         height: 100%;
       }
+      pre {
+        display: block;
+        padding: 9px;
+        margin: 10px 0 10px;
+        font-size: 13px;
+        line-height: 1.428571429;
+        color: #333;
+        word-break: break-all;
+        word-wrap: break-word;
+        background-color: #f5f5f5;
+        border: 1px solid #CCC;
+        border-radius: 4px;
+      }
       body {
         display: -webkit-box;
         display: -webkit-flex;
@@ -63,6 +76,15 @@
       <p>
         Select the theme you want...
       </p>
+      <div>
+        <label>Load other project CSS:</label>
+        <button class="css-select" value="">Clear</button>
+        <button class="css-select" value="https://lindat.mff.cuni.cz/repository/xmlui/">Lindat Repository</button>
+        <button class="css-select" value="https://ufal-point-dev.ms.mff.cuni.cz/dspace5l/xmlui/">UFAL Point Dev</button>
+        <button class="css-select" value="http://lindat.mff.cuni.cz/services/pmltq/">PML-TQ</button>
+        <button class="css-select" value="https://lindat.mff.cuni.cz/services/kontext/run.cgi/corplist">Kontext</button>
+        <pre id="loaded-styles"></pre>
+      </div>
       <p>
         <label>Select Language:</label>
         <button class="lang-select" value="en">English</button>
@@ -75,10 +97,14 @@
         <button class="project-select" value="lindat-pmltq">PML-TQ</button>
         <button class="project-select" value="lindat-tools">Any</button>
       </p>
-      <h1>Citation Box</h1>
-      <div class="citationbox"
-           handle="11234/1-1507"
-           title="Aspect-Term Annotated Customer Reviews in Czech">
+      <h1>Refbox</h1>
+      <p>
+        <label>Switch items:</label>
+        <button class="handle-select" value="non_existing">Non existing handle</button>
+        <button class="handle-select" value="11234/1-1508">HamleDT 3.0</button>
+        <button class="handle-select" value="11858/00-097C-0000-0023-1AAF-3">Prague Dependency Treebank 3.0</button>
+      </p>
+      <div id="refbox">
       </div>
     </section>
     <footer>
@@ -123,6 +149,48 @@
           }
         }
 
+        function updateLoadedStyles() {
+          $('#loaded-styles').empty();
+          $('link[rel="stylesheet"]').each(function () {
+            $('#loaded-styles').append($(this).attr('href') + '\n');
+          });
+        }
+
+        function injectStylesheets(url) {
+          var SERVICE_URL = 'https://lindat-extractor.herokuapp.com';
+          localStorage.setItem('url', url);
+
+          $('link[injected]').remove();
+
+          if (!url) {
+            updateLoadedStyles();
+            return;
+          }
+
+          $.ajax(SERVICE_URL + '/styles', {
+            data: { uri: url }
+          }).done(function (data) {
+            data.forEach(function (item) {
+              if (/lindat\.css$/.test(item)) {
+                return;
+              }
+              $('head').append('<link rel="stylesheet" href="'+ item + '" type="text/css" injected="injected" />');
+            });
+            updateLoadedStyles();
+          })
+        }
+
+        function switchHandle(handle, title) {
+          var refbox = document.querySelector('#refbox');
+          localStorage.setItem('handle', handle);
+          localStorage.setItem('title', title);
+          refbox.setAttribute('handle', handle);
+          refbox.setAttribute('title', title);
+          LindatRefBox(refbox, {
+            rest: 'https://ufal-point-dev.ms.mff.cuni.cz/repository/rest'
+          });
+        }
+
         function init() {
           Array.prototype.slice.call(document.querySelectorAll('.lang-select')).forEach(function(elm) {
             var value = elm.getAttribute('value');
@@ -140,14 +208,31 @@
             });
           });
 
+          Array.prototype.slice.call(document.querySelectorAll('.handle-select')).forEach(function(elm) {
+            var value = elm.getAttribute('value');
+            elm.addEventListener('click', function() {
+              switchHandle(value, elm.textContent);
+            });
+          });
+
+          Array.prototype.slice.call(document.querySelectorAll('.css-select')).forEach(function(elm) {
+            var value = elm.getAttribute('value');
+            elm.addEventListener('click', function() {
+              injectStylesheets(value);
+            });
+          });
+
           var lang = localStorage.getItem('lang') || 'en';
           var project = localStorage.getItem('project') || 'lindat-home';
 
+          var handle = localStorage.getItem('handle') || '11234/1-1508';
+          var title = localStorage.getItem('title') || 'HamleDT 3.0';
+          var url  = localStorage.getItem('url') || '';
+
+          injectStylesheets(url);
+          switchHandle(handle, title);
           document.body.setAttribute('id', project);
           switchLang(lang);
-
-          // Citation box
-         // var box = $('.citationbox').lindatCitationBox();
         }
 
         init();
