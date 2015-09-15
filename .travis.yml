@@ -4,6 +4,11 @@ node_js: '0.11'
 before_install:
 - npm install && npm install bower
 - bower install
+branches:
+  except:
+    - edge
+    - releases
+    - gh-pages
 addons:
   sauce_connect: true
 before_deploy: bash ./ci/github_release.sh
@@ -16,12 +21,16 @@ deploy:
   - dist.zip
   skip_cleanup: true
   on:
-    tags: true
+    repo: ufal/lindat-common
+    all_branches: true
+    condition: '-n "$TRAVIS_TAG"'
 - provider: script
   script: bash ./ci/push_build.sh
   skip_cleanup: true
   on:
-    branch: master
+    repo: ufal/lindat-common
+    all_branches: true
+    condition: '-n "$TRAVIS_TAG" || "$TRAVIS_BRANCH" = "master"'
 cache:
   directories:
   - node_modules

@@ -12,7 +12,7 @@ function getPackageJson() {
   return JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 }
 
-module.exports = function(options) {
+module.exports = function() {
 
   function versioning() {
     if (argv.minor || argv.feature) {
@@ -30,30 +30,18 @@ module.exports = function(options) {
       .pipe(gulp.dest('.'));
   });
 
-  //gulp.task('add:dist', ['build'], function() {
-  //  return gulp.src( options.dist + '/**')
-  //    .pipe($.git.add({args: '--all -f'}));
-  //});
-
-  gulp.task('add', ['bump'], function() {
-    return gulp.src(files)
-      .pipe($.git.add());
-  });
-
-  //gulp.task('add', ['add:dist', 'add:version']);
-
-  gulp.task('tag', ['add'], function() {
-    return gulp.src('./package.json')
-      .pipe($.tagVersion());
-  });
-
-  gulp.task('commit', ['tag'], function() {
+  gulp.task('add-and-commit', ['bump'], function(cb) {
     var pkg = getPackageJson();
-    return gulp.src('.')
-      .pipe($.git.commit('Releasing version ' + pkg.version));
+    gulp.src(files)
+      .pipe($.git.add())
+      .pipe($.git.commit('Releasing version ' + pkg.version))
+      .on('end', function () {
+        var tag = 'v'+pkg.version;
+        $.git.tag(tag, 'Tagging as ' + tag, cb);
+      });
   });
 
-  gulp.task('release', ['commit'], function(done) {
-    $.git.push('origin', 'master', {args: '--follow-tags'}, done);
+  gulp.task('release', ['add-and-commit'], function(cb) {
+    $.git.push('origin', 'master', {args: '--follow-tags'}, cb);
   });
 };
