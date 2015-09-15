@@ -8,9 +8,8 @@ set -e
 GH_TOKEN=${GH_TOKEN:?'Must provide github token'}
 
 rev=$(git rev-parse --short HEAD)
-git_user="Michal Sedlák"
-git_email="sedlakmichal@gmail.com"
-
+git_user="ÚFAL bot"
+git_email="lindat-technical@ufal.mff.cuni.cz"
 
 pushd .
 
@@ -30,11 +29,14 @@ git push --force -q "https://$GH_TOKEN@github.com/ufal/lindat-common.git" master
 
 popd
 
-# Update release
+# Update EDGE build
 cp -u *.md dist/
+cp -u *.json dist/
 cd dist
 
-git init -q
+# Fix paths for main files
+sed -i 's|dist/public/|public/|m' bower.json
+
 git config user.name "$git_user"
 git config user.email "$git_email"
 
@@ -42,19 +44,41 @@ touch .
 
 git remote add origin "https://$GH_TOKEN@github.com/ufal/lindat-common.git"
 # Fetch remote refs to a specific branch, equivalent to a pull without checkout
-git fetch --update-head-ok origin releases:master
+git fetch --update-head-ok origin edge:master
 # Make the current working tree the branch HEAD without checking out files
 git symbolic-ref HEAD refs/heads/master
 # Make sure the stage is clean
-git reset
 
-# Track releases branch
-git branch --set-upstream-to=origin/releases master
+# Track edge branch
+git branch --set-upstream-to=origin/edge master
 
 # Chech if there are things to commit
 STATUS=`git status --porcelain`
 if [ -n "$STATUS" ]; then
 	git add -A .
-	git commit -m "Release build based on ${rev}"
-	git push -q origin master:releases > /dev/null 2>&1	
+	git commit -m "Build based on ${rev}"
+	git push -q origin master:edge > /dev/null 2>&1
 fi
+
+if [ -z "$TRAVIS_TAG" ]; then
+  exit 0;
+fi
+
+# Update release - only happens when tagging
+
+# Revert previous commit to edge
+git reset --soft HEAD~1
+# Switch to releases
+git fetch --update-head-ok origin releases:master
+# Make the current working tree the branch HEAD without checking out files
+git symbolic-ref HEAD refs/heads/master
+# Make sure again the stage is clean
+git reset
+
+# Track releases branch
+git branch --set-upstream-to=origin/releases master
+
+# Add everything and commit
+git add -A .
+git commit -m "Releasing version ${TRAVIS_TAG}"
+git push -q origin master:releases > /dev/null 2>&1
