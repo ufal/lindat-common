@@ -30,17 +30,17 @@ module.exports = function(options) {
       .pipe(gulp.dest('.'));
   });
 
-  gulp.task('add:dist', ['build'], function() {
-    return gulp.src( options.dist + '/**')
-      .pipe($.git.add({args: '--all -f'}));
-  });
+  //gulp.task('add:dist', ['build'], function() {
+  //  return gulp.src( options.dist + '/**')
+  //    .pipe($.git.add({args: '--all -f'}));
+  //});
 
-  gulp.task('add:version', ['bump'], function() {
+  gulp.task('add', ['bump'], function() {
     return gulp.src(files)
       .pipe($.git.add());
   });
 
-  gulp.task('add', ['add:dist', 'add:version']);
+  //gulp.task('add', ['add:dist', 'add:version']);
 
   gulp.task('tag', ['add'], function() {
     return gulp.src('./package.json')

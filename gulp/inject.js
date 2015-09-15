@@ -17,7 +17,7 @@ module.exports = function(options) {
         options.src + '/angular/*.js'
       ])
         .pipe($.angularFilesort()).on('error', options.errorHandler('AngularFilesort')),
-      gulp.src([options.src + '/citation/*.js', options.tmp + '/serve/citation/citationHtml.js'], { read: false})
+      gulp.src([options.src + '/refbox/*.js', options.tmp + '/serve/refbox/refboxHtml.js'], { read: false})
     );
 
     var injectOptions = {

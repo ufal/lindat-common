@@ -18,17 +18,17 @@ module.exports = function(options) {
   });
 
   gulp.task('scripts:generate', function () {
-    return gulp.src(options.src + '/citation/citation.html')
+    return gulp.src(options.src + '/refbox/refbox.html')
       .pipe($.minifyHtml({
         empty: true,
         spare: true,
         quotes: true
       }))
-      .pipe($.angularTemplatecache('citationHtml.js', {
+      .pipe($.angularTemplatecache('refboxHtml.js', {
         templateHeader: '\n',
-        templateBody: 'window.LindatCitationBox.template = "<%= contents %>";',
+        templateBody: 'window.LindatRefBox.template = "<%= contents %>";',
         templateFooter: '\n'
       }))
-      .pipe(gulp.dest(options.tmp + '/serve/citation/'));
+      .pipe(gulp.dest(options.tmp + '/serve/refbox/'));
   });
 };
