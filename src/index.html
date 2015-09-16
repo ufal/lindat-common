@@ -151,6 +151,7 @@
 
         function updateLoadedStyles() {
           $('#loaded-styles').empty();
+          $('.css-select').prop('disabled', false);
           $('link[rel="stylesheet"]').each(function () {
             $('#loaded-styles').append($(this).attr('href') + '\n');
           });
@@ -218,6 +219,7 @@
           Array.prototype.slice.call(document.querySelectorAll('.css-select')).forEach(function(elm) {
             var value = elm.getAttribute('value');
             elm.addEventListener('click', function() {
+              $('.css-select').prop('disabled', true);
               injectStylesheets(value);
             });
           });
