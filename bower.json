@@ -1,0 +1,45 @@
+{
+  "name": "lindat-common",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ufal/lindat-common.git"
+  },
+  "version": "1.0.7",
+  "main": [
+    "public/js/angular-lindat.js",
+    "public/css/lindat.css"
+  ],
+  "authors": [
+    "Amir Kamran <kamran@ufal.mff.cuni.cz >",
+    "Ondřej Košarko <kosarko@ufal.mff.cuni.cz>",
+    "Jozef Mišutka <misutka@ufal.mff.cuni.cz>",
+    "Michal Sedlák <sedlak@ufal.mff.cuni.cz>"
+  ],
+  "description": "Common Lindat Theme (header and footer)",
+  "license": "MIT",
+  "homepage": "https://lindat.mff.cuni.cz/",
+  "keywords": [
+    "lindat",
+    "theme",
+    "angular"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "ci",
+    "gulp",
+    "gulpfile.js",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "angular": "~1.4"
+  },
+  "dependencies": {
+    "angular": "~1.4",
+    "angular-piwik": "~1.3.2",
+    "angular-google-analytics": "~0.0.16",
+    "jquery": "~2.1.4"
+  }
+}
