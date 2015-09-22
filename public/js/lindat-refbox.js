@@ -325,7 +325,7 @@ window.LindatRefBox = RefBox;
 $.fn.lindatRefBox = function (opts) {
   var options = $.extend({}, {
     //defaults
-    rest: 'https://ufal-point-dev.ms.mff.cuni.cz/repository/rest'
+    rest: 'https://lindat.mff.cuni.cz/repository/rest'
   }, opts);
   var DATA_KEY = 'lindat-refbox';
   this.each(function () {
