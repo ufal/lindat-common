@@ -345,7 +345,7 @@ html.lindat-modal-open {
     text-decoration: none;
     font-size: 3em;
 
-    &:hover {
+    &:hover, &:focus {
       text-decoration: none;
     }
   }
@@ -437,6 +437,8 @@ html.lindat-modal-open {
   border: 1px solid darken(@refbox-link, 5%);
   &:focus {
     outline: 0;
+    color: #ffffff;
+    text-decoration: none;
   }
   &:hover {
     background-color: @refbox-link-hover;
