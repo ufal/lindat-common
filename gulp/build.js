@@ -18,7 +18,7 @@ module.exports = function(options) {
 
   function processCss(src, name) {
     return gulp.src(src)
-      .pipe($.replace('images/', '../images/'))
+      .pipe($.replace('images/', '../img/'))
       .pipe($.replace('fonts/', '../fonts/'))
       .pipe($.concat(name + '.css'))
       .pipe(gulp.dest(options.public + '/css/'))
@@ -114,7 +114,7 @@ module.exports = function(options) {
         progressive: true,
         interlaced: true
       }))
-      .pipe(gulp.dest(options.public + '/images/'));
+      .pipe(gulp.dest(options.public + '/img/'));
   });
 
   gulp.task('fonts', function () {
