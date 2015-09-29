@@ -77,15 +77,17 @@ module.exports = function(options) {
       .pipe(gulp.dest(options.tmp + '/serve/scripts/'));
   });
 
-  gulp.task('angular:scripts', ['scripts', 'angular:templates'], function () {
+  gulp.task('angular:scripts', ['scripts', 'refbox', 'angular:templates'], function () {
    return gulp.src([
+     options.src + '/refbox/*.js',
+     options.tmp + '/serve/refbox/refboxHtml.js',
      options.src + '/angular/*.js',
      options.tmp + '/serve/scripts/templateCacheHtml.js'
     ])
      .pipe($.angularFilesort()).on('error', options.errorHandler('AngularFilesort'))
      .pipe($.ngAnnotate())
      .pipe($.concat('angular-lindat.js'))
-     .pipe($.wrap(options.iifeTemplate))
+     .pipe($.wrap(options.iifeJQueryTemplate))
      .pipe(gulp.dest(options.public + '/js/'))
      .pipe($.uglify()).on('error', options.errorHandler('Uglify'))
      .pipe($.rename('angular-lindat.min.js'))
