@@ -1,6 +1,6 @@
 {
   "name": "lindat-common",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "dependencies": {},
   "scripts": {
     "build": "gulp build",
