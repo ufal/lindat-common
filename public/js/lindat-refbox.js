@@ -85,6 +85,10 @@ function RefBox(container, options) {
 
   // Init all options from the container element or options object
   ['handle', 'title'].forEach(function (name) {
+    if (options[name]) {
+      return;
+    }
+
     var opt = container.getAttribute(name);
     container.removeAttribute(name);
     if (!opt) {
@@ -102,12 +106,13 @@ function RefBox(container, options) {
   });
 
   //should be used only as failsafe when rest does not return anything.
-  refbox['uri'] = 'http://hdl.handle.net/' + refbox['handle'];
+  refbox.uri = 'http://hdl.handle.net/' + refbox.handle;
 
+  refbox.requestQueue = [];
   refbox.text = tpl.find('[refbox-text]');
   refbox.copyButton = tpl.find('[refbox-copy-button]');
 
-  $(container).empty().append(tpl);
+  refbox.container = $(container).empty().append(tpl);
   refbox.init();
 }
 
@@ -209,6 +214,18 @@ RefBox.prototype.init = function () {
     .fail(handleFailure);
 };
 
+RefBox.prototype.ajax = function () {
+  var refbox = this, xhr = $.ajax.apply($, arguments);
+  refbox.requestQueue.push(xhr);
+
+  return xhr.always(function () {
+    var index = refbox.requestQueue.indexOf(xhr);
+    if (index !== -1) {
+      refbox.requestQueue.splice(index, 1);
+    }
+  });
+};
+
 /**
  * Fetches metadata in specified format
  * @param {Object} format
@@ -217,7 +234,7 @@ RefBox.prototype.init = function () {
 RefBox.prototype.request = function (format) {
   var deferred = $.Deferred();
 
-  $.ajax(format.url, {dataType: format.dataType, cache: true})
+  this.ajax(format.url, {dataType: format.dataType, cache: true})
     .done(function (data) {
       if (format.dataType === 'xml') {
         var jData = $(data);
@@ -243,7 +260,7 @@ RefBox.prototype.request = function (format) {
  */
 RefBox.prototype.fetchInitial = function () {
   var url = this.rest + '/handle/' + this.handle + '/refbox';
-  return $.getJSON(url);
+  return this.ajax(url, {dataType: 'json', cache: true});
 };
 
 /**
@@ -255,7 +272,7 @@ RefBox.prototype.fetchInitial = function () {
  * @param {String=} format
  */
 RefBox.prototype.modal = function (title, content, format) {
-  var overlay, modal, btn, modalClicked, textarea, openClass = 'lindat-modal-open';
+  var refbox = this, overlay, modal, btn, modalClicked, textarea, openClass = 'lindat-modal-open';
 
   var html = $('html');
   if (html.hasClass(openClass)) {
@@ -264,11 +281,12 @@ RefBox.prototype.modal = function (title, content, format) {
 
   html.addClass(openClass);
 
-  function destroy() {
-    if (modalClicked) {
+  function destroy(force) {
+    if (force !== true && modalClicked) {
       modalClicked = false;
       return;
     }
+    refbox.modalInstance = null;
     html.removeClass(openClass);
     overlay.remove();
     $(document).off('.lindat');
@@ -309,6 +327,12 @@ RefBox.prototype.modal = function (title, content, format) {
 
   selectText();
 
+  refbox.modalInstance = {
+    element: modal,
+    overlay: overlay,
+    destroy: destroy
+  };
+
   // Handles the keydown event
   $(document).on('keydown.lindat', function (e) {
     if (e.keyCode === 27) {
@@ -318,6 +342,18 @@ RefBox.prototype.modal = function (title, content, format) {
 
   // Handles the hashchange event
   $(window).on('hashchange.lindat', destroy);
+};
+
+RefBox.prototype.destroy = function () {
+  var refbox = this, xhr;
+
+  if (refbox.modalInstance) {
+    refbox.modalInstance.destroy(true);
+  }
+
+  while(xhr = refbox.requestQueue.pop()) {
+    xhr.abort();
+  }
 };
 
 window.LindatRefBox = RefBox;
@@ -330,9 +366,11 @@ $.fn.lindatRefBox = function (opts) {
   var DATA_KEY = 'lindat-refbox';
   this.each(function () {
     var el = $(this), box = el.data(DATA_KEY);
-    if (!box) {
-      el.data(DATA_KEY, new RefBox(this, options));
+    if (box) {
+      box.destroy();
     }
+
+    el.data(DATA_KEY, new RefBox(this, options));
   });
   return this;
 };
