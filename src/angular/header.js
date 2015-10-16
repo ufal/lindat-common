@@ -1,5 +1,7 @@
-/* ngInject */
-function LindatHeaderDirective() {
+var angular = require('angular');
+
+/* @ngInject */
+module.exports = function LindatHeaderDirective() {
 
   function linkFn($scope, $element) {
     var button = $element[0].querySelector('.lindat-menu-btn'),
@@ -13,10 +15,7 @@ function LindatHeaderDirective() {
 
   return {
     restrict: 'AE',
-    templateUrl: 'partials/header.htm',
+    template: require('../partials/header.html?{lang: "en", angular: true}'),
     link: linkFn
   };
-}
-
-angular.module('lindat')
-  .directive('lindatHeader', LindatHeaderDirective);
+};

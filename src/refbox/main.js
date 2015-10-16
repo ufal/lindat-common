@@ -1,3 +1,6 @@
+require('./main.less'); // Load CSS
+var $ = require('jquery');
+
 var shareButtons = [
   {
     name: 'facebook',
@@ -96,7 +99,7 @@ function RefBox(container, options) {
     refbox[name] = opt;
   });
 
-  var tpl = refbox.body = $(RefBox.template);
+  var tpl = refbox.body = $(require('./template.html'));
   refbox.formatsContainer = tpl.find('[refbox-formats]');
   refbox.sharesContainer = tpl.find('[refbox-shares]');
   refbox.integrationContainer = tpl.find('[refbox-integrations]');
@@ -355,28 +358,4 @@ RefBox.prototype.destroy = function () {
   }
 };
 
-window.LindatRefBox = RefBox;
-
-$.fn.lindatRefBox = function (opts) {
-  var options = $.extend({}, {
-    //defaults
-    rest: 'https://lindat.mff.cuni.cz/repository/rest'
-  }, opts);
-  var DATA_KEY = 'lindat-refbox';
-  this.each(function () {
-    var el = $(this), box = el.data(DATA_KEY);
-    if (box) {
-      box.destroy();
-    }
-
-    el.data(DATA_KEY, new RefBox(this, options));
-  });
-  return this;
-};
-
-$(document).ready(function () {
-  if (!window.LindatRefBoxConfig) {
-    window.LindatRefBoxConfig = {};
-  }
-  $(".refbox").lindatRefBox(window.LindatRefBoxConfig);
-});
+module.exports = RefBox;

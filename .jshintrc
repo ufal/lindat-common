@@ -4,6 +4,7 @@
   "immed": true,
   "latedef": true,
   "newcap": true,
+  "node": true,
   "noarg": true,
   "sub": true,
   "undef": true,
@@ -12,11 +13,16 @@
   "browser": true,
   "smarttabs": true,
   "globals": {
-    "angular": true,
     "jasmine": true,
     "console": true,
     "ActiveXObject": true,
-    "$": true
+    "DEBUG": true,
+    "REV": true,
+    "VERSION": true,
+    "GA_TRACKING_CODE": true,
+    "PIWIK_URL": true,
+    "REST_API": true,
+    "DEV_REST_API": true
   }
 }
 

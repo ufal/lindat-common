@@ -9,7 +9,7 @@
   {%- endfor -%}
   </ul>
 {%- endmacro %}
-<div class="lindat-common lindat-footer">
+<div class="lindat-common lindat-footer" data-version="{{VERSION}}" data-build="{{REV}}">
   <div class="lindat-footer-main">
     <div class="lindat-footer-content lindat-container">
       <div class="lindat-footer-left">
@@ -45,7 +45,7 @@
     <p>{{copyright}}</p>
   </div>
   {% if angular %}
-  <ngp-piwik ngp-set-js-url="//ufal.mff.cuni.cz/piwik/piwik.js"> </ngp-piwik>
+  <ngp-piwik ngp-set-js-url="{{PIWIK_URL}}piwik.js"> </ngp-piwik>
   {% else %}
   <script type="text/javascript">
     //<![CDATA[
@@ -55,7 +55,7 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
     // main LINDAT/CLARIN tracker
-    ga('create', 'UA-27008245-2', 'cuni.cz');
+    ga('create', '{{GA_TRACKING_CODE}}', 'cuni.cz');
     ga('send', 'pageview');
     //]]>
   </script>
@@ -71,7 +71,7 @@
     _paq.push(['trackPageView']);
     _paq.push(['enableLinkTracking']);
     (function() {
-      var u="//ufal.mff.cuni.cz/piwik/";
+      var u='{{PIWIK_URL}}';
       _paq.push(['setTrackerUrl', u+'piwik.php']);
       _paq.push(['setSiteId', 2]);
       var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
@@ -79,7 +79,7 @@
     })();
     //]]>
   </script>
-  <noscript><p><img src="//ufal.mff.cuni.cz/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+  <noscript><p><img src="{{PIWIK_URL}}piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
   <!-- End Piwik Code -->
   {% endif %}
 </div>

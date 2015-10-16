@@ -6,8 +6,7 @@
   },
   "version": "1.0.9",
   "main": [
-    "dist/public/js/angular-lindat.js",
-    "dist/public/css/lindat.css"
+    "dist/public/js/angular-lindat.js"
   ],
   "authors": [
     "Amir Kamran <kamran@ufal.mff.cuni.cz >",
