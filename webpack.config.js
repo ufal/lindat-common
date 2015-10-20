@@ -1,20 +1,25 @@
 /* jshint node:true */
 
-var _ = require('lodash');
-var fs = require('fs');
 var path = require('path');
-var argv = require("optimist").argv;
+var argv = require('optimist').argv;
+var exec = require('child_process').execSync;
+var rev  = 'DEV';
 
 var root = path.resolve(__dirname);
-var gitDir = path.join('.git');
 var src  = path.join(root, 'src');
 var partials = path.join(src, 'partials');
 var dist = path.join(root, 'dist');
 var pages = path.join(root, 'pages');
 
+try {
+  rev = exec('git rev-parse HEAD', { cwd: __dirname });
+} catch (e) {
+  console.error('Executing "git rev-parse HEAD" failed...');
+}
+
 var config = {
   PRODUCTION: process.env.NODE_ENV === 'production',
-  REV: fs.readFileSync(path.resolve(gitDir, 'refs', 'heads', 'master'), 'utf8'),
+  REV: rev,
   VERSION: require('./package.json').version,
 
   GA_TRACKING_CODE: 'UA-27008245-2',

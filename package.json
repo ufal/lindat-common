@@ -14,9 +14,9 @@
     "build-pages": "npm run clean-pages && webpack -p --pages --devtool source-map",
     "start": "webpack-dev-server --debug --hot --inline --colors --display-error-details --display-cached",
     "serve-pages": "webpack-dev-server -p --debug --quiet",
-    "pretest": "webdriver-manager update --standalone && pm2 start './node_modules/.bin/webpack-dev-server' --name 'test' -- -p --debug --quiet",
-    "test": "protractor",
-    "posttest": "pm2 stop test",
+    "xxpretest": "webdriver-manager update --standalone && pm2 start './node_modules/.bin/webpack-dev-server' --name 'test' -- -p --debug --quiet",
+    "test": "npm run build",
+    "xxposttest": "pm2 stop test",
     "release": "mversion minor"
   },
   "devDependencies": {
@@ -42,6 +42,7 @@
     "pm2": "^0.15.7",
     "protractor": "^2.5.1",
     "raw-loader": "^0.5.1",
+    "simple-git": "^1.11.0",
     "style-loader": "^0.12.4",
     "swig-loader": "^1.0.0",
     "url-loader": "^0.5.6",
