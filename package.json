@@ -1,8 +1,43 @@
 {
   "name": "lindat-common",
   "version": "1.0.9",
-  "main": "src/angular.js",
-  "dependencies": {},
+  "main": "dist/public/js/angular-lindat.js",
+  "description": "Common Lindat Theme (header and footer)",
+  "license": "MIT",
+  "homepage": "https://lindat.mff.cuni.cz/",
+  "bugs": {
+    "url": "https://github.com/ufal/lindat-common/issues"
+  },
+  "keywords": [
+    "lindat",
+    "theme",
+    "angular"
+  ],
+  "ignore": [
+    "**/.*",
+    "ci",
+    "test",
+    "webpack",
+    "node_modules",
+    "webpack.config.js",
+    "protractor.config.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ufal/lindat-common.git"
+  },
+  "authors": [
+    "Amir Kamran <kamran@ufal.mff.cuni.cz >",
+    "Ondřej Košarko <kosarko@ufal.mff.cuni.cz>",
+    "Jozef Mišutka <misutka@ufal.mff.cuni.cz>",
+    "Michal Sedlák <sedlak@ufal.mff.cuni.cz>"
+  ],
+  "dependencies": {
+    "angular": "^1.4.7",
+    "angular-google-analytics": "^1.1.1",
+    "angular-piwik": "git://github.com/mike-spainhower/angular-piwik",
+    "jquery": "^2.1.4"
+  },
   "scripts": {
     "clean": "npm run clean-dist && npm run clean-pages",
     "clean-dist": "rm -rf dist",
@@ -14,15 +49,12 @@
     "build-pages": "npm run clean-pages && webpack -p --pages --devtool source-map",
     "start": "webpack-dev-server --debug --hot --inline --colors --display-error-details --display-cached",
     "serve-pages": "webpack-dev-server -p --debug --quiet",
-    "xxpretest": "webdriver-manager update --standalone && pm2 start './node_modules/.bin/webpack-dev-server' --name 'test' -- -p --debug --quiet",
-    "test": "npm run build",
-    "xxposttest": "pm2 stop test",
+    "pretest": "webdriver-manager update --standalone && pm2 start './node_modules/.bin/webpack-dev-server' --name 'test' -- -p --debug --quiet",
+    "test": "protractor",
+    "posttest": "pm2 stop test",
     "release": "mversion minor"
   },
   "devDependencies": {
-    "angular": "^1.4.7",
-    "angular-google-analytics": "^1.1.1",
-    "angular-piwik": "git://github.com/mike-spainhower/angular-piwik",
     "autoprefixer-loader": "^3.1.0",
     "css-loader": "^0.19.0",
     "extract-text-webpack-plugin": "^0.8.2",
@@ -30,7 +62,6 @@
     "html-loader": "^0.3.0",
     "html-minify-loader": "^1.0.0",
     "html-webpack-plugin": "^2.0.3",
-    "jquery": "^2.1.4",
     "js-yaml": "^3.4.3",
     "json-loader": "^0.5.3",
     "less": "^2.5.3",
@@ -53,6 +84,5 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "private": true
+  }
 }

@@ -24,13 +24,12 @@
   ],
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
     "ci",
-    "gulp",
-    "gulpfile.js",
     "test",
-    "tests"
+    "webpack",
+    "node_modules",
+    "webpack.config.js",
+    "protractor.config.js"
   ],
   "resolutions": {
     "angular": "~1.4"
