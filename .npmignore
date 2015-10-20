@@ -9,5 +9,7 @@ ci/
 .tmp/
 *.iml
 Makefile
-protractor.config.js
+dist.*
+bower.json
+protractor.conf.js
 webpack.config.js
