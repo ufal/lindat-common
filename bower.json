@@ -4,10 +4,9 @@
     "type": "git",
     "url": "git://github.com/ufal/lindat-common.git"
   },
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": [
-    "public/js/angular-lindat.js",
-    "public/css/lindat.css"
+    "public/js/angular-lindat.js"
   ],
   "authors": [
     "Amir Kamran <kamran@ufal.mff.cuni.cz >",
@@ -25,13 +24,13 @@
   ],
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
     "ci",
-    "gulp",
-    "gulpfile.js",
     "test",
-    "tests"
+    "webpack",
+    "Makefile",
+    "node_modules",
+    "webpack.config.js",
+    "protractor.config.js"
   ],
   "resolutions": {
     "angular": "~1.4"
