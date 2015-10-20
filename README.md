@@ -111,27 +111,20 @@ NOTE: `lindat.css` will set body margin and padding to *zero* pixels. This shoul
         curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.25.4/install.sh | bash
         nvm install stable
         nvm use stable
-
-- Install build tools Bower and Gulp
-
-        npm install -g bower gulp
         
 - Install dependencies for development
         
-        npm install && bower install
+        npm install
         
 - Run development server
         
-        gulp serve
-        
-- To test Angular directives run
+        make run
 
-        gulp serve:angular
         
 ## Making new release
 
 | Task                 | Version                                |
 |----------------------|----------------------------------------|
-| gulp release         | v0.0.1 -> v0.0.2 + commit + tag + push |
-| gulp release --minor | v0.0.1 -> v0.1.0 + commit + tag + push |
-| gulp release --major | v0.0.1 -> v1.0.1 + commit + tag + push |
+| make release         | v0.0.1 -> v0.0.2 + commit + tag + push |
+| make release-minor   | v0.0.1 -> v0.1.0 + commit + tag + push |
+| make release-major   | v0.0.1 -> v1.0.1 + commit + tag + push |

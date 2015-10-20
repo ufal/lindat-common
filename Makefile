@@ -13,4 +13,10 @@ run:
 				@npm start
 
 release:
-				@./node_modules/.bin/mversion $@
+				@./node_modules/.bin/mversion patch
+
+release-minor:
+				@./node_modules/.bin/mversion minor
+
+release-major:
+				@./node_modules/.bin/mversion major
