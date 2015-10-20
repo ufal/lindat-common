@@ -1,19 +1,17 @@
-/* ngInject */
-function LindatRefboxDirective($window, refboxRestAPI) {
+var RefBox = require('../refbox/main');
+
+/* @ngInject */
+module.exports = function LindatRefboxDirective(refboxRestAPI) {
 
   function linkFn($scope, $element) {
     var refbox;
-
-    if (!$window.LindatRefBox) {
-      throw new Error('Lindat Refbox is not available');
-    }
 
     $scope.$watchGroup(['handle', 'title'], function (attrs) {
       if (!attrs) {
         return;
       }
 
-      refbox = new $window.LindatRefBox($element, {
+      refbox = new RefBox($element, {
         handle: attrs[0],
         title: attrs[1],
         rest: refboxRestAPI
@@ -35,7 +33,4 @@ function LindatRefboxDirective($window, refboxRestAPI) {
     },
     link: linkFn
   };
-}
-
-angular.module('lindat')
-  .directive('lindatRefbox', LindatRefboxDirective);
+};

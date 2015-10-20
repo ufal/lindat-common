@@ -16,7 +16,7 @@ var config = {
     showColors: true,
     includeStackTrace: true
   },
-  baseUrl: process.env.BASE_URL,
+  baseUrl: 'http://localhost:' + (process.env.PORT || 8080) + '/',
   // Up the timeouts for the slower browsers (IE, Safari).
   allScriptsTimeout: 30000,
   getPageTimeout: 30000,
@@ -24,7 +24,7 @@ var config = {
     browser.ignoreSynchronization = true;
     var _get = browser.get;
     var sleepInterval = process.env.TRAVIS ? 14000 : 8000;
-    browser.get = function() {
+    browser.get = function () {
       var result = _get.apply(this, arguments);
       browser.sleep(sleepInterval);
       return result;
@@ -57,7 +57,7 @@ if (process.env.TRAVIS) {
   }
   ];
 } else {
-  config.seleniumAddress = 'http://localhost:4444/wd/hub';
+  config.seleniumServerJar = './node_modules/protractor/selenium/selenium-server-standalone-2.47.1.jar';
 }
 
 exports.config = config;

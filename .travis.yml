@@ -1,9 +1,6 @@
 language: node_js
 sudo: false
 node_js: '0.11'
-before_install:
-- npm install && npm install bower
-- bower install
 branches:
   except:
     - edge
@@ -11,7 +8,7 @@ branches:
     - gh-pages
 addons:
   sauce_connect: true
-before_deploy: bash ./ci/github_release.sh
+before_deploy: bash ./ci/build_release.sh
 deploy:
 - provider: releases
   api_key:
@@ -20,6 +17,14 @@ deploy:
   - dist.tar.gz
   - dist.zip
   skip_cleanup: true
+  on:
+    repo: ufal/lindat-common
+    all_branches: true
+    condition: '-n "$TRAVIS_TAG"'
+- provider: npm
+  email: sedlakmichal@gmail.com
+  api_key:
+    secure: EpHOw9dFoYggHLQCgNLL04QBEPaHN7jYvpS/laZC1n02lZ+4HMUYhhXtwNF6lwhz0e9W9nEGsk2P8k8xwz0P1i7f5pGVGZG0sN3spevmsmb9jd824o5UV2cLcDrf8QsQn/c8S57Hyi27avqr2weYmnFyLPIaGvH1VzbdbShztJai2KmLeTF596DseNQaHIdjjRzyjr5FKeJqNiGXKzAyNPVTtenMVSEe+51tnVQ+jomGAc/v1iR5JwCY2x9svvdtxpP1ImL5SMA/WHItMptoz33E7+wC2lcCQOXcGad+rsOPFZrA+H4NNiImKvFFC4UfdDz0ajQZCKdrFn+2SbfhJ2dxoewByddut2svDVm2eh108TW/CvwKkNKkkc37uZ7WRLl9k7fOHtq3tg5E72zvGJbKqxaZJPS1TGveyZI9fAuXRwH9aBC5prHoTDpAXHL4os5+0j+2rcUIQGrrQkJXN/pQl6hdqk3L31PpWi6HcrZ4lQzkqI3Bdxr39usgYe8IkSqbjjcIUFjccqKwJysNm4RUDCVGIiDhZ55+Pb02LhQrh/8E2DrR1f6Td/f39oKvdzEHHwuSsrPNWTBklG71iPbm9ED3l030kYoZD9YrIIUguVXPTtNM+42alpoF36aVvZjITpCbDNlzkvfYo7gmWKm7fupfaPow+BAUyOwnD3k=
   on:
     repo: ufal/lindat-common
     all_branches: true

@@ -172,11 +172,11 @@ body {
 }
 
 .lindat-logo {
-  .header-logo("images/lindat-logo-menu.png");
+  .header-logo("./images/lindat-logo-menu.png");
 }
 
 .clarin-logo {
-  .header-logo("images/clarin-logo-menu.png");
+  .header-logo("./images/clarin-logo-menu.png");
 }
 
 .header-logo(@image) {
@@ -316,19 +316,19 @@ body {
 }
 
 .lindat-clarinb-logo {
-  .footer-logo("images/clarinb.png")
+  .footer-logo("images/clarinb.png", 176px, 41px)
 }
 
 .lindat-dsa-logo {
-  .footer-logo("images/dsa.png");
+  .footer-logo("images/dsa.png", 90px, 90px);
 }
 
 .lindat-logo-mono {
-  .footer-logo("images/lindat-logo-mono.png");
+  .footer-logo("images/lindat-logo-mono.png", 103px, 59px);
 }
 
 .lindat-msmt-logo {
-  .footer-logo("images/msmt-mono.png", 120px);
+  .footer-logo("images/msmt-mono.png", 120px, 71px);
   margin-top: 10px;
   background-size: 120px;
   background-position: left;
@@ -340,7 +340,7 @@ body {
 }
 
 // Logo mixin for images in footer
-.footer-logo(@image, @width: image-width(@image), @height: image-height(@image)) {
+.footer-logo(@image, @width, @height) {
   background: url(@image) no-repeat center;
   width: @width;
   height: @height;

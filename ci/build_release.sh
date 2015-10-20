@@ -4,6 +4,9 @@ set -e
 
 : ${TRAVIS:?'This should only be run on Travis CI'}
 
+npm run build
+npm run build-pages
+
 cp -u *.md dist/
 cd dist
 

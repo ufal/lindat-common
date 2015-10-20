@@ -1,8 +1,17 @@
-angular.module('lindat', ['piwik', 'angular-google-analytics'])
-  .constant('piwikUrl', '//ufal.mff.cuni.cz/piwik/')
-  .constant('refboxRestAPI', 'https://lindat.mff.cuni.cz/repository/rest')
+var angular = require('angular');
+
+require('./lindat.less');
+
+var lindatModule = angular.module('lindat', ['piwik', 'angular-google-analytics'])
+  .constant('piwikUrl', PIWIK_URL)
+  .constant('refboxRestAPI', DEBUG ? DEV_REST_API : REST_API)
+  .directive({
+    lindatRefbox: require('./angular/refbox'),
+    lindatHeader: require('./angular/header'),
+    lindatFooter: require('./angular/footer')
+  })
   .config(function(AnalyticsProvider) {
-    AnalyticsProvider.setAccount('UA-27008245-2');
+    AnalyticsProvider.setAccount(GA_TRACKING_CODE);
     // using multiple tracking objects (analytics.js only)
     // AnalyticsProvider.setAccount([
     //   { tracker: 'UA-12345-12', name: "tracker1" },
@@ -27,3 +36,11 @@ angular.module('lindat', ['piwik', 'angular-google-analytics'])
     Piwik.setTrackerUrl(piwikUrl + 'piwik.php');
     Piwik.setSiteId(2);
   });
+
+if ( typeof module === "object" && typeof module.exports === "object" ) {
+  // require externals if in CommonJS env
+  require('angular-piwik');
+  require('angular-google-analytics');
+
+  module.exports = lindatModule.name;
+}
