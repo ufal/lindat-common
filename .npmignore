@@ -1,0 +1,13 @@
+**/.*
+.idea/
+bower_components/
+node_modules/
+webpack/
+pages/
+test/
+ci/
+.tmp/
+*.iml
+Makefile
+protractor.config.js
+webpack.config.js

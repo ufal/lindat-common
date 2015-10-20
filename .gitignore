@@ -6,3 +6,4 @@ dist/
 .idea/
 .tmp/
 *.iml
+npm-debug.log

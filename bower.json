@@ -27,6 +27,7 @@
     "ci",
     "test",
     "webpack",
+    "Makefile",
     "node_modules",
     "webpack.config.js",
     "protractor.config.js"
