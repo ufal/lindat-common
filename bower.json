@@ -30,7 +30,7 @@
     "Makefile",
     "node_modules",
     "webpack.config.js",
-    "protractor.config.js"
+    "protractor.conf.js"
   ],
   "resolutions": {
     "angular": "~1.4"
