@@ -123,8 +123,8 @@ body {
     list-style: none;
     &>a {
       text-decoration: none;
-      font-size: 16px;
       padding: 10px 15px;
+      font-size: 16px;
       display: block;
       color: @header-color;
       &:hover {
@@ -155,8 +155,10 @@ body {
       &>a {
         display: flex;
         align-items: center;
+        font-size: 14px;
         padding: 0 15px;
         font-weight: bolder;
+        text-align: center;
         border-bottom: 3px solid transparent;
         &:hover {
           outline: 0;
@@ -167,7 +169,9 @@ body {
   }
 
   @media (min-width: @screen-md-min) {
-    font-size: 14px;
+    &>li>a {
+      font-size: 16px;
+    }
   }
 }
 
