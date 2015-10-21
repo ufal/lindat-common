@@ -42,7 +42,7 @@
 // }
 //
 // For new items just add items to both lists below.
-@menu-items:  home,          repository,        pmltq,        treex,         tools,         events,        about;
+@menu-items:  home,          repository,        pmltq,        treex,         tools services,         events,        about;
 @menu-colors: @common-color, @repository-color, @pmltq-color, @common-color, @common-color, @common-color, @common-color;
 
 /* The only two global things we have to set */
@@ -349,17 +349,23 @@ body {
 
 // Generate css for menu items (see variables at the beginning of the file)
 .createMenu(@item:1) when (@item <= length(@menu-items)) {
-  @name: extract(extract(@menu-items, @item), 1);
+  @names: extract(@menu-items, @item);
   @color: extract(extract(@menu-colors, @item), 1);
 
-  #lindat-@{name} {
-    .lindat-header,
-    .lindat-menu > li > a:hover,
-    .lindat-@{name}-item > a,
-    {
-      border-bottom-color: @color;
+  .loopNames(@counter:1) when (@counter <= length(@names)){
+    @name: extract(@names, @counter);
+    #lindat-@{name} {
+      .lindat-header,
+      .lindat-menu > li > a:hover,
+      .lindat-@{name}-item > a,
+      {
+        border-bottom-color: @color;
+      }
     }
+    .loopNames((@counter+1));
   }
+  .loopNames();
+
   .createMenu((@item + 1));
 }
 .createMenu();
