@@ -13,7 +13,7 @@ var pages = path.join(root, 'pages');
 
 try {
   rev = exec('git rev-parse HEAD', { cwd: __dirname });
-  rev = rev.toString();
+  rev = rev.toString().trim();
 } catch (e) {
   console.error('Executing "git rev-parse HEAD" failed...');
 }

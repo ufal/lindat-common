@@ -9,6 +9,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var swigLoader = require('swig-loader');
 
 module.exports = function (options) {
+
+  // This will load corresponding yaml files based on language
   swigLoader.resourceQueryCustomizer(function (resourceQuery, resourcePath) {
     if (!resourceQuery.lang) { return; }
     var filePath = resourceQuery.includeFile ? resourceQuery.includeFile : resourcePath;
@@ -17,6 +19,7 @@ module.exports = function (options) {
     if (fs.existsSync(ymlFile)) {
       _.extend(resourceQuery, yaml.safeLoad(fs.readFileSync(ymlFile, 'utf8')));
     }
+    // Include constants in templates
     _.extend(resourceQuery, options.config);
   });
 
@@ -63,7 +66,8 @@ module.exports = function (options) {
     });
   }
 
-// Generates files for all partials and combinations
+  // Generates files for all partials and combinations
+  // Header and footer in standalone and not and in English, Czech and default English :)
   var partialsPlugins = cartesianProduct([['header', 'footer'], [false, true], [false, 'en', 'cs']])
     .map(function (args) {
       return generatePartial(args[0], args[1], args[2]);
