@@ -292,29 +292,29 @@ html.lindat-modal-open {
   }
 }
 
-.lindat-refbox-copy {
-
+.lindat-refbox-copy-wrapper {
   flex: 0 1 auto;
-  button {
-    background: @refbox-text;
-    display: block;
-    white-space: nowrap;
-    border: none;
-    border-radius: 50%;
-    width: 1.3em;
-    height: 1.3em;
-    line-height: 1em;
-    font-size: 2.5em;
-    cursor: pointer;
-    color: #ffffff;
+}
 
-    &:focus {
-      outline: 0;
-    }
+.lindat-refbox-copy {
+  background: @refbox-text;
+  display: block;
+  white-space: nowrap;
+  border: none;
+  border-radius: 500rem;
+  width: 1.3em;
+  height: 1.3em;
+  line-height: 1em;
+  font-size: 2.5em;
+  cursor: pointer;
+  color: #ffffff;
 
-    &:hover {
-      background-color: darken(@refbox-text, 10%);
-    }
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    background-color: darken(@refbox-text, 10%);
   }
 }
 
@@ -427,7 +427,7 @@ html.lindat-modal-open {
 }
 
 // Remove inner padding and border in Firefox 4+.
-button.lindat-button::-moz-focus-inner{
+button.lindat-button::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
