@@ -15,6 +15,8 @@
 @twitter-color: #00AEE8;
 @google-plus-color: #D64136;
 
+@font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+
 // These variables are taken from bootstrap/less/variables.less
 //
 // Padding between columns. Gets divided in half for the left and right.
@@ -115,7 +117,7 @@ html.lindat-modal-open {
 
   background: rgba(0, 0, 0, 0.5);
 
-  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+  font-family: @font-family;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   font-size: 13px;
@@ -206,7 +208,7 @@ html.lindat-modal-open {
 }
 
 .lindat-refbox {
-  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+  font-family: @font-family;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   font-size: 13px;
@@ -418,22 +420,35 @@ html.lindat-modal-open {
   content: @lindat-icon-copy;
 }
 
+// Remove inner padding and border in Firefox 4+.
+button.lindat-button::-moz-focus-inner{
+  border: 0;
+  padding: 0;
+}
+
 .lindat-button {
+  // FF doesn't work correctly
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  font-weight: bold;
+  color: #ffffff;
   display: inline-block;
   cursor: pointer;
-  padding: .4em .8em .5em;
+  padding: 6px 12px;
   margin: 0 2px;
-  font-weight: bold;
-  line-height: 1;
-  color: #ffffff;
   text-align: center;
   white-space: nowrap;
-  vertical-align: baseline;
-  border-radius: .25em;
+  vertical-align: middle;
+  border-radius: 4px;
   background-color: @refbox-link;
-  font-size: 14px;
+  background-image: none;
+  -moz-appearance: button;
+  text-indent: 0;
   text-decoration: none;
   text-shadow: none;
+  text-transform: none;
+  user-select: none;
   border: 1px solid darken(@refbox-link, 5%);
   &:focus {
     outline: 0;
@@ -452,7 +467,7 @@ html.lindat-modal-open {
   width: 0;
   height: 0;
   vertical-align: middle;
-  border-top: 4px solid;
+  border-top: 4px dashed;
   border-right: 4px solid rgba(0, 0, 0, 0);
   border-left: 4px solid rgba(0, 0, 0, 0);
 }
