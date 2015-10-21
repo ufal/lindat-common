@@ -280,7 +280,7 @@ html.lindat-modal-open {
   color: @refbox-body-text;
   font-weight: bold;
 
-  flex: 1 1 auto;
+  flex: 1 1 0;
   a {
     color: #428bca;
     outline: 0;
@@ -293,22 +293,28 @@ html.lindat-modal-open {
 }
 
 .lindat-refbox-copy {
-  background: @refbox-text;
-  border: none;
-  border-radius: 50%;
-  width: 1.3em;
-  height: 1.3em;
-  line-height: 1em;
-  font-size: 2.5em;
-  cursor: pointer;
-  color: #ffffff;
 
-  &:focus {
-    outline: 0;
-  }
+  flex: 0 1 auto;
+  button {
+    background: @refbox-text;
+    display: block;
+    white-space: nowrap;
+    border: none;
+    border-radius: 50%;
+    width: 1.3em;
+    height: 1.3em;
+    line-height: 1em;
+    font-size: 2.5em;
+    cursor: pointer;
+    color: #ffffff;
 
-  &:hover {
-    background-color: darken(@refbox-text, 10%);
+    &:focus {
+      outline: 0;
+    }
+
+    &:hover {
+      background-color: darken(@refbox-text, 10%);
+    }
   }
 }
 
