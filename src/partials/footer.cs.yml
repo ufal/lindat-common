@@ -18,7 +18,7 @@ column2:
 column3:
   header: "Více"
   items:
-  - 'https://lindat.mff.cuni.cz/en/clarin-knowledge-centre': "CLARIN vědomostní centrum | INESS"
+  - 'raw': <a href="https://lindat.mff.cuni.cz/en/clarin-knowledge-centre">CLARIN vědomostní centrum</a> | <a href="http://clarino.uib.no/iness/page?page-id=Getting_started">INESS</a>
   - 'http://www.clarin.eu/': "CLARIN"
   - 'http://www.meta-net.eu/': "META-Net"
   - 'https://lindat.mff.cuni.cz/cs/monitoring': "Status Služeb"

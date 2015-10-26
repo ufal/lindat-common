@@ -4,7 +4,11 @@
   <ul>
   {%- for item in column.items -%}
     {%- for href, text in item -%}
+    {%- if href == 'raw' -%}
+    <li>{% autoescape false %}{{text}}{% endautoescape %}</li>
+    {%- else -%}
     <li><a href="{{href}}">{{text}}</a></li>
+    {%- endif -%}
     {%- endfor -%}
   {%- endfor -%}
   </ul>
