@@ -43,8 +43,7 @@ cd dist
 
 # Fix paths for main files
 sed -i 's|dist/public/|public/|m' bower.json
-version=`grep '"version"' package.json | cut -d: -f2 | sed -e 's/[", ]//g'`
-find ./ -name 'footer.htm' -exec sed -i "1s/FOOTER/FOOTER v$version/" {} \;
+sed -i 's|dist/public/|public/|m' package.json
 
 git init -q
 git config user.name "$git_user"

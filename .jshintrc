@@ -22,6 +22,7 @@
     "GA_TRACKING_CODE": true,
     "PIWIK_URL": true,
     "REST_API": true,
+    "PRODUCTION": true,
     "DEV_REST_API": true
   }
 }

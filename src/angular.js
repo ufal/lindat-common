@@ -2,7 +2,7 @@ var angular = require('angular');
 
 require('./lindat.less');
 
-if ( typeof module === 'object' && typeof module.exports === 'object' ) {
+if (!PRODUCTION) {
   // require externals if in CommonJS env
   require('angular-piwik');
   require('angular-google-analytics');
