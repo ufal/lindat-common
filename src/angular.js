@@ -2,6 +2,12 @@ var angular = require('angular');
 
 require('./lindat.less');
 
+if ( typeof module === 'object' && typeof module.exports === 'object' ) {
+  // require externals if in CommonJS env
+  require('angular-piwik');
+  require('angular-google-analytics');
+}
+
 var lindatModule = angular.module('lindat', ['piwik', 'angular-google-analytics'])
   .constant('piwikUrl', PIWIK_URL)
   .constant('refboxRestAPI', DEBUG ? DEV_REST_API : REST_API)
@@ -37,10 +43,4 @@ var lindatModule = angular.module('lindat', ['piwik', 'angular-google-analytics'
     Piwik.setSiteId(2);
   });
 
-if ( typeof module === "object" && typeof module.exports === "object" ) {
-  // require externals if in CommonJS env
-  require('angular-piwik');
-  require('angular-google-analytics');
-
-  module.exports = lindatModule.name;
-}
+module.exports = lindatModule.name;
