@@ -2,11 +2,8 @@ var angular = require('angular');
 
 require('./lindat.less');
 
-if (!PRODUCTION) {
-  // require externals if in CommonJS env
-  require('angular-piwik');
-  require('angular-google-analytics');
-}
+require('angular-piwik');
+require('angular-google-analytics');
 
 var lindatModule = angular.module('lindat', ['piwik', 'angular-google-analytics'])
   .constant('piwikUrl', PIWIK_URL)
