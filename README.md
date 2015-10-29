@@ -99,6 +99,10 @@ NOTE: `lindat.css` will set body margin and padding to *zero* pixels. This shoul
         
 1. Google Analytics and Piwik tracking are already included and should work out of the box. See [angular-piwik](https://github.com/mike-spainhower/angular-piwik) and [angular-google-analytics](https://github.com/revolunet/angular-google-analytics) for more info.
 
+## Automatic updates
+
+lindat-common is occasionally updated, you can follow these updated automatically using cron. If your checkout is in /opt/lindat-common and you are on releases branch with no local modifications, something like `35 0 * * * cd /opt/lindat-common/ && git pull --quiet` inside your crontab or other cron file should suffice
+
 ## Development
 
 - Clone the repository
