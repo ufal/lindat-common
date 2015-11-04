@@ -1,6 +1,6 @@
 {
   "name": "lindat-common",
-  "version": "1.0.15",
+  "version": "1.1.0",
   "main": "public/js/angular-lindat.js",
   "description": "Common Lindat Theme (header and footer)",
   "license": "MIT",
@@ -38,7 +38,7 @@
     "prebuild": "npm run clean-dist && npm run init-dist && npm run copy-static",
     "build": "NODE_ENV=production webpack --devtool source-map",
     "build-pages": "npm run clean-pages && webpack -p --pages --devtool source-map",
-    "start": "webpack-dev-server --debug --hot --inline --colors --display-error-details --display-cached",
+    "start": "webpack-dev-server --debug --hot --inline --colors --devtool eval --display-error-details --display-cached",
     "serve-pages": "webpack-dev-server -p --debug --quiet",
     "pretest": "webdriver-manager update --standalone && pm2 start './node_modules/.bin/webpack-dev-server' --name 'test' -- -p --debug --quiet",
     "prepublish": "npm run clean && npm run build",
