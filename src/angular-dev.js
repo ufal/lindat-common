@@ -1,6 +1,6 @@
 var angular = require('angular');
 
-angular.module('lindat-common', [require('./angular')])
+angular.module('lindat-common', [require('./angular')()])
   .controller('HomeController', function ($scope) {
     var vm = this;
 
