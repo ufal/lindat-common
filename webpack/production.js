@@ -46,9 +46,8 @@ module.exports = function (options) {
   var refbox = merge(productionCommon, {
     entry: path.join(options.src, 'refbox.js'),
     output: {
-      library: 'lindat-refbox',
+      library: 'LindatRefBox',
       libraryTarget: 'umd',
-      umdNamedDefine: 'LindatRefBox',
       path: options.dist,
       filename: path.join('public', 'js', 'lindat-refbox.js')
     },
@@ -67,7 +66,7 @@ module.exports = function (options) {
       'angular-google-analytics': 'commonjs angular-google-analytics'
     },
     output: {
-      library: 'angular-lindat',
+      library: 'AngularLindat',
       libraryTarget: 'umd',
       path: options.dist,
       filename: path.join('public', 'js', 'angular-lindat.js')
