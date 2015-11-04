@@ -1,10 +1,10 @@
 .PHONY: build
 
-install:
-				@npm install
-
 build:
 				@npm run build
+
+install:
+				@npm install
 
 run:
 				@echo "**************************************************"
