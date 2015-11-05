@@ -61,9 +61,7 @@ module.exports = function (options) {
     entry: [path.join(options.src, 'angular.js')],
     externals: {
       jquery: 'jQuery',
-      angular: 'angular',
-      'angular-piwik': 'commonjs angular-piwik',
-      'angular-google-analytics': 'commonjs angular-google-analytics'
+      angular: 'angular'
     },
     output: {
       library: 'AngularLindat',
