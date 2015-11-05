@@ -24,9 +24,7 @@
     "Michal Sedlák <sedlak@ufal.mff.cuni.cz>"
   ],
   "dependencies": {
-    "angular": "^1.4.7",
-    "angular-google-analytics": "^1.1.1",
-    "angular-piwik": "git://github.com/mike-spainhower/angular-piwik",
+    "angular": "^1.4",
     "jquery": "^2.1.4"
   },
   "scripts": {
