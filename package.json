@@ -45,6 +45,8 @@
     "release": "mversion minor"
   },
   "devDependencies": {
+    "angular-google-analytics": "^1.1.3",
+    "angular-piwik": "git://github.com/mike-spainhower/angular-piwik",
     "autoprefixer-loader": "^3.1.0",
     "css-loader": "^0.19.0",
     "extract-text-webpack-plugin": "^0.8.2",
