@@ -75,6 +75,9 @@ module.exports = function (options) {
 
   return {
     config: {
+      output: {
+        devtoolModuleFilenameTemplate: 'lindat-common:///[resource-path]?[loaders]'
+      },
       module: {
         loaders: [
           {test: /\.js$/, loaders: ['ng-annotate'], include: path.join(options.src, 'angular')},
