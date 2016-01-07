@@ -99,10 +99,15 @@ function RefBox(container, options) {
     refbox[name] = opt;
   });
 
-  var tpl = refbox.body = $(require('./template.html'));
-  refbox.formatsContainer = tpl.find('[refbox-formats]');
-  refbox.sharesContainer = tpl.find('[refbox-shares]');
-  refbox.integrationContainer = tpl.find('[refbox-integrations]');
+  var template = require('./refbox.template');
+  refbox.body = $(template({
+    cite: __("Please use the following text to cite this item or export to a predefined format:"),
+    services: __("This resource is also integrated in following services:"),
+    share: __("Share:")
+  }));
+  refbox.formatsContainer = refbox.body.find('[refbox-formats]');
+  refbox.sharesContainer = refbox.body.find('[refbox-shares]');
+  refbox.integrationContainer = refbox.body.find('[refbox-integrations]');
   Object.keys(options).forEach(function (name) {
     refbox[name] = options[name];
   });
@@ -111,10 +116,10 @@ function RefBox(container, options) {
   refbox.uri = 'http://hdl.handle.net/' + refbox.handle;
 
   refbox.requestQueue = [];
-  refbox.text = tpl.find('[refbox-text]');
-  refbox.copyButton = tpl.find('[refbox-copy-button]');
+  refbox.text = refbox.body.find('[refbox-text]');
+  refbox.copyButton = refbox.body.find('[refbox-copy-button]');
 
-  refbox.container = $(container).empty().append(tpl);
+  refbox.container = $(container).empty().append(refbox.body);
   refbox.init();
 }
 

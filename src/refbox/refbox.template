@@ -2,7 +2,7 @@
   <div class="lindat-refbox-top">
     <div class="lindat-refbox-header">
       <div class="lindat-icon lindat-header-icon lindat-icon-quote"></div>
-      <h3>Please use the following text to cite this item or export to a predefined format:</h3>
+      <h3>{{cite}}</h3>
       <div class="lindat-refbox-formats" refbox-formats></div>
     </div>
     <div class="lindat-refbox-body">
@@ -22,14 +22,14 @@
     <div class="lindat-refbox-integration" refbox-integrations>
       <div class="lindat-refbox-header">
         <div class="lindat-icon lindat-header-icon lindat-icon-puzzle"></div>
-        <h3>This resource is also integrated in following services:</h3>
+        <h3>{{services}}</h3>
       </div>
       <div class="lindat-refbox-services" refbox-services>
       </div>
     </div>
     <div class="lindat-refbox-header">
       <div class="lindat-icon lindat-header-icon lindat-icon-share"></div>
-      <h3>Share:</h3>
+      <h3>{{share}}</h3>
       <div class="lindat-refbox-shares" refbox-shares></div>
     </div>
   </div>

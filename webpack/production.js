@@ -2,6 +2,12 @@ var _ = require('lodash');
 var path = require('path');
 var merge = require('webpack-merge');
 var webpack = require('webpack');
+var I18nPlugin = require("i18n-webpack-plugin");
+var languages = {
+   "en": null,
+   "cs": require("../src/refbox/lang/cs.json")
+};
+
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -43,18 +49,21 @@ module.exports = function (options) {
     })].concat(common.partials, uglifyPlugin)
   });
 
-  var refbox = merge(productionCommon, {
-    entry: path.join(options.src, 'refbox.js'),
-    output: {
-      library: 'LindatRefBox',
-      libraryTarget: 'umd',
-      path: options.dist,
-      filename: path.join('public', 'js', 'lindat-refbox.js')
-    },
-    module: {
-      loaders: common.styleLoaders
-    },
-    plugins: [uglifyPlugin]
+  var refbox = Object.keys(languages).map(function(language){
+    var lang_dir = language === 'en' ? '' : language;
+    return merge(productionCommon, {
+              entry: path.join(options.src, 'refbox.js'),
+              output: {
+                library: 'LindatRefBox',
+                libraryTarget: 'umd',
+                path: options.dist,
+                filename: path.join('public', 'js', lang_dir, 'lindat-refbox.js')
+              },
+              module: {
+                loaders: common.styleLoaders
+              },
+              plugins: [new I18nPlugin(languages[language]), uglifyPlugin]
+         });
   });
 
   var angular = merge(productionCommon, {
@@ -72,7 +81,7 @@ module.exports = function (options) {
     module: {
       loaders: common.styleLoaders
     },
-    plugins: [uglifyPlugin]
+    plugins: [new I18nPlugin(null)/*keep the default language*/, uglifyPlugin]
   });
 
 

@@ -1,5 +1,6 @@
 var path = require('path');
 var merge = require('webpack-merge');
+var I18nPlugin = require("i18n-webpack-plugin");
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -25,7 +26,8 @@ module.exports = function (options) {
       minify: false
     }), new ExtractTextPlugin(path.join('public', 'css', 'lindat.css'), {
       allChunks: true
-    })]
+    }),
+    new I18nPlugin(null)]
   });
 
   var developmentAngular = merge(common.config, {
@@ -43,7 +45,8 @@ module.exports = function (options) {
       template: '!!swig!' + path.join(options.src, 'angular.html'),
       inject: true,
       minify: false
-    })]
+    }),
+    new I18nPlugin(null)]
   });
 
   return [development, developmentAngular];

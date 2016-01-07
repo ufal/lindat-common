@@ -88,7 +88,8 @@ module.exports = function (options) {
           {test: /\.(woff|woff2)$/, loader: 'url?limit=10000&mimetype=application/font-woff&prefix=fonts'},
           {test: /\.ttf$/, loader: 'url?limit=10000&mimetype=application/octet-stream&prefix=fonts'},
           {test: /\.eot$/, loader: 'url?limit=10000&mimetype=application/vnd.ms-fontobject&prefix=fonts'},
-          {test: /\.svg$/, loader: 'url?limit=10000&mimetype=image/svg+xml&prefix=fonts'}
+          {test: /\.svg$/, loader: 'url?limit=10000&mimetype=image/svg+xml&prefix=fonts'},
+          {test: /\.template$/, loader: 'mustache-loader'}
         ],
         noParse: [/\.php$/]
       },
