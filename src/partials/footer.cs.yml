@@ -10,11 +10,11 @@ column1:
 column2:
   header: "Repozitář"
   items:
-  - 'https://lindat.mff.cuni.cz/repository/xmlui/': "Hlavní stránka"
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=cs': "Hlavní stránka"
   - 'https://lindat.mff.cuni.cz/cs/o-lindat-clarin': "Kontakty"
-  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/item-lifecycle': "Fáze ukládání dat"
-  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/faq': "Často kladené dotazy"
-  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/about': "O projektu"
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/item-lifecycle?locale-attribute=cs': "Fáze ukládání dat"
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/faq?locale-attribute=cs': "Často kladené dotazy"
+  - 'https://lindat.mff.cuni.cz/repository/xmlui/page/about?locale-attribute=cs': "O projektu"
 column3:
   header: "Více"
   items:

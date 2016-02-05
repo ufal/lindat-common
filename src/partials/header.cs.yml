@@ -1,10 +1,10 @@
 ---
 menu:
-- href: 'http://lindat.mff.cuni.cz/'
+- href: 'http://lindat.mff.cuni.cz/cs/'
   class: lindat-logo
   id: lindat-home-item
   text: Úvod
-- href: 'https://lindat.mff.cuni.cz/repository/xmlui/'
+- href: 'https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=cs'
   id: lindat-repository-item
   text: Repozitář
 - href: 'https://lindat.mff.cuni.cz/services/pmltq/'
