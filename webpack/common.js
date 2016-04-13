@@ -58,7 +58,7 @@ module.exports = function (options) {
       path.join(options.src, 'standalone.html') : path.join(options.partials, inputFilename);
 
     return new HtmlWebpackPlugin({
-      filename: '/' + filename,
+      filename: filename,
       template: '!!swig!' + template + '?' + JSON.stringify(params),
       inject: false,
       chunks: ['main'],

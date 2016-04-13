@@ -20,7 +20,7 @@ module.exports = function (options) {
       loaders: common.extractLoaders
     },
     plugins: [new HtmlWebpackPlugin({
-      filename: '/index.html',
+      filename: 'index.html',
       template: '!!swig!' + path.join(options.src, 'index.html'),
       inject: true,
       minify: false
@@ -41,7 +41,7 @@ module.exports = function (options) {
       loaders: common.styleLoaders
     },
     plugins: [new HtmlWebpackPlugin({
-      filename: '/angular.html',
+      filename: 'angular.html',
       template: '!!swig!' + path.join(options.src, 'angular.html'),
       inject: true,
       minify: false
