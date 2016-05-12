@@ -5,7 +5,8 @@ var webpack = require('webpack');
 var I18nPlugin = require("i18n-webpack-plugin");
 var languages = {
    "en": null,
-   "cs": require("../src/refbox/lang/cs.json")
+   "cs": require("../src/refbox/lang/cs.json"),
+   "si": require("../src/refbox/lang/si.json")
 };
 
 
