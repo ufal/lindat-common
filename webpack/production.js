@@ -6,7 +6,7 @@ var I18nPlugin = require("i18n-webpack-plugin");
 var languages = {
    "en": null,
    "cs": require("../src/refbox/lang/cs.json"),
-   "si": require("../src/refbox/lang/si.json")
+   "sl": require("../src/refbox/lang/sl.json")
 };
 
 
