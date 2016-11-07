@@ -16,9 +16,6 @@ menu:
 - href: 'https://lindat.mff.cuni.cz/cs/sluzby'
   id: lindat-tools-item
   text: Aplikace
-- href: 'https://lindat.mff.cuni.cz/cs/akce'
-  id: lindat-events-item
-  text: Akce
 - href: 'https://lindat.mff.cuni.cz/cs/o-lindat-clarin'
   id: lindat-about-item
   text: O nás

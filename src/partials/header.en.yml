@@ -16,9 +16,6 @@ menu:
 - href: 'https://lindat.mff.cuni.cz/services'
   id: lindat-tools-item
   text: More Apps
-- href: 'https://lindat.mff.cuni.cz/en/events'
-  id: lindat-events-item
-  text: Events
 - href: 'https://lindat.mff.cuni.cz/en/about-lindat-clarin'
   id: lindat-about-item
   text: About
