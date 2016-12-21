@@ -23,7 +23,7 @@ column3:
   - 'http://www.meta-net.eu/': "META-Net"
   - 'https://lindat.mff.cuni.cz/en/monitoring': "Service Status"
   - 'https://lindat.mff.cuni.cz/en/how-do-i-sign-up': "Authentication"
-  - 'https://lindat.mff.cuni.cz/en/tos': "Terms of service"
+  - 'https://lindat.mff.cuni.cz/en/terms-of-use': "Terms of Use"
 footer:
   - "THE LINDAT/CLARIN PROJECT (LM2010013) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS"
   - "AND YOUTH OF THE CZECH REPUBLIC UNDER THE PROGRAMME LM OF \"LARGE INFRASTRUCTURES\"."
