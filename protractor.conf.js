@@ -7,7 +7,7 @@ var config = {
     'test/*.js'
   ],
   multiCapabilities: [{
-    browserName: 'firefox'
+    browserName: 'chrome'
   }],
   jasmineNodeOpts: {
     isVerbose: true,
@@ -57,7 +57,7 @@ if (process.env.TRAVIS) {
   }
   ];
 } else {
-  config.seleniumServerJar = './node_modules/protractor/selenium/selenium-server-standalone-2.47.1.jar';
+  config.seleniumServerJar = './node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-2.53.1.jar';
 }
 
 exports.config = config;
