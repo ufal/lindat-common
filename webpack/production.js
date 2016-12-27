@@ -3,11 +3,7 @@ var path = require('path');
 var merge = require('webpack-merge');
 var webpack = require('webpack');
 var I18nPlugin = require("i18n-webpack-plugin");
-var languages = {
-   "en": null,
-   "cs": require("../src/refbox/lang/cs.json"),
-   "sl": require("../src/refbox/lang/sl.json")
-};
+var languages = require("../src/refbox/languages.js");
 
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -67,22 +63,25 @@ module.exports = function (options) {
          });
   });
 
-  var angular = merge(productionCommon, {
-    entry: [path.join(options.src, 'angular.js')],
-    externals: {
-      jquery: 'jQuery',
-      angular: 'angular'
-    },
-    output: {
-      library: 'AngularLindat',
-      libraryTarget: 'umd',
-      path: options.dist,
-      filename: path.join('public', 'js', 'angular-lindat.js')
-    },
-    module: {
-      loaders: common.styleLoaders
-    },
-    plugins: [new I18nPlugin(null)/*keep the default language*/, uglifyPlugin]
+  var angular = Object.keys(languages).map(function(language){
+    var lang_dir = language === 'en' ? '' : language;
+    return merge(productionCommon, {
+      entry: [path.join(options.src, 'angular.js')],
+      externals: {
+        jquery: 'jQuery',
+        angular: 'angular'
+      },
+      output: {
+        library: 'AngularLindat',
+        libraryTarget: 'umd',
+        path: options.dist,
+        filename: path.join('public', 'js', lang_dir, 'angular-lindat.js')
+      },
+      module: {
+        loaders: common.styleLoaders
+      },
+      plugins: [new I18nPlugin(languages[language]), uglifyPlugin]
+    });
   });
 
 

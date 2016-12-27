@@ -59,6 +59,10 @@ module.exports = function (options) {
 
     return new HtmlWebpackPlugin({
       filename: filename,
+      /*
+        adding !! to a request will disable all loaders specified in the configuration
+        see module.loaders below
+       */
       template: '!!swig!' + template + '?' + JSON.stringify(params),
       inject: false,
       chunks: ['main'],
@@ -79,9 +83,19 @@ module.exports = function (options) {
         devtoolModuleFilenameTemplate: 'lindat-common:///[resource-path]?[loaders]'
       },
       module: {
+        /*
+         https://webpack.github.io/docs/loaders.html
+         https://webpack.github.io/docs/using-loaders.html
+         https://webpack.github.io/docs/list-of-loaders.html
+         */
         loaders: [
           {test: /\.js$/, loaders: ['ng-annotate'], include: path.join(options.src, 'angular')},
+          //convert .yml to json
           {test: /\.yml/, loader: 'json!yaml'},
+          /*https://github.com/webpack/loader-utils#parsequery
+           ?flag                  -> { flag: true }
+           ?-flag                 -> { flag: false }
+           */
           {test: /\.html/, loaders: ['html-loader?-attrs', 'swig-loader?raw']},
           {test: /\.ico$/, loaders: ['url-loader']},
           {test: /\.(png|jpg)$/, loader: 'url-loader', query: {name: 'public/img/[name].[ext]', limit: 10000 }}, // inline base64 URLs for <=8k images, direct URLs for the rest
