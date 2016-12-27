@@ -3,11 +3,7 @@ var path = require('path');
 var merge = require('webpack-merge');
 var webpack = require('webpack');
 var I18nPlugin = require("i18n-webpack-plugin");
-var languages = {
-   "en": null,
-   "cs": require("../src/refbox/lang/cs.json"),
-   "sl": require("../src/refbox/lang/sl.json")
-};
+var languages = require("../src/refbox/languages.js");
 
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
