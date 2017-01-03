@@ -34,24 +34,28 @@ module.exports = function (options) {
     });
     });
 
-  var developmentAngular = merge(common.config, {
-    entry: [path.join(options.src, 'angular-dev.js')],
-    output: {
-      path: options.pages,
-      publicPath: options.publicPath,
-      filename: path.join('public', 'js', 'angular-lindat.js')
-    },
-    module: {
-      loaders: common.styleLoaders
-    },
-    plugins: [new HtmlWebpackPlugin({
-      filename: 'angular.html',
-      template: '!!swig!' + path.join(options.src, 'angular.html'),
-      inject: true,
-      minify: false
-    }),
-    new I18nPlugin(null)]
+  var developmentAngular = Object.keys(languages).map(function(language) {
+    var lang_dir = language === 'en' ? '' : language;
+    return merge(common.config, {
+      entry: [path.join(options.src, 'angular-dev.js')],
+      output: {
+        path: options.pages,
+        publicPath: options.publicPath,
+        filename: path.join('public', 'js', lang_dir, 'angular-lindat.js')
+      },
+      module: {
+        loaders: common.styleLoaders
+      },
+      plugins: [new HtmlWebpackPlugin({
+        filename: language === 'en' ? 'angular.html' : 'angular_' + language + '.html',
+        template: '!!swig!' + path.join(options.src, 'angular.html'),
+        inject: true,
+        minify: false
+      }),
+        new I18nPlugin(languages[language])]
+    });
   });
+
 
   return [].concat(development, developmentAngular);
 };
