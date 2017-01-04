@@ -1,6 +1,6 @@
 {
   "name": "lindat-common",
-  "version": "1.3.6",
+  "version": "1.4.0",
   "main": "public/js/angular-lindat.js",
   "description": "Common Lindat Theme (header and footer)",
   "license": "MIT",
@@ -41,7 +41,7 @@
     "pretest": "webdriver-manager update --standalone && pm2 start './node_modules/.bin/webpack-dev-server' --name 'test' -- -p --debug --quiet",
     "prepublish": "npm run clean && npm run build",
     "test": "protractor",
-    "posttest": "pm2 stop test",
+    "posttest": "pm2 stop test && pm2 kill",
     "release": "mversion minor"
   },
   "devDependencies": {
@@ -65,7 +65,7 @@
     "ng-annotate-loader": "0.0.10",
     "optimist": "^0.6.1",
     "pm2": "^0.15.7",
-    "protractor": "^2.5.1",
+    "protractor": "^4.0.14",
     "raw-loader": "^0.5.1",
     "simple-git": "^1.11.0",
     "style-loader": "^0.12.4",
