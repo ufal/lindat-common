@@ -41,7 +41,7 @@
     "pretest": "webdriver-manager update --standalone && pm2 start './node_modules/.bin/webpack-dev-server' --name 'test' -- -p --debug --quiet",
     "prepublish": "npm run clean && npm run build",
     "test": "protractor",
-    "posttest": "pm2 stop test",
+    "posttest": "pm2 stop test && pm2 kill",
     "release": "mversion minor"
   },
   "devDependencies": {
