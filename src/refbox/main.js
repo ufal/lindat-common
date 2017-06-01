@@ -134,6 +134,17 @@ RefBox.prototype.init = function () {
     textNode.empty().html("<a href='" + refbox.uri + "'>" + refbox.uri + "</a>");
   }
 
+  function clipboardSuccess(e){
+              var copyButtonOffset = $(e.trigger).offset();
+              var copyButtonHeight = $(e.trigger).outerHeight(true);
+              refbox.copiedTooltip.css({top: copyButtonOffset.top + copyButtonHeight, left: copyButtonOffset.left});
+              refbox.copiedTooltip.fadeIn('slow');
+              setTimeout(function () {
+                refbox.copiedTooltip.fadeOut('slow');
+              }, 1000);
+              e.clearSelection();
+  }
+
   refbox.fetchInitial().
     done(function (data) {
       if (data.title) {
@@ -149,7 +160,36 @@ RefBox.prototype.init = function () {
               e.preventDefault();
               refbox.request(format)
                 .done(function (data) {
-                  refbox.modal(refbox.title, data, format.name);
+                  if(data.split('\n').length < 50){
+                    //reasonably short format will be displayed in line
+                    var copyClone = refbox.copyButton.clone();
+                    refbox.body.find('.lindat-format').empty()
+                        .append($("<h3 class='lindat-flexrow' style='padding-top: 6px;'>")
+                          .text(format.name)
+                        )
+                        .append($("<div class='lindat-flexrow'>")
+                            .append($("<div class='lindat-format-content'>")
+                                .append($("<pre>")
+                                  .text(data)
+                                )
+                            )
+                            .append($("<div class='lindat-format-copy'>")
+                                .append(copyClone)
+                            )
+                    ).slideToggle();
+
+                    var clipboard = new Clipboard(copyClone.get(0), {
+                      text: function(trigger){
+                        return data;
+                      }
+                    });
+                    clipboard.on('success', clipboardSuccess);
+                    clipboard.on('error', function (e) {
+                      refbox.modal(refbox.title, data, format.name);
+                    });
+                  }else {
+                    refbox.modal(refbox.title, data, format.name);
+                  }
                 });
             })
             .text(format.name);
@@ -163,16 +203,7 @@ RefBox.prototype.init = function () {
             return textNode.text();
           }
         });
-        clipboard.on('success', function(e){
-              var copyButtonOffset = $(e.trigger).offset();
-              var copyButtonHeight = $(e.trigger).outerHeight(true);
-              refbox.copiedTooltip.css({top: copyButtonOffset.top + copyButtonHeight, left: copyButtonOffset.left});
-              refbox.copiedTooltip.fadeIn('slow');
-              setTimeout(function () {
-                refbox.copiedTooltip.fadeOut('slow');
-              }, 1000);
-              e.clearSelection();
-        });
+        clipboard.on('success', clipboardSuccess);
         clipboard.on('error', function (e) {
           refbox.modal(refbox.title, textNode.text());
         });

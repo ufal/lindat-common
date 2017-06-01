@@ -17,6 +17,8 @@
         <button class="lindat-icon lindat-icon-copy lindat-refbox-copy" refbox-copy-button></button>
       </div>
     </div>
+    <div class="lindat-format lindat-flexcol" style="display: none;">
+    </div>
   </div>
   <div class="lindat-refbox-footer">
     <div class="lindat-refbox-integration" refbox-integrations>

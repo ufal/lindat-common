@@ -580,6 +580,39 @@ button.lindat-button::-moz-focus-inner {
     border-color: transparent transparent @tooltip-bg transparent;
 }
 
+.lindat-format{
+  border-top: 5px solid @refbox-border;
+  border-bottom: 5px solid @refbox-border;
+}
+
+.lindat-flexrow{
+  display: -ms-flex;
+	display: -webkit-flex;
+	display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.lindat-flexcol {
+  display: -ms-flex;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+}
+
+.lindat-flexrow > div:first-child{
+  width: 95%;
+  padding-right: 5px;
+}
+
+.lindat-format-content > pre{
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
 // This should be down here
 .lindat-loading {
   .lindat-refbox-footer, .lindat-refbox-copy, .lindat-refbox-formats {
