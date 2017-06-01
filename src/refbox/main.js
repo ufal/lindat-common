@@ -121,6 +121,7 @@ function RefBox(container, options) {
   refbox.copyButton = refbox.body.find('[refbox-copy-button]');
 
   refbox.container = $(container).empty().append(refbox.body);
+  refbox.copiedTooltip = $('<span class="lindat-tooltip" style="display: none">Copied!</span>').appendTo(refbox.container);
   refbox.init();
 }
 
@@ -163,13 +164,12 @@ RefBox.prototype.init = function () {
           }
         });
         clipboard.on('success', function(e){
-              var jqTooltip = $('<span class="lindat-tooltip">Copied!</span>').appendTo('body')
-                .fadeIn('slow');
               var copyButtonOffset = $(e.trigger).offset();
               var copyButtonHeight = $(e.trigger).outerHeight(true);
-              jqTooltip.css({top: copyButtonOffset.top + copyButtonHeight, left: copyButtonOffset.left});
+              refbox.copiedTooltip.css({top: copyButtonOffset.top + copyButtonHeight, left: copyButtonOffset.left});
+              refbox.copiedTooltip.fadeIn('slow');
               setTimeout(function () {
-                jqTooltip.fadeOut('slow');
+                refbox.copiedTooltip.fadeOut('slow');
               }, 1000);
               e.clearSelection();
         });
