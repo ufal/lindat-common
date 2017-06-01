@@ -163,13 +163,11 @@ RefBox.prototype.init = function () {
           }
         });
         clipboard.on('success', function(e){
-              var jqTooltip = $('<span class="tooltip">Copied!</span>').appendTo('body')
+              var jqTooltip = $('<span class="lindat-tooltip">Copied!</span>').appendTo('body')
                 .fadeIn('slow');
               var copyButtonOffset = $(e.trigger).offset();
               var copyButtonHeight = $(e.trigger).outerHeight(true);
-              var copyButtonWidth = $(e.trigger).width();
-              jqTooltip.css({top: copyButtonOffset.top + copyButtonHeight,
-                left: copyButtonOffset.left - copyButtonWidth/2 });
+              jqTooltip.css({top: copyButtonOffset.top + copyButtonHeight, left: copyButtonOffset.left});
               setTimeout(function () {
                 jqTooltip.fadeOut('slow');
               }, 1000);
