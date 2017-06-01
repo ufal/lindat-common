@@ -549,6 +549,25 @@ button.lindat-button::-moz-focus-inner {
   }
 }
 
+.tooltip {
+  position: absolute;
+  display: inline-block;
+  background-color: @refbox-link;
+  border-radius:5px;
+  padding: 5px;
+}
+
+.tooltip::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent @refbox-link transparent;
+}
+
 // This should be down here
 .lindat-loading {
   .lindat-refbox-footer, .lindat-refbox-copy, .lindat-refbox-formats {
