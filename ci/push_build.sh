@@ -74,5 +74,5 @@ if [ -n "$STATUS" ]; then
 	find ./ -name '*footer*.htm' -exec sed -i '/<!-- TRACKING CODE -->/,/<!-- End TRACKING CODE -->/d' {} \;
 	git add -A .
 	git commit -m "$COMMIT_MSG - no tracking"
-	git push -q origin master:no-tracking-release > /dev/null 2>&1
+	git push -qf origin master:no-tracking-release > /dev/null 2>&1
 fi
