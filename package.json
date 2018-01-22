@@ -1,6 +1,6 @@
 {
   "name": "lindat-common",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "main": "public/js/angular-lindat.js",
   "description": "Common Lindat Theme (header and footer)",
   "license": "MIT",
@@ -25,7 +25,7 @@
   ],
   "dependencies": {
     "angular": "^1.4",
-    "jquery": "^2.1.4",
+    "jquery": "^3.x",
     "clipboard": "~1.6.1"
   },
   "scripts": {
