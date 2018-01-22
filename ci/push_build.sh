@@ -2,7 +2,9 @@
 
 # https://github.com/steveklabnik/automatically_update_github_pages_with_travis_example
 
-set -e
+set -o errexit
+set -o xtrace
+set -o verbose
 
 : ${TRAVIS:?'This should only be run on Travis CI'}
 GH_TOKEN=${GH_TOKEN:?'Must provide github token'}
