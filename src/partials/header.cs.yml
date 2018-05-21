@@ -7,6 +7,9 @@ menu:
 - href: 'https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=cs'
   id: lindat-repository-item
   text: Repozitář
+- href: 'https://lindat.mff.cuni.cz/services/kontext/'
+  id: lindat-kontext-item
+  text: Prohledat korpus
 - href: 'https://lindat.mff.cuni.cz/services/pmltq/'
   id: lindat-pmltq-item
   text: TreeQuery
