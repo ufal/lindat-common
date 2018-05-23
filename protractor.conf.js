@@ -57,7 +57,14 @@ if (process.env.TRAVIS) {
   }
   ];
 } else {
-  config.seleniumServerJar = './node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-2.53.1.jar';
+  var glob = require('glob');
+  glob('./node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-*.jar', function (err, files) {
+    if(err){
+      throw err;
+    }else{
+      config.seleniumServerJar = files[files.length - 1];
+    }
+  });
 }
 
 exports.config = config;
