@@ -65,7 +65,7 @@
     "mversion": "^1.10.1",
     "ng-annotate-loader": "0.0.10",
     "optimist": "^0.6.1",
-    "pm2": "^0.15.7",
+    "pm2": "^3.5.1",
     "protractor": "^5.4.2",
     "raw-loader": "^0.5.1",
     "simple-git": "^1.126.0",
