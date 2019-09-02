@@ -5,7 +5,7 @@ var webpack = require('webpack');
 var yaml = require('js-yaml');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var swigLoader = require('swig-loader');
 
 module.exports = function (options) {
@@ -113,8 +113,8 @@ module.exports = function (options) {
     },
     partials: partialsPlugins,
     extractLoaders: [
-      {test: /\.less$/, loader: ExtractTextPlugin.extract('css!autoprefixer!less', {publicPath: options.publicPath})},
-      {test: /\.css$/, loader: ExtractTextPlugin.extract('css!autoprefixer', {publicPath: options.publicPath})}
+      {test: /\.less$/, loader: MiniCssExtractPlugin.extract('css!autoprefixer!less', {publicPath: options.publicPath})},
+      {test: /\.css$/, loader: MiniCssExtractPlugin.extract('css!autoprefixer', {publicPath: options.publicPath})}
     ],
     styleLoaders: [
       {test: /\.less$/, loader: 'style!css!autoprefixer!less'},

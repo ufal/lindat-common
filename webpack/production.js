@@ -5,8 +5,7 @@ var webpack = require('webpack');
 var I18nPlugin = require("i18n-webpack-plugin");
 var languages = require("../src/refbox/languages.js");
 
-
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function (options) {
 
@@ -41,7 +40,7 @@ module.exports = function (options) {
     module: {
       loaders: common.extractLoaders
     },
-    plugins: [new ExtractTextPlugin(path.join('public', 'css', 'lindat.css'), {
+    plugins: [new MiniCssExtractPlugin(path.join('public', 'css', 'lindat.css'), {
       allChunks: true
     })].concat(common.partials, uglifyPlugin)
   });

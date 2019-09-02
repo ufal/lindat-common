@@ -3,7 +3,7 @@ var merge = require('webpack-merge');
 var I18nPlugin = require("i18n-webpack-plugin");
 var languages = require("../src/refbox/languages.js");
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (options) {
@@ -27,7 +27,7 @@ module.exports = function (options) {
         template: '!!swig!' + path.join(options.src, 'index.html'),
         inject: true,
         minify: false
-      }), new ExtractTextPlugin(path.join('public', 'css', 'lindat.css'), {
+      }), new MiniCssExtractPlugin(path.join('public', 'css', 'lindat.css'), {
         allChunks: true
       }),
         new I18nPlugin(languages[language])]
