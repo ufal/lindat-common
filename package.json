@@ -68,7 +68,7 @@
     "pm2": "^0.15.7",
     "protractor": "^5.4.2",
     "raw-loader": "^0.5.1",
-    "simple-git": "^1.11.0",
+    "simple-git": "^1.126.0",
     "style-loader": "^0.12.4",
     "swig-loader": "^1.0.0",
     "url-loader": "^0.5.6",
