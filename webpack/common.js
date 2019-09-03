@@ -88,7 +88,7 @@ module.exports = function (options) {
          https://webpack.github.io/docs/using-loaders.html
          https://webpack.github.io/docs/list-of-loaders.html
          */
-        loaders: [
+        rules: [
           {test: /\.js$/, loaders: ['ng-annotate'], include: path.join(options.src, 'angular')},
           //convert .yml to json
           {test: /\.yml/, loader: 'json!yaml'},
@@ -113,8 +113,8 @@ module.exports = function (options) {
     },
     partials: partialsPlugins,
     extractLoaders: [
-      {test: /\.less$/, loader: MiniCssExtractPlugin.extract('css!autoprefixer!less', {publicPath: options.publicPath})},
-      {test: /\.css$/, loader: MiniCssExtractPlugin.extract('css!autoprefixer', {publicPath: options.publicPath})}
+      {test: /\.less$/, use: [{loader: MiniCssExtractPlugin.loader, options:{publicPath: options.publicPath} }, 'css!autoprefixer!less']},
+      {test: /\.css$/, use: [{loader: MiniCssExtractPlugin.loader, options:{publicPath: options.publicPath} }, 'css!autoprefixer']}
     ],
     styleLoaders: [
       {test: /\.less$/, loader: 'style!css!autoprefixer!less'},

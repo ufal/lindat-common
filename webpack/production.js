@@ -11,12 +11,6 @@ module.exports = function (options) {
 
   var common = require('./common')(options);
 
-  var uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  });
-
   var productionCommon = merge(common.config, {
     externals: {
       jquery: 'jQuery'
@@ -25,9 +19,6 @@ module.exports = function (options) {
       publicPath: options.publicPath
     },
     plugins: [
-      new webpack.optimize.OccurenceOrderPlugin(true),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.NoErrorsPlugin()
     ]
   });
 
@@ -38,11 +29,11 @@ module.exports = function (options) {
       filename: path.join('public', 'css', 'lindat.css')
     },
     module: {
-      loaders: common.extractLoaders
+      rules: common.extractLoaders
     },
     plugins: [new MiniCssExtractPlugin(path.join('public', 'css', 'lindat.css'), {
       allChunks: true
-    })].concat(common.partials, uglifyPlugin)
+    })].concat(common.partials)
   });
 
   var refbox = Object.keys(languages).map(function(language){
@@ -56,9 +47,9 @@ module.exports = function (options) {
                 filename: path.join('public', 'js', lang_dir, 'lindat-refbox.js')
               },
               module: {
-                loaders: common.styleLoaders
+                rules: common.styleLoaders
               },
-              plugins: [new I18nPlugin(languages[language]), uglifyPlugin]
+              plugins: [new I18nPlugin(languages[language])]
          });
   });
 
@@ -77,9 +68,9 @@ module.exports = function (options) {
         filename: path.join('public', 'js', lang_dir, 'angular-lindat.js')
       },
       module: {
-        loaders: common.styleLoaders
+        rules: common.styleLoaders
       },
-      plugins: [new I18nPlugin(languages[language]), uglifyPlugin]
+      plugins: [new I18nPlugin(languages[language])]
     });
   });
 

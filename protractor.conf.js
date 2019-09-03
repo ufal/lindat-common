@@ -7,7 +7,7 @@ var config = {
     'test/*.js'
   ],
   multiCapabilities: [{
-    browserName: 'chrome'
+    browserName: 'firefox'
   }],
   jasmineNodeOpts: {
     isVerbose: true,

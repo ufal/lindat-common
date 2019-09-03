@@ -20,6 +20,7 @@ try {
 
 var config = {
   PRODUCTION: process.env.NODE_ENV === 'production',
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
   REV: rev,
   VERSION: require('./package.json').version,
 

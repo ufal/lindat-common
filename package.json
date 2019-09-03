@@ -55,7 +55,7 @@
     "html-loader": "^0.5.5",
     "html-minify-loader": "^1.0.0",
     "html-webpack-plugin": "^2.0.3",
-    "i18n-webpack-plugin": "^0.2.7",
+    "i18n-webpack-plugin": "^1.0.0",
     "js-yaml": "^3.13.1",
     "json-loader": "^0.5.3",
     "less": "^2.5.3",
@@ -72,9 +72,10 @@
     "style-loader": "^0.12.4",
     "swig-loader": "^1.0.0",
     "url-loader": "^0.5.6",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.0",
-    "webpack-merge": "^0.2.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.2",
     "yaml-loader": "^0.1.0"
   },
   "engines": {
