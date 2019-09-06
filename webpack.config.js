@@ -1,6 +1,5 @@
 var path = require('path');
 var nodeExternals = require('webpack-node-externals');
-var merge = require('webpack-merge');
 
 var getPlugins = require('./webpack/plugins');
 var getLoaders = require('./webpack/loaders');
@@ -9,8 +8,9 @@ var getLoaders = require('./webpack/loaders');
 var root = path.resolve(__dirname);
 var src  = path.join(root, 'src');
 
+// globals need to be stringified for DefinePlugin but raw in loaders
 var globals = {
-  REV: JSON.stringify(function () {
+  REV: function () {
     var rev = 'DEV';
     try{
       var exec = require('child_process').execSync;
@@ -20,13 +20,13 @@ var globals = {
       console.error('Executing "git rev-parse HEAD" failed...');
     }
     return rev;
-  }()),
-  VERSION: JSON.stringify(require('./package.json').version),
-  GA_TRACKING_CODE: JSON.stringify('UA-27008245-2'),
-  PIWIK_URL: JSON.stringify('//lindat.mff.cuni.cz/piwik/'), // include trailing slash
-  REST_API: JSON.stringify('https://lindat.mff.cuni.cz/repository/rest'),
-  DEV_REST_API: JSON.stringify('https://ufal-point-dev.ms.mff.cuni.cz/repository/rest'),
-}
+  }(),
+  VERSION: require('./package.json').version,
+  GA_TRACKING_CODE: 'UA-27008245-2',
+  PIWIK_URL: '//lindat.mff.cuni.cz/piwik/', // include trailing slash
+  REST_API: 'https://lindat.mff.cuni.cz/repository/rest',
+  DEV_REST_API: 'https://ufal-point-dev.ms.mff.cuni.cz/repository/rest'
+};
 
 //TODO maybe I don't need globals injected in swing as they are in DefinePlugin
 
@@ -36,7 +36,7 @@ module.exports = function(env, argv){
   var publicPath = debug ? '/' :
                   (pages ? 'https://ufal.github.io/lindat-common/' :
                            'https://lindat.mff.cuni.cz/common/');
-  globals.DEBUG = JSON.stringify(debug);
+  globals.DEBUG = debug;
   var config = {
     entry: {
       main: path.join(src, 'angular-dev.js')
@@ -62,7 +62,7 @@ module.exports = function(env, argv){
         angular: 'angular'
       }*/
     ],
-    module: getLoaders(src),
+    module: getLoaders(src, globals),
     plugins: getPlugins(src, globals)
   };
   config.output.publicPath = publicPath;

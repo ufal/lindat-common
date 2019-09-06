@@ -1,7 +1,8 @@
 var path = require('path');
+var merge = require('webpack-merge');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = function (src) {
+module.exports = function (src, globals) {
   return {
     rules: [
       {
@@ -55,7 +56,10 @@ module.exports = function (src) {
         test: /\.html$/,
         use: [
           'html-loader?-attrs',
-          'swig-loader?raw'
+          {
+            loader: 'swig-loader',
+            options: merge({raw: true}, globals)
+          }
         ]
       },
       {
