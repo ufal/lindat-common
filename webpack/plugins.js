@@ -19,6 +19,6 @@ module.exports = function(src, globals){
     //Global constants
     new webpack.DefinePlugin(stringifiedGlobals),
     // remove ./dist on build
-    new CleanWebpackPlugin()
+    //new CleanWebpackPlugin()
   ];
 };
