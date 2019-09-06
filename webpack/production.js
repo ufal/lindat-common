@@ -1,7 +1,5 @@
-var _ = require('lodash');
 var path = require('path');
 var merge = require('webpack-merge');
-var webpack = require('webpack');
 var I18nPlugin = require("i18n-webpack-plugin");
 var languages = require("../src/refbox/languages.js");
 
@@ -75,5 +73,5 @@ module.exports = function (options) {
   });
 
 
-  return [].concat(css, refbox, angular);
+  return [].concat(css, refbox, angular, common.copyStatic);
 };

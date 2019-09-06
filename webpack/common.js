@@ -1,3 +1,4 @@
+// TODO remove lodash
 var _ = require('lodash');
 var fs = require('fs');
 var path = require('path');
@@ -7,6 +8,7 @@ var yaml = require('js-yaml');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var swigLoader = require('swig-loader');
+var CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = function (options) {
 
@@ -109,7 +111,8 @@ module.exports = function (options) {
       },
       plugins: [
         new webpack.DefinePlugin(_.mapValues(options.config, JSON.stringify))
-      ]
+      ],
+      devtool:'source-map'
     },
     partials: partialsPlugins,
     extractLoaders: [
@@ -119,6 +122,14 @@ module.exports = function (options) {
     styleLoaders: [
       {test: /\.less$/, loader: 'style!css!autoprefixer!less'},
       {test: /\.css$/, loader: 'style!autoprefixer!css'}
-    ]
+    ],
+    copyStatic: {
+      plugins: [
+        new CopyPlugin([
+          { from: options.src + '/images/*', to: options.dist + "/public/img"},
+          { from: options.src + '/refbox/fonts/*', to: options.dist + "/public/fonts"}
+        ])
+      ]
+    }
   };
 };
