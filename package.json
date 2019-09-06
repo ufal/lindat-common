@@ -38,7 +38,7 @@
     "build-pages": "npm run clean-pages && webpack -p --pages --devtool source-map",
     "start": "webpack-dev-server --debug --hot --inline --colors --devtool eval --display-error-details --display-cached",
     "serve-pages": "webpack-dev-server -p --debug --quiet",
-    "pretest": "webdriver-manager update --standalone && pm2 start './node_modules/.bin/webpack-dev-server' --no-vizion --name 'test' -- -p --debug --quiet",
+    "pretest": "webdriver-manager update --standalone && pm2 start webpack-dev-server --no-vizion --name 'test' -- -p --debug --quiet",
     "prepublish": "npm run clean && npm run build",
     "test": "protractor",
     "posttest": "pm2 stop test && pm2 kill",

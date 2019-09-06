@@ -1,13 +1,6 @@
 var path = require('path');
 var nodeExternals = require('webpack-node-externals');
 
-var getPlugins = require('./webpack/plugins');
-var getLoaders = require('./webpack/loaders');
-
-
-var root = path.resolve(__dirname);
-var src  = path.join(root, 'src');
-
 // globals need to be stringified for DefinePlugin but raw in loaders
 var globals = {
   REV: function () {
@@ -28,43 +21,22 @@ var globals = {
   DEV_REST_API: 'https://ufal-point-dev.ms.mff.cuni.cz/repository/rest'
 };
 
-//TODO maybe I don't need globals injected in swing as they are in DefinePlugin
-
 module.exports = function(env, argv){
   var debug = true === argv.debug;
   var pages = true === argv.pages;
-  var publicPath = debug ? '/' :
-                  (pages ? 'https://ufal.github.io/lindat-common/' :
-                           'https://lindat.mff.cuni.cz/common/');
   globals.DEBUG = debug;
-  var config = {
-    entry: {
-      main: path.join(src, 'angular-dev.js')
-      //main: path.join(src, 'index.js')
-      //'index-dev': path.join(src, 'index-dev.js')
-    },
-    output: {
-      path: path.join(root, 'dist'),
-      library: 'AngularLindat',
-      libraryTarget: 'umd',
-      //TODO languages
-      filename: path.join('public', 'js', 'angular-lindat.js')
-      /*filename: function(chunkData){
-          switch (chunkData.chunk.name) {
-            default: return '[name].js';
-          }
-      }*/
-    },
-    externals: [
-      /*nodeExternals(),
-      {
-        jquery: 'jQuery',
-        angular: 'angular'
-      }*/
-    ],
-    module: getLoaders(src, globals),
-    plugins: getPlugins(src, globals)
+
+  var options = {
+    root: path.resolve(__dirname),
+    src: path.join(path.resolve(__dirname), 'src'),
+    dist: path.join(path.resolve(__dirname), 'dist'),
+    pages: path.join(path.resolve(__dirname), 'pages'),
+    publicPath: debug ? '/' :
+               (pages ? 'https://ufal.github.io/lindat-common/' :
+                        'https://lindat.mff.cuni.cz/common/'),
+    globals: globals
   };
-  config.output.publicPath = publicPath;
+
+  var config = require('./webpack/development')(options);
   return config;
 };
