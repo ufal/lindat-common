@@ -21,9 +21,10 @@ module.exports = function (src, globals) {
         test: /\.(png)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              name: 'public/img/[name].[ext]'
+              name: 'public/img/[name].[ext]',
+              limit: 10000
             }
           }
         ]
