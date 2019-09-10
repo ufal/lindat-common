@@ -33,6 +33,7 @@ module.exports = function(env, argv){
     src: path.join(root, 'src'),
     dist: path.join(root, 'dist'),
     pages: path.join(root, 'pages'),
+    partials: path.join(root, 'src', 'partials'),
     publicPath: debug ? '/' :
                (pages ? 'https://ufal.github.io/lindat-common/' :
                         'https://lindat.mff.cuni.cz/common/'),
