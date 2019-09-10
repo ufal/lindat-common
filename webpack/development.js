@@ -7,20 +7,10 @@ var getCommonLoaders = require('./loaders');
 var I18nPlugin = require("i18n-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Add one HtmlWebpackPlugin for index and angular, add one lamguage plugin to embed translation
-function _getDevelPlugins(src, language, fileNamePrefix) {
-  return [new HtmlWebpackPlugin({
-        filename: language === 'en' ? fileNamePrefix + '.html' : fileNamePrefix + '_' + language + '.html',
-        template: '!!swig-loader!' + path.join(src, fileNamePrefix + '.html'),
-        inject: true,
-        minify: false
-      }),
-    new I18nPlugin(languages[language])];
-}
-
 // generates one development configuration for each language
 // generates localized index*.html and angular*.html files
-module.exports = function (options) {
+module.exports = function (env, argv) {
+  var options = require('./config')(env, argv);
   var src = options.src;
   var pages = options.pages;
   var publicPath = options.publicPath;
@@ -47,6 +37,18 @@ module.exports = function (options) {
   });
   return _flatten(localizedDevelopmentConfigs);
 };
+
+// Add one HtmlWebpackPlugin for index and angular (~fileNamePrefix), add one lamguage plugin to embed translation
+function _getDevelPlugins(src, language, fileNamePrefix) {
+  return [new HtmlWebpackPlugin({
+    filename: language === 'en' ? fileNamePrefix + '.html' : fileNamePrefix + '_' + language + '.html',
+    template: '!!swig-loader!' + path.join(src, fileNamePrefix + '.html'),
+    inject: true,
+    minify: false
+  }),
+    new I18nPlugin(languages[language])];
+}
+
 
 function _flatten(arr){
   var c = [].concat;

@@ -14,7 +14,7 @@ var globals = {
     }
     return rev;
   }(),
-  VERSION: require('./package.json').version,
+  VERSION: require('../package.json').version,
   GA_TRACKING_CODE: 'UA-27008245-2',
   PIWIK_URL: '//lindat.mff.cuni.cz/piwik/', // include trailing slash
   REST_API: 'https://lindat.mff.cuni.cz/repository/rest',
@@ -26,21 +26,17 @@ module.exports = function(env, argv){
   var pages = true === argv.pages;
   globals.DEBUG = debug;
 
-  var options = {
-    root: path.resolve(__dirname),
-    src: path.join(path.resolve(__dirname), 'src'),
-    dist: path.join(path.resolve(__dirname), 'dist'),
-    pages: path.join(path.resolve(__dirname), 'pages'),
+  var root = path.resolve(path.join(__dirname, '..'));
+
+  return {
+    root: root,
+    src: path.join(root, 'src'),
+    dist: path.join(root, 'dist'),
+    pages: path.join(root, 'pages'),
     publicPath: debug ? '/' :
                (pages ? 'https://ufal.github.io/lindat-common/' :
                         'https://lindat.mff.cuni.cz/common/'),
     globals: globals
   };
 
-  if(argv.mode === 'development') {
-    var config = require('./webpack/development')(options);
-  }else {
-    console.error("Mode is " + argv.mode)
-  }
-  return config;
 };
