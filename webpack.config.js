@@ -37,6 +37,10 @@ module.exports = function(env, argv){
     globals: globals
   };
 
-  var config = require('./webpack/development')(options);
+  if(argv.mode === 'development') {
+    var config = require('./webpack/development')(options);
+  }else {
+    console.error("Mode is " + argv.mode)
+  }
   return config;
 };
