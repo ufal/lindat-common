@@ -23,4 +23,9 @@ describe('Lindat Common', function() {
     var menuItems = element.all(by.css('.lindat-menu li'));
     expect(menuItems.count()).toEqual(8);
   });
+
+  it('should have data-version', function (){
+    browser.wait(EC.presenceOf(footer), waitingTime);
+    expect(footer.getAttribute('data-version')).toMatch(/^.+$/);
+  });
 });

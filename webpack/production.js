@@ -1,71 +1,82 @@
-var _ = require('lodash');
 var path = require('path');
 var merge = require('webpack-merge');
-var webpack = require('webpack');
 var I18nPlugin = require("i18n-webpack-plugin");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var getCommonLoaders = require('./loaders');
+var getCommonPlugins = require('./plugins');
 var languages = require("../src/refbox/languages.js");
 
+module.exports = function (env, argv) {
+  var options = require('./config')(env, argv);
+  return [].concat(localizedRefboxConfigs(options), localizedAngularConfigs(options));
+};
 
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+function getCommon(options) {
+  return {
+    externals: {jquery: 'jQuery'},
+    output: {publicPath: options.publicPath},
+    module: getCommonLoaders(options.src, options.globals),
+    plugins: getCommonPlugins(options.src, options.globals)
+  }
+}
 
-module.exports = function (options) {
+function localizedRefboxConfigs(options) {
+  // We just need to hang partials (header/footer) generation somewhere, so we hang it on refbox
+  function generatePartial(file, standalone, language) {
+    var inputFilename = file + '.html';
+    var outputFilename = standalone ? (file + '-services-standalone.htm') : (file + '.htm');
+    var filename = language ? path.join(language, outputFilename) : outputFilename;
+    language = language || 'en';
+    var params = {
+      lang: language
+    };
 
-  var common = require('./common')(options);
-
-  var uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
+    if (standalone) {
+      params.includeFile = path.join(options.partials, inputFilename);
     }
+
+    var template = standalone ?
+      path.join(options.src, 'standalone.html') : path.join(options.partials, inputFilename);
+
+    return new HtmlWebpackPlugin({
+      filename: filename,
+      template: template + '?' + JSON.stringify(params),
+      inject: false,
+      chunks: ['main'],
+      minify: false
+    });
+  }
+
+  var partialsPlugins = [];
+  ['header', 'footer'].forEach(function (file) {
+    [false, true].forEach(function (standalone) {
+      [false, 'en', 'cs'].forEach(function (language) {
+        partialsPlugins.push(generatePartial(file, standalone, language))
+      });
+    });
   });
 
-  var productionCommon = merge(common.config, {
-    externals: {
-      jquery: 'jQuery'
-    },
-    output: {
-      publicPath: options.publicPath
-    },
-    plugins: [
-      new webpack.optimize.OccurenceOrderPlugin(true),
-      new webpack.optimize.DedupePlugin(),
-      new webpack.NoErrorsPlugin()
-    ]
-  });
-
-  var css = merge(productionCommon, {
-    entry: path.join(options.src, 'lindat.less'),
-    output: {
-      path: options.dist,
-      filename: path.join('public', 'css', 'lindat.css')
-    },
-    module: {
-      loaders: common.extractLoaders
-    },
-    plugins: [new ExtractTextPlugin(path.join('public', 'css', 'lindat.css'), {
-      allChunks: true
-    })].concat(common.partials, uglifyPlugin)
-  });
-
-  var refbox = Object.keys(languages).map(function(language){
+  //refbox starts here
+  return Object.keys(languages).map(function (language) {
     var lang_dir = language === 'en' ? '' : language;
-    return merge(productionCommon, {
-              entry: path.join(options.src, 'refbox.js'),
-              output: {
-                library: 'LindatRefBox',
-                libraryTarget: 'umd',
-                path: options.dist,
-                filename: path.join('public', 'js', lang_dir, 'lindat-refbox.js')
-              },
-              module: {
-                loaders: common.styleLoaders
-              },
-              plugins: [new I18nPlugin(languages[language]), uglifyPlugin]
-         });
+    return merge(getCommon(options), {
+      entry: path.join(options.src, 'refbox.js'),
+      output: {
+        library: 'LindatRefBox',
+        libraryTarget: 'umd',
+        path: options.dist,
+        filename: path.join('public', 'js', lang_dir, 'lindat-refbox.js')
+      },
+      //attach the partial plugins only once
+      plugins: [new I18nPlugin(languages[language])].concat(language === 'en' ? partialsPlugins : [])
+    });
   });
+}
 
-  var angular = Object.keys(languages).map(function(language){
+function localizedAngularConfigs(options) {
+  return Object.keys(languages).map(function (language) {
     var lang_dir = language === 'en' ? '' : language;
-    return merge(productionCommon, {
+    return merge(getCommon(options), {
       entry: [path.join(options.src, 'angular.js')],
       externals: {
         jquery: 'jQuery',
@@ -77,13 +88,7 @@ module.exports = function (options) {
         path: options.dist,
         filename: path.join('public', 'js', lang_dir, 'angular-lindat.js')
       },
-      module: {
-        loaders: common.styleLoaders
-      },
-      plugins: [new I18nPlugin(languages[language]), uglifyPlugin]
+      plugins: [new I18nPlugin(languages[language])]
     });
   });
-
-
-  return [].concat(css, refbox, angular);
-};
+}
