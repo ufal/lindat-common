@@ -7,6 +7,10 @@ set -e
 npm run build
 npm run build-pages
 
+# To also make images and fonts available without refbox/angular/header/footer/css
+mkdir -p dist/public/{img,fonts}
+cp -R ./src/images/* dist/public/img && cp ./src/refbox/fonts/* dist/public/fonts/
+
 cp -u *.md dist/
 cd dist
 
