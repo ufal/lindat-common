@@ -3,17 +3,17 @@ sudo: false
 node_js: '12'
 branches:
   except:
-    - edge
-    - releases
-    - gh-pages
-    - no-tracking-release
+  - edge
+  - releases
+  - gh-pages
+  - no-tracking-release
 addons:
   sauce_connect: true
 before_deploy: bash ./ci/build_release.sh
 deploy:
 - provider: releases
   api_key:
-    secure: I3E0Gj7DkMrw8dwq/nUej4LxE7q/u27Vcy+GUM2tyaL6/3OgzWF0WOOxu7O7IzMVg0+Mp2bNP4GDxUGxs5n34wTQBHgWAnZ3eUoINPQuWLGLrSHRuNMhGYYi5GsMbFle+dAvMD8B8E6+o+zRW3NLj3BxU35LedYMdy93QDhWv8yshyGCYyTWbzni/5RZ/2m1UBoD5+bgbkMX2KCcq2F/WgsbcIezIIpmmhR/PpZvk8hInsLngZpv4A/Yjm634XtbBdrxHoTrDG7+W5VV3KRd+vADLPoj6xmL+6IjCj8w0C9nD6fpeA2m29UzkWyjVHmvESLNOZFPW3z269/GgjJuLrlxvNJcAwlf7cb+LfTfr/XNfwwhkU98CJ36HlODHSlsTVkp185sCFdOueWrmAtxyiR/l/4HycO5CFVMlHeTwsvOeUT53Qm5k0hsxMPTry6NfA6mjhmg+19CZ1ebC9/GrqjKItujt/RdBIKOj/3kHUSgnpCK2X/l/xEDiyZsh5uDuQd9msP6QH9DtSaUYTOnKrXQ0IqdQ5rV1k3PlAkjtxeTOz2AREjJ5H6LuHmH5uMlcyLtuDomUswL9J2rnD/nb8TUp0kSaUsArM47rd1lYjfRlYAvnLhTAQXGl713zt6X9veh1OLn6DZubgwO/7yJ//GsPSwcjzttbO0JlheUZ5k=
+    secure: KAmHutneL86jsZmuSZEDoG+XsSYNt4FPpY+uEyoADcm6+Tzr09cmwbccwA+yokSv3sSXA/iNwatTOymJr4eBb99mx/6yX244pc3IffauZ1FJOW5xBOzxUp/OmQl488E89dz54nun2Inso/D6Kdlwenyyks64t2MCUK/giJXI1QP0MoyrGCrWz5FFZDpkniEDfZzMPLOmoq/854XydcjnsxOQ/UC6L0FNqrXA8P+/ZckuNEYmq/x/2+xqI/m9MtCAbdRsxpnhQhHwG4m6OgNUdnHvAqQRgzSh6R6fQw4eUFT6qA4waggeaAYcQyd2H4UQKtOy0rYVuBFKcmWVNf+oMeRgVvK6f2bFOn6yqOQhPr0rpBL02T1OyoiGuEmuXfKdgJA5W5I2976HZAzUPx5Fx9FhnsruVu4FyXkKCAZdjgWjchXYx7ApCh1Rs+b/obU6s8+bA3JQhmhcDJDKqjIYsPdPKfBB8phTQ8LovdXQxkJDT0ZBHD7VW8OvmTnGkJLzCeZrikpb/mQhnOo5Be4abBAmwO6faykVmOaBqJtRKM64Wi0bd1JEk/mxYW7JK620QzbgsPshdjzifyIJ0WdTCFFy0iCOoJzlNHS+3gS6oVV4JnwfJOwClCQf5XQfoJnBeW9nQgI33ckk5FapamOAmHRoHbB/1GwB+ErIU7iEYVA=
   file:
   - dist.tar.gz
   - dist.zip
@@ -21,7 +21,7 @@ deploy:
   on:
     repo: ufal/lindat-common
     all_branches: true
-    condition: '-n "$TRAVIS_TAG"'
+    condition: -n "$TRAVIS_TAG"
 - provider: npm
   email: lindat-technical@ufal.mff.cuni.cz
   api_key:
@@ -29,14 +29,14 @@ deploy:
   on:
     repo: ufal/lindat-common
     all_branches: true
-    condition: '-n "$TRAVIS_TAG"'
+    condition: -n "$TRAVIS_TAG"
 - provider: script
   script: bash ./ci/push_build.sh
   skip_cleanup: true
   on:
     repo: ufal/lindat-common
     all_branches: true
-    condition: '-n "$TRAVIS_TAG" || "$TRAVIS_BRANCH" = "master"'
+    condition: -n "$TRAVIS_TAG" || "$TRAVIS_BRANCH" = "master"
 cache:
   directories:
   - node_modules
@@ -45,4 +45,4 @@ env:
   global:
   - secure: AQCTw6esLb/qn13MtYmcrGAFCtDa8x7mB8dW0+KFTjIUdeOyRPhDpmsP8rEJupLL6q6IH+Zr+IMbe/1bVR6JmEAcgnj/5on03vqp0m+YxSQzIrhKX5Uy69ZBcx1jy6TdXRNlemlxd5AtgzOeM+yGEq2Ey8xlDzGv1ZeVLYt8xDbTpBY8sQyh0xKGR6Zkv7vOU4AjNqeK0VIdG1en6VRTXeD4TVCrH+EVuFAhbIXNrptieOTxJ+Cmhsbu30YuUyIlnijDh25+VqWo5rFrjBjbubHjkq74gWJyGcd5H8IKWqfkbLEAtIBYxMF+NLxPvrndX3jEO8YSIjC9XTVRD9d9Krs+obCx+eu51HMIgcEW8xpamxJc7FraU0G3b7NkWVhpPwrGfM0bNcA9HZ6B21AJE3X1wiFK7gcPJTxvUo7IVYUtnqUHYwPjpB3mdYznOSudFhPdtKgD/IbVW9l60bCalI+8q76Lhr2sLCD25PAFDIW6E6Fwxzijgz3RGrVlsqohYgb7vScY0HZNfvcZj1A8YG0JASGHAZIAP/VMhzpik2E6nBnXtrjvTb/LXVx10FeTUgPgQ79KzXxq7CUruWMT6AL412e8nIJXJrMdOZvsDBkYVv8guOEE/vRp5oSqHnV8jUeTLpHNIroZd910O9KRwo2BN88uo/M0VxXU/jP8G5k=
   - secure: k/sF+S9tEwlNpLgi9DO4Y9MA3cuifIi1TEDcxPR/69MtvIJPF21ty9W3+H4ZwjyeZy4oXrgAQwWNUO127GkSOmUPWpMKYN48YrhGmUGSVRcvXndMm2F2fC2I+WCjTuJxBZJmdBi3W/8LUrAkKTFHHFEgQ1pG7XQM3natKmtx0RKda5+YX0tpky7rczkMSECJ+1vGYoir3nQh4cLGlkqUepNPP5lo/G7ZVPeTFXNgTFWWo9ec5fU/B5PZSz6A0LKgzHsPceWcvcJar9Xtn6vyBD3WdIokYuW868CXDs0gukQuHr+H4ENvLx3rFdlJV4nLVU90cKAMd9qBmVvqjOKJeGf9Lyykdr4Cgh0kacGtvs/bwFRxrQql+bvOigZlegHIeAwGMU3zo2rVFGKEX7mrtslkOf316IjfmEFi7RShiSG3HI/2U73aM8iXzC3cmw601aQpeZ3hvCdsIgc7DaISwJVSWkJL22R+J3a1oDJPTr3j6Sy7yltkKKJZYzGipjC5huWGVmhpUUHizglMb4/T4oxy3Zc67RdWOfVZlndp/0GmKA0M2W/FEUMUTxgaEOx4HVfEHt5hrJ+Lxrxmng0dI1UhvqD+hhkoyNBrpZ2txf1thWuy5HxylOmqB2XObOLl6rOsmR+BiO9BE02tStCegkZ3YlbEhtzWJuEhi6h4/yY=
-  - secure: mZyuPjduDBZO/SdRrjCDjKEiOJZb0Xb1drxW6EF+c7RFBO/UyOY/kD4G+pZQdVmt7z8F119wzVEziPaiGAhUWyHgQyr8sjlwMw20D/9C19JLANTvWdawsW6BH0NZ0hB1WVROgPA8LXfB06g11tnQfIkwyfQE+qNZH4LWJ5+lUh3DgQBpFGHKBw/WFTIPSLw1yJj54PQRlqvrt4aCRwkI/kT+bG4IDWQojWUu5n/hcfjpqr1SxgLwivWtawP7RaUdqX3DOdLJa4vGUUSkqx8jLDGWxmUxzyZpezkoLdHVPp1YaBIoeXTzs4wlifDyFYcIcuoVz9FevCwXOlJju8Tje+zB7N6BnzCNzY+0fFz5DH9+1MTxkaNknNJqqJVqQzlDmPKbltIEMHLRSGNNyn/8l+JaR0xrdwPK/QfY3mIbWeBCv2jEDMdHgZtRQ89r8Hmh9WxzaCFml8nOUHL89NJJ4m7JG7bdRVI71GVGx5eUJbSRgY/XIkL0YQXih2vaWiIIw7ZAysxmxGnpnBoEthreUmge5iXeS65kozPEIuBko2jn2mDZwF8tY/xW6wRDWQKwmIfET9slRU5CTqCWoBMFa/H2eFpjLzYcsWyY4tfUhTCDjR3g3KQMU1LsH03GAY+8Vg1kVANKrqSNJKOJNIRrJABHw+PwkneXZn1uE5sVlQk=
+  - secure: e/TZQNdvzvKeQB2esr1HWipxomoWf5X0Cz16xBxNbyMQ9hkfQhoLXcHX7tn2Ybziew/egkEg2SQf3NLRz9HYJNHbwTAlMgzDVSjxKoZjl60zAPULXnZyWou3kHW85PsgQHaAdG6CLjcv3a4bsaLhVDGvAxdnkMgUyAhKZ/snLkASwkElCp80NL6/JivX9TAwYZTf65ggOM5+vBWblDJBiySIfV7CVdHO5Unz2aoe/HwthSpHQ/8znd/In5MgE7TU9k6/a/vMY24bSbE0K5OjxVhslPww0IY4v+x7pgs2Ho+okc4OP9rXOLp2F1kOaz0r7rQANhriJRXAlcCYKJT0CcraCmPbl0IcNEtUO5zCUeUJ+fchtfFEj9lQXPzapJhgskOQYG/nwIG8c7089ADejeGF8qKW1he95Uer1+eHI9KSb66nxKvD2b2BVIdtWn++2jVr+5qeZWgR3fAyXIwVtAtZN7OqCCqECO7s0tp8Mo/SIUY++BmPShYfPelLjAWjV4isvoxHVuBQNDErgY9wD+M8tyj7roEpykeI2fjVKYg4lS5CAxvertBPf1hCg5yoPNl079M1jtNklJVL/wAo0ndsp4a3PTI2wMCK9cuvbWomNKB+pPvTGUE/UNvdAzR0Ii82tkBifpGaA+rxquTLIt1/6VZvBvmL3Q1bM9P3C/Y=
