@@ -40,8 +40,7 @@ function localizedRefboxConfigs(options) {
 
     return new HtmlWebpackPlugin({
       filename: filename,
-      // adding !! to a request will disable all loaders specified in the configuration
-      template: '!!swig-loader!' + template + '?' + JSON.stringify(params),
+      template: template + '?' + JSON.stringify(params),
       inject: false,
       chunks: ['main'],
       minify: false

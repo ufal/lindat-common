@@ -42,7 +42,7 @@ module.exports = function (env, argv) {
 function _getDevelPlugins(src, language, fileNamePrefix) {
   return [new HtmlWebpackPlugin({
     filename: language === 'en' ? fileNamePrefix + '.html' : fileNamePrefix + '_' + language + '.html',
-    template: '!!swig-loader!' + path.join(src, fileNamePrefix + '.html'),
+    template: path.join(src, fileNamePrefix + '.html'),
     inject: true,
     minify: false
   }),
