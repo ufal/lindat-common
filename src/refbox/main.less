@@ -13,7 +13,6 @@
 
 @facebook-color: #395a93;
 @twitter-color: #00AEE8;
-@google-plus-color: #D64136;
 
 @font-family: "Droid Sans", Helvetica, Arial, sans-serif;
 
@@ -50,7 +49,6 @@
 @lindat-icon-twitter: "\f081";
 @lindat-icon-facebook: "\f082";
 @lindat-icon-copy: "\f0c5";
-@lindat-icon-google-plus: "\f0d4";
 @lindat-icon-quote: "\f10d";
 @lindat-icon-puzzle: "\f12e";
 @lindat-icon-share: "\f1e0";
@@ -367,10 +365,6 @@ html.lindat-modal-open {
   .lindat-share(@twitter-color);
 }
 
-.lindat-share-google-plus {
-  .lindat-share(@google-plus-color);
-}
-
 .lindat-share(@color) {
   color: @color;
   align-self: flex-end;
@@ -404,10 +398,6 @@ html.lindat-modal-open {
 
 .lindat-icon-facebook:before {
   content: @lindat-icon-facebook;
-}
-
-.lindat-icon-google-plus:before {
-  content: @lindat-icon-google-plus;
 }
 
 .lindat-icon-quote:before {

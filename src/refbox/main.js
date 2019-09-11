@@ -18,14 +18,6 @@ var shareButtons = [
       width: 600,
       height: 450
     }
-  },
-  {
-    name: 'google-plus',
-    popup: {
-      url: 'https://plus.google.com/share?url={uri}',
-      width: 700,
-      height: 500
-    }
   }
 ];
 
