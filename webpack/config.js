@@ -1,5 +1,4 @@
 var path = require('path');
-var nodeExternals = require('webpack-node-externals');
 
 // globals need to be stringified for DefinePlugin but raw in loaders
 var globals = {

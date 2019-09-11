@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 
 var MiniCssExtractPlugin = require("mini-css-extract-plugin");
-var CleanWebpackPlugin = require('clean-webpack-plugin').CleanWebpackPlugin;
 
 module.exports = function(src, globals){
   var stringifiedGlobals = {};
@@ -17,8 +16,6 @@ module.exports = function(src, globals){
       filename: path.join('public', 'css', 'lindat.css')
     }),
     //Global constants
-    new webpack.DefinePlugin(stringifiedGlobals),
-    // remove ./dist on build
-    //new CleanWebpackPlugin()
+    new webpack.DefinePlugin(stringifiedGlobals)
   ];
 };
