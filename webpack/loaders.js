@@ -1,6 +1,5 @@
 var path = require('path');
 var merge = require('webpack-merge');
-var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = function (src, globals) {
   return {

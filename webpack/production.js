@@ -42,7 +42,9 @@ function stylesheetConfig(options){
 
     return new HtmlWebpackPlugin({
       filename: filename,
-      template: template + '?' + JSON.stringify(params),
+      // swig-loader should not be needed explicitly, but without that, HtmlWebpackPlugin
+      // breaks the template path on windows, but we add the options from loaders.js
+      template: 'swig-loader!' + template + '?' + JSON.stringify(merge(params, _getSwigLoaderOptions(options))),
       inject: false,
       chunks: ['main'],
       minify: false
@@ -105,4 +107,14 @@ function localizedAngularConfigs(options) {
       plugins: [new I18nPlugin(languages[language])]
     });
   });
+}
+
+function _getSwigLoaderOptions(options) {
+  var swigLoaderRule = getCommonLoaders(options.src, options.globals).rules.filter(function (rulesObj) {
+    var testRegex = rulesObj.test;
+    return testRegex.toString().includes('html');
+  })[0];
+  return swigLoaderRule.use.filter(function (loader) {
+    return typeof loader === 'object' && loader.loader === 'swig-loader'
+  })[0].options;
 }
