@@ -8,7 +8,7 @@ var languages = require("../src/refbox/languages.js");
 
 module.exports = function (env, argv) {
   var options = require('./config')(env, argv);
-  return [].concat(localizedRefboxConfigs(options), localizedAngularConfigs(options));
+  return [].concat(stylesheetConfig(options), localizedRefboxConfigs(options), localizedAngularConfigs(options));
 };
 
 function getCommon(options) {
@@ -20,7 +20,9 @@ function getCommon(options) {
   }
 }
 
-function localizedRefboxConfigs(options) {
+// We need style-loader in loaders to inject styles into angular-lindat.js
+// but we also need lindat.css itself
+function stylesheetConfig(options){
   // We just need to hang partials (header/footer) generation somewhere, so we hang it on refbox
   function generatePartial(file, standalone, language) {
     var inputFilename = file + '.html';
@@ -56,7 +58,20 @@ function localizedRefboxConfigs(options) {
     });
   });
 
-  //refbox starts here
+  //lindat.css config
+  return merge(getCommon(options),{
+    entry: path.join(options.src, 'lindat.less'),
+    output: {
+      path: options.dist,
+      filename: path.join('public', 'css', 'lindat.css')
+    },
+    //attach the partial plugins
+    plugins: partialsPlugins
+  });
+}
+
+
+function localizedRefboxConfigs(options) {
   return Object.keys(languages).map(function (language) {
     var lang_dir = language === 'en' ? '' : language;
     return merge(getCommon(options), {
@@ -67,8 +82,7 @@ function localizedRefboxConfigs(options) {
         path: options.dist,
         filename: path.join('public', 'js', lang_dir, 'lindat-refbox.js')
       },
-      //attach the partial plugins only once
-      plugins: [new I18nPlugin(languages[language])].concat(language === 'en' ? partialsPlugins : [])
+      plugins: [new I18nPlugin(languages[language])]
     });
   });
 }
@@ -77,7 +91,7 @@ function localizedAngularConfigs(options) {
   return Object.keys(languages).map(function (language) {
     var lang_dir = language === 'en' ? '' : language;
     return merge(getCommon(options), {
-      entry: [path.join(options.src, 'angular.js')],
+      entry: path.join(options.src, 'angular.js'),
       externals: {
         jquery: 'jQuery',
         angular: 'angular'

@@ -6,9 +6,9 @@ module.exports = function (src, globals) {
   return {
     rules: [
       {
-        test: /lindat\.less$/,
+        test: /\.less$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
@@ -27,18 +27,6 @@ module.exports = function (src, globals) {
               limit: 10000
             }
           }
-        ]
-      },
-      {
-        test: /main\.less$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {plugins: [require('autoprefixer')]}
-          },
-          'less-loader'
         ]
       },
       {
