@@ -11,17 +11,15 @@ module.exports = function (env, argv) {
   return [].concat(stylesheetConfig(options), localizedRefboxConfigs(options), localizedAngularConfigs(options));
 };
 
-function getCommon(options) {
+function getCommon(options, generateStyleSheetFile) {
   return {
     externals: {jquery: 'jQuery'},
     output: {publicPath: options.publicPath},
-    module: getCommonLoaders(options.src, options.globals),
-    plugins: getCommonPlugins(options.src, options.globals)
+    module: getCommonLoaders(options.src, options.globals, generateStyleSheetFile),
+    plugins: getCommonPlugins(options.src, options.globals, generateStyleSheetFile)
   }
 }
 
-// We need style-loader in loaders to inject styles into angular-lindat.js
-// but we also need lindat.css itself
 function stylesheetConfig(options){
   // We just need to hang partials (header/footer) generation somewhere, so we hang it on refbox
   function generatePartial(file, standalone, language) {
@@ -61,11 +59,12 @@ function stylesheetConfig(options){
   });
 
   //lindat.css config
-  return merge(getCommon(options),{
-    entry: path.join(options.src, 'lindat.less'),
+  return merge(getCommon(options, true),{
+    entry: {
+      "lindat.css": path.join(options.src, 'lindat.less')
+    },
     output: {
       path: options.dist,
-      filename: path.join('public', 'css', 'lindat.css')
     },
     //attach the partial plugins
     plugins: partialsPlugins

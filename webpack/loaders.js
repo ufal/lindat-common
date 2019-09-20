@@ -1,13 +1,16 @@
 var path = require('path');
 var merge = require('webpack-merge');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-module.exports = function (src, globals) {
+module.exports = function (src, globals, generateStyleSheetFile) {
   return {
     rules: [
       {
         test: /\.less$/,
         use: [
-          'style-loader',
+          // We need style-loader in loaders to inject styles into angular-lindat.js
+          // but we also need lindat.css itself
+          generateStyleSheetFile ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
           {
             loader: 'postcss-loader',
