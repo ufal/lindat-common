@@ -12,7 +12,7 @@ describe('Lindat Common', function() {
     browser.wait(EC.presenceOf(footer), waitingTime);
     browser.wait(EC.presenceOf(header), waitingTime);
 
-    expect(browser.getTitle()).toEqual('LINDAT/CLARIN Research Infrastructure');
+    expect(browser.getTitle()).toEqual('LINDAT/CLARIAH-CZ Research Infrastructure');
   });
 
   it('should have Lindat header', function () {

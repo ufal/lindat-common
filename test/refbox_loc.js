@@ -20,7 +20,7 @@ describe('Refbox localizations ', function() {
             it('should load', function () {
               browser.wait(EC.presenceOf(refbox), waitingTime);
 
-              expect(browser.getTitle()).toEqual('LINDAT/CLARIN Research Infrastructure');
+              expect(browser.getTitle()).toEqual('LINDAT/CLARIAH-CZ Research Infrastructure');
             });
 
             it('should be translated', function () {
