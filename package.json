@@ -1,6 +1,6 @@
 {
   "name": "lindat-common",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "main": "public/js/angular-lindat.js",
   "description": "Common Lindat Theme (header and footer)",
   "license": "MIT",
@@ -62,7 +62,7 @@
     "ng-annotate-loader": "^0.6.1",
     "npm-run-all": "^4.1.5",
     "postcss-loader": "^3.0.0",
-    "protractor": "^5.4.2",
+    "protractor": "^5.4.3",
     "style-loader": "^1.0.0",
     "swig-loader": "github:kosarko/swig-loader#v1.0.1",
     "url-loader": "^2.1.0",
