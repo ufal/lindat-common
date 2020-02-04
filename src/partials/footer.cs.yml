@@ -25,6 +25,7 @@ column3:
   - 'https://lindat.mff.cuni.cz/cs/how-do-i-sign-up': "Jak se přihlásím"
   - 'https://lindat.mff.cuni.cz/cs/podminky-pouzivani': "Podmínky používání"
 footer:
-  - "Projekt LINDAT/CLARIAH-CZ (LM2018101; původně LM2010013, LM2015071) je plně podporován Ministerstvem školství,"
-  - "mládeže a tělovýchovy České republiky v rámci programu \"velkých infrastruktur\"."
+  - "Projekt LINDAT/CLARIAH-CZ (LM2018101; právní nástupce projektů LINDAT/CLARIN LM2010013 a LM2015071)"
+  - "je plně podporován Ministerstvem školství, mládeže a tělovýchovy České republiky"
+  - "v rámci programu \"velkých infrastruktur\"."
 copyright: "Copyright (c) 2020 ÚFAL MFF UK. Všechna práva vyhrazena."
