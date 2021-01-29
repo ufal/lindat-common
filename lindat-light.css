@@ -14260,9 +14260,8 @@ html {
 }
 
 .nav-link-clarin img {
-  width: 80px;
-  height: 50px;
-  object-fit: cover;
+  width: auto;
+  height: 36px;
   margin-top: -5px;
   margin-bottom: -4px;
 }
