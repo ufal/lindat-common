@@ -11,6 +11,9 @@ npm run build-pages
 mkdir -p dist/public/{img,fonts}
 cp -R ./src/images/* dist/public/img && cp ./src/refbox/fonts/* dist/public/fonts/
 
+# new theme doesn't need building (yet) so just copy it to dist
+cp -R ./new_theme dist
+
 cp -u *.md dist/
 cd dist
 
