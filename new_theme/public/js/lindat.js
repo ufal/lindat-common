@@ -121,13 +121,14 @@ class LindatHeader extends HTMLElement {
     connectedCallback(){
         let shadow = this.attachShadow({mode: 'open'})
         shadow.innerHTML = `
-        <nav class="navbar navbar-expand-lg justify-content-between navbar-dark sticky-top ">
+        <nav class="navbar navbar-expand-lg justify-content-between navbar-dark ">
   <div class="block block--clariah-theme-branding">
   <a href="https://lindat.mff.cuni.cz/" class="navbar-brand d-flex align-items-center " aria-label="">
             <img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" width="auto" height="53" alt="LINDAT/CLARIAH-CZ logo" class="">
   </a>
   </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
+          onclick="document.querySelector('lindat-header').shadowRoot.querySelector('div.collapse.navbar-collapse').classList.toggle('show')">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse">
@@ -153,7 +154,9 @@ class LindatHeader extends HTMLElement {
                       <a href="/en/services" class="nav-link" data-drupal-link-system-path="node/21">Services</a>
                   </li>
                                       <li class="nav-item  dropdown">
-                      <a href="/" class="nav-link dropdown-toggle is-active" data-toggle="dropdown" data-drupal-link-system-path="<front>">About</a>
+                      <a href="/" class="nav-link dropdown-toggle is-active" data-toggle="dropdown" data-drupal-link-system-path="<front>"
+                      onclick="document.querySelector('lindat-header').shadowRoot.querySelector('ul.nav.navbar-nav li.nav-item.dropdown div.dropdown-menu').classList.toggle('show'); return false;"
+                      >About</a>
                           <div class="dropdown-menu">
           <a href="/partners" class="dropdown-item" data-drupal-link-system-path="node/2">Partners</a>
           <a href="/files/mission-en.pdf" class="dropdown-item">Mission Statement</a>
@@ -174,16 +177,7 @@ class LindatHeader extends HTMLElement {
                   </li>
             </ul>
   </div>
-  <div class="language-switcher-language-url block block--languageswitcher" role="navigation">
-  <ul class="links nav navbar-nav">
-      <li class="nav-item dropdown nav-link-language">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-      <a href="/cs" class="language-link dropdown-item" hreflang="cs" data-drupal-link-system-path="<front>">česky</a>
-    </div>
-  </li>
-    </ul>
-  </div>
+  <slot name="languageswitcher"></slot>
             </div>
   </nav>
         `
