@@ -177,16 +177,7 @@ class LindatHeader extends HTMLElement {
                   </li>
             </ul>
   </div>
-  <div class="language-switcher-language-url block block--languageswitcher" role="navigation">
-  <ul class="links nav navbar-nav">
-      <li class="nav-item dropdown nav-link-language">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-      <a href="/cs" class="language-link dropdown-item" hreflang="cs" data-drupal-link-system-path="<front>">česky</a>
-    </div>
-  </li>
-    </ul>
-  </div>
+  <slot name="languageswitcher"></slot>
             </div>
   </nav>
         `
