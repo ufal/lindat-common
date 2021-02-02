@@ -121,7 +121,7 @@ class LindatHeader extends HTMLElement {
     connectedCallback(){
         let shadow = this.attachShadow({mode: 'open'})
         shadow.innerHTML = `
-        <nav class="navbar navbar-expand-lg justify-content-between navbar-dark sticky-top ">
+        <nav class="navbar navbar-expand-lg justify-content-between navbar-dark ">
   <div class="block block--clariah-theme-branding">
   <a href="https://lindat.mff.cuni.cz/" class="navbar-brand d-flex align-items-center " aria-label="">
             <img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" width="auto" height="53" alt="LINDAT/CLARIAH-CZ logo" class="">
