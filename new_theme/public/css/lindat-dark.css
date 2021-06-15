@@ -33,12 +33,17 @@ img {
 *::after {
   box-sizing: border-box;
 }
-/* XXX */
-html {
-  font-family: sans-serif;
-  line-height: 1.15;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+/* this is orginally from body */
+nav, footer {
+  margin: 0;
+  font-family: "Source Sans Pro", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
 }
 
 footer, header, nav {
@@ -375,6 +380,16 @@ h4, .h4 {
 }
 
 
+/* roboto-slab-regular - latin_latin-ext */
+@font-face {
+  font-family: "Roboto Slab";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/roboto-slab-v7-latin_latin-ext-regular.eot");
+  /* IE9 Compat Modes */
+  src: local("Roboto Slab Regular"), local("RobotoSlab-Regular"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/roboto-slab-v7-latin_latin-ext-regular.eot?#iefix") format("embedded-opentype"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/roboto-slab-v7-latin_latin-ext-regular.woff2") format("woff2"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/roboto-slab-v7-latin_latin-ext-regular.woff") format("woff"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/roboto-slab-v7-latin_latin-ext-regular.ttf") format("truetype"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/roboto-slab-v7-latin_latin-ext-regular.svg#RobotoSlab") format("svg");
+  /* Legacy iOS */
+}
 /* source-code-pro-regular - latin_latin-ext */
 @font-face {
   font-family: "Source Code Pro";
@@ -383,6 +398,26 @@ h4, .h4 {
   src: url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-code-pro-v8-latin_latin-ext-regular.eot");
   /* IE9 Compat Modes */
   src: local("Source Code Pro"), local("SourceCodePro-Regular"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-code-pro-v8-latin_latin-ext-regular.eot?#iefix") format("embedded-opentype"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-code-pro-v8-latin_latin-ext-regular.woff2") format("woff2"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-code-pro-v8-latin_latin-ext-regular.woff") format("woff"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-code-pro-v8-latin_latin-ext-regular.ttf") format("truetype"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-code-pro-v8-latin_latin-ext-regular.svg#SourceCodePro") format("svg");
+  /* Legacy iOS */
+}
+/* source-sans-pro-regular - latin_latin-ext */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-regular.eot");
+  /* IE9 Compat Modes */
+  src: local("Source Sans Pro Regular"), local("SourceSansPro-Regular"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-regular.eot?#iefix") format("embedded-opentype"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-regular.woff2") format("woff2"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-regular.woff") format("woff"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-regular.ttf") format("truetype"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-regular.svg#SourceSansPro") format("svg");
+  /* Legacy iOS */
+}
+/* source-sans-pro-300 - latin_latin-ext */
+@font-face {
+  font-family: "Source Sans Pro";
+  font-style: normal;
+  font-weight: 300;
+  src: url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-300.eot");
+  /* IE9 Compat Modes */
+  src: local("Source Sans Pro Light"), local("SourceSansPro-Light"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-300.eot?#iefix") format("embedded-opentype"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-300.woff2") format("woff2"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-300.woff") format("woff"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-300.ttf") format("truetype"), url("https://lindat.cz/themes/custom/clariah_theme/assets/fonts/source-sans-pro-v11-latin_latin-ext-300.svg#SourceSansPro") format("svg");
   /* Legacy iOS */
 }
 
@@ -720,3 +755,4 @@ ul.dashed li:before {
   color: #7b8d9c;
   letter-spacing: 0.01em;
 }
+
