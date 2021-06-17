@@ -34,8 +34,8 @@ img {
   box-sizing: border-box;
 }
 
-/* this is orginally from body */
 nav, footer {
+  /* this is orginally from body */
   margin: 0;
   font-family: "Source Sans Pro", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 1rem;
@@ -44,6 +44,20 @@ nav, footer {
   color: #212529;
   text-align: left;
   background-color: #fff;
+
+  /* this can't hang on :root */
+  --navbar-color: #ffffff;
+  --navbar-background-color: #39688b;
+  --footer-color: #fffc;
+  --footer-background-color: #07426eff;
+  --partners-color: #9cb3c5;
+  /* styling for light theme; maybe this can get set from outside?
+  --navbar-color: #000000;
+  --navbar-background-color: #f0f0f0;
+  --footer-color: #408080;
+  --footer-background-color: #f0f0f0;
+  --partners-color: #408080;
+   */
 }
 
 footer, header, nav {
@@ -445,23 +459,23 @@ h4, .h4 {
 }
 
 .navbar {
-  background-color: #39688b;
+  background-color: var(--navbar-background-color, red);
 }
 .navbar .navbar-brand {
   padding-top: 0.28rem;
   padding-bottom: 0.28rem;
-  color: #ffffff;
+  color: var(--navbar-color);
 }
 .navbar .navbar-brand:focus, .navbar .navbar-brand:hover {
-  color: #ffffff;
+  color: var(--navbar-color);
 }
 .navbar .navbar-nav .nav-link {
-  color: #ffffff;
+  color: var(--navbar-color);
   border-radius: 0.25rem;
   margin: 0 0.25em;
 }
 .navbar .navbar-nav .nav-link:not(.disabled):focus, .navbar .navbar-nav .nav-link:not(.disabled):hover {
-  color: #ffffff;
+  color: var(--navbar-color);
 }
 .navbar .navbar-nav .nav-item.active .nav-link,
 .navbar .navbar-nav .nav-item.active .nav-link:focus,
@@ -469,39 +483,39 @@ h4, .h4 {
 .navbar .navbar-nav .nav-item.show .nav-link,
 .navbar .navbar-nav .nav-item.show .nav-link:focus,
 .navbar .navbar-nav .nav-item.show .nav-link:hover {
-  color: #ffffff;
-  background-color: #39688b;
+  color: var(--navbar-color);
+  background-color: var(--navbar-background-color);
 }
 .navbar .navbar-toggle {
-  border-color: #39688b;
+  border-color: var(--navbar-background-color);
 }
 .navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {
-  background-color: #39688b;
+  background-color: var(--navbar-background-color);
 }
 .navbar .navbar-toggle .navbar-toggler-icon {
-  color: #ffffff;
+  color: var(--navbar-color);
 }
 .navbar .navbar-collapse,
 .navbar .navbar-form {
-  border-color: #ffffff;
+  border-color: var(--navbar-color);
 }
 .navbar .navbar-link {
-  color: #ffffff;
+  color: var(--navbar-color);
 }
 .navbar .navbar-link:hover {
-  color: #ffffff;
+  color: var(--navbar-color);
 }
 
 @media (max-width: 991px) {
   .navbar-expend-lg .navbar-nav .show .dropdown-menu .dropdown-item {
-    color: #ffffff;
+    color: var(--navbar-color);
   }
   .navbar-expend-lg .navbar-nav .show .dropdown-menu .dropdown-item:focus, .navbar-expend-lg .navbar-nav .show .dropdown-menu .dropdown-item:hover {
-    color: #ffffff;
+    color: var(--navbar-color);
   }
   .navbar-expend-lg .navbar-nav .show .dropdown-menu .dropdown-item.active {
-    color: #ffffff;
-    background-color: #39688b;
+    color: var(--navbar-color);
+    background-color: var(--navbar-background-color);
   }
 
   .nav-link-language {
@@ -517,13 +531,13 @@ h4, .h4 {
 
 footer {
   display: grid;
-  color: #fffc;
+  color: var(--footer-color);
   grid-column-gap: 0.5em;
   grid-row-gap: 0.1em;
   grid-template-rows: 1fr auto auto auto auto auto;
   grid-template-columns: 1fr 2fr 1fr;
   paddingXX: 1.8em 3.2vw;
-  background-color: #07426eff;
+  background-color: var(--footer-background-color);
   padding: 0 1.9vw 0.6em 1.9vw;
   justify-items: center;
 }
@@ -684,7 +698,7 @@ footer h4 {
 }
 
 footer a, footer a:hover, footer a:active {
-  color: #fffc;
+  color: var(--footer-color);
 }
 
 footer h4 a, footer h4 a:hover, footer h4 a:active {
@@ -697,13 +711,13 @@ footer #about-partners h4 {
 
 footer #about-partners > ul > li {
   font-size: 10pt;
-  color: #9cb3c5;
+  color: var(--partners-color);
   margin-bottom: 0.9em;
 }
 
 footer #about-partners ul li.alone {
   font-size: 12pt;
-  color: #fffc;
+  color: var(--footer-color);
   margin-bottom: initial;
 }
 
@@ -742,7 +756,7 @@ ul.dashed li:before {
 #ack-msmt {
   font-family: "Source Code Pro";
   font-size: 8pt;
-  color: #9cb3c5;
+  color: var(--partners-color);
 }
 
 #ack-ufal, #ack-freepik {
