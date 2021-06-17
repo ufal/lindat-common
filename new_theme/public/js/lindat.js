@@ -29,84 +29,84 @@ class LindatFooter extends HTMLElement {
         let shadow = this.attachShadow({mode: 'open'})
 
         shadow.innerHTML = `
-            <footer>
-        <div id="about-lindat">
-      <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
-    <ul>
-      <li><a href="/files/mission-en.pdf">Mission Statement</a></li>
-      <li><a href="http://lindat.cz/events">Events</a></li>
-      <li><a href="mailto:lindat-help@ufal.mff.cuni.cz">Helpdesk</a></li>
-      <li><a href="/user_feedback">User Feedback Form</a></li>
-      <li><a href="https://www.clarin.eu/">CLARIN Participation</a></li>
-      <li><a href="https://www.dariah.eu/">DARIAH Participation</a></li>
-      <li><a href="/acknowledgement">Acknowledge LINDAT/CLARIAH-CZ</a></li>
-    </ul>
-  </div>
-
-  <div id="about-partners">
-    <h4><a href="/partners">Partners</a></h4>
-    <ul>
-      <li>Charles University
+ <footer>
+    <div id="about-lindat">
+        <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
         <ul>
-          <li><a href="https://lindat.cz/partners/mff-uk">Faculty <i>of</i> Mathematics <i>and</i> Physics</a></li>
-          <li><a href="https://lindat.cz/partners/ff-uk">Faculty <i>of</i> Arts</a></li>
+            <li><a href="/files/mission-en.pdf">Mission Statement</a></li>
+            <li><a href="http://lindat.cz/events">Events</a></li>
+            <li><a href="mailto:lindat-help@ufal.mff.cuni.cz">Helpdesk</a></li>
+            <li><a href="/user_feedback">User Feedback Form</a></li>
+            <li><a href="https://www.clarin.eu/">CLARIN Participation</a></li>
+            <li><a href="https://www.dariah.eu/">DARIAH Participation</a></li>
+            <li><a href="/acknowledgement">Acknowledge LINDAT/CLARIAH-CZ</a></li>
         </ul>
-      </li>
-      <li>Masaryk University
+    </div>
+
+    <div id="about-partners">
+        <h4><a href="/partners">Partners</a></h4>
         <ul>
-          <li><a href="https://lindat.cz/partners/ff-mu">Faculty <i>of</i> Arts</a></li>
-          <li><a href="https://lindat.cz/partners/fi-mu">Faculty  <i>of</i> Informatics</a></li>
+            <li>Charles University
+                <ul>
+                    <li><a href="https://lindat.cz/partners/mff-uk">Faculty <i>of</i> Mathematics <i>and</i> Physics</a></li>
+                    <li><a href="https://lindat.cz/partners/ff-uk">Faculty <i>of</i> Arts</a></li>
+                </ul>
+            </li>
+            <li>Masaryk University
+                <ul>
+                    <li><a href="https://lindat.cz/partners/ff-mu">Faculty <i>of</i> Arts</a></li>
+                    <li><a href="https://lindat.cz/partners/fi-mu">Faculty  <i>of</i> Informatics</a></li>
+                </ul>
+            </li>
+            <li>University of West Bohemia
+                <ul>
+                    <li><a href="https://lindat.cz/partners/zcu">Faculty <i>of</i> Applied Sciences</a></li>
+                </ul>
+            </li>
+            <li>Czech Academy of Sciences
+                <ul>
+                    <li><a href="https://lindat.cz/partners/ujc">Czech Language Institute</a></li>
+                    <li><a href="https://lindat.cz/partners/knav">Library <i>of</i> Academy</a></li>
+                    <li><a href="https://lindat.cz/partners/hu">Institute <i>of</i> History</a></li>
+                    <li><a href="https://lindat.cz/partners/flu">Institute <i>of</i> Philosophy</a></li>
+                </ul>
+            </li>
+            <li>Archives, Libraries and Galleries
+                <ul>
+                    <li><a href="https://lindat.cz/partners/nk">National Library <i>of the Czech Republic</i></a></li>
+                    <li><a href="https://lindat.cz/partners/mzk">Moravian Library <i>in Brno</i></a></li>
+                    <li><a href="https://lindat.cz/partners/ng">National Gallery Prague</a></li>
+                    <li><a href="https://lindat.cz/partners/nfa">National Film Archive</a></li>
+                </ul>
+            </li>
         </ul>
-      </li>
-      <li>University of West Bohemia
-          <ul>
-            <li><a href="https://lindat.cz/partners/zcu">Faculty <i>of</i> Applied Sciences</a></li>
-          </ul>
-      </li>
-      <li>Czech Academy of Sciences
+    </div>
+
+    <div id="about-website">
+        <h4><a href="/services">Services</a></h4>
         <ul>
-          <li><a href="https://lindat.cz/partners/ujc">Czech Language Institute</a></li>
-          <li><a href="https://lindat.cz/partners/knav">Library <i>of</i> Academy</a></li>
-          <li><a href="https://lindat.cz/partners/hu">Institute <i>of</i> History</a></li>
-          <li><a href="https://lindat.cz/partners/flu">Institute <i>of</i> Philosophy</a></li>
+            <li><a href="https://lindat.mff.cuni.cz/en/monitoring">Service Status</a></li>
+            <li><a href="https://lindat.mff.cuni.cz/repository/xmlui/page/about?locale-attribute=en">About and Policies</a></li>
+            <li><a href="https://lindat.mff.cuni.cz/en/terms-of-use">Terms of Use</a></li>
         </ul>
-      </li>
-      <li>Archives, Libraries and Galleries
-        <ul>
-          <li><a href="https://lindat.cz/partners/nk">National Library <i>of the Czech Republic</i></a></li>
-          <li><a href="https://lindat.cz/partners/mzk">Moravian Library <i>in Brno</i></a></li>
-          <li><a href="https://lindat.cz/partners/ng">National Gallery Prague</a></li>
-          <li><a href="https://lindat.cz/partners/nfa">National Film Archive</a></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
+    </div>
 
-  <div id="about-website">
-    <h4><a href="/services">Services</a></h4>
-    <ul>
-      <li><a href="https://lindat.mff.cuni.cz/en/monitoring">Service Status</a></li>
-      <li><a href="https://lindat.mff.cuni.cz/repository/xmlui/page/about?locale-attribute=en">About and Policies</a></li>
-      <li><a href="https://lindat.mff.cuni.cz/en/terms-of-use">Terms of Use</a></li>
-    </ul>
-  </div>
+    <div id="badges-a">
+        <a href="https://www.clarin.eu/content/certified-centres"><img src="https://lindat.mff.cuni.cz/images/b-centre.png" alt="CLARIN CENTRE B"></a>
+        <a href="https://www.clarin.eu/content/knowledge-centres"><img src="https://lindat.mff.cuni.cz/images/k-centre.png" alt="CLARIN CENTRE K" style="filter:brightness(0.88)"></a>
+        <a href="https://www.coretrustseal.org/wp-content/uploads/2019/08/LINDAT-CLARIN.pdf"><img src="https://lindat.mff.cuni.cz/images/core-trust-seal-mono.png" alt="CoreTrustSeal Certification"></a>
+    </div>
 
-  <div id="badges-a">
-    <a href="https://www.clarin.eu/content/certified-centres"><img src="https://lindat.mff.cuni.cz/images/b-centre.png" alt="CLARIN CENTRE B"></a>
-    <a href="https://www.clarin.eu/content/knowledge-centres"><img src="https://lindat.mff.cuni.cz/images/k-centre.png" alt="CLARIN CENTRE K" style="filter:brightness(0.88)"></a>
-    <a href="https://www.coretrustseal.org/wp-content/uploads/2019/08/LINDAT-CLARIN.pdf"><img src="https://lindat.mff.cuni.cz/images/core-trust-seal-mono.png" alt="CoreTrustSeal Certification"></a>
-  </div>
+    <div id="badges-b">
+        <a href="https://twitter.com/lindatclariahcz">Follow us on Twitter <img src="https://lindat.mff.cuni.cz/images/twitter-circular.svg" alt="Link to Profile"></a>
+        <a href="/user/login"><img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" alt="Home Page"></a>
+    </div>
 
-  <div id="badges-b">
-    <a href="https://twitter.com/lindatclariahcz">Follow us on Twitter <img src="https://lindat.mff.cuni.cz/images/twitter-circular.svg" alt="Link to Profile"></a>
-    <a href="/user/login"><img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" alt="Home Page"></a>
-  </div>
-
-  <div id="ack-msmt">
-    THE LINDAT/CLARIAH-CZ PROJECT (LM2018101; formerly LM2010013, LM2015071) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS AND YOUTH OF THE CZECH REPUBLIC UNDER THE&nbsp;PROGRAMME LM OF "LARGE INFRASTRUCTURES"
-  </div>
-  <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by CC 3.0 BY</div>
-  <div id="ack-ufal">website © 2021 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
+    <div id="ack-msmt">
+        THE LINDAT/CLARIAH-CZ PROJECT (LM2018101; formerly LM2010013, LM2015071) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS AND YOUTH OF THE CZECH REPUBLIC UNDER THE&nbsp;PROGRAMME LM OF "LARGE INFRASTRUCTURES"
+    </div>
+    <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by CC 3.0 BY</div>
+    <div id="ack-ufal">website © 2021 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
 </footer>
 
 `
@@ -118,68 +118,83 @@ class LindatFooter extends HTMLElement {
 }
 
 class LindatHeader extends HTMLElement {
+
+    static header_nav_items = [
+      {'name': 'Search', 'url': '/#search'},
+      {'name': 'Catalogue', 'url': 'https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en'}, //XXX
+      {'name': 'Education', 'url': '/#education'},
+      {'name': 'Projects', 'url': '/#projects'},
+      {'name': 'Tools', 'url': '/#tools'},
+      {'name': 'Services', 'url': '/en/services'}, //XXX
+      {'name': 'About', 'url': '/', 'dropdown': [
+          {'name': 'Partners', 'url': '/partners'},
+          {'name': 'Mission Statement', 'url': '/files/mission-en.pdf'},
+          {'name': 'CLARIN', 'url': 'https://www.clarin.eu/'},
+          {'name': 'DARIAH', 'url': 'https://www.dariah.eu/'},
+        ]}
+  ];
+    get nav_items(){
+      let out = ''
+      for(const item of LindatHeader.header_nav_items){
+        /* build dropdown menu first if this item is a dropdown toggle */
+        let dd = '';
+        if(item.dropdown){
+          dd += '<div class="dropdown-menu">'
+          for(const dd_item of item.dropdown){
+            dd += `
+               <a href="${dd_item.url}" class="dropdown-item">${dd_item.name}</a>
+            `
+          }
+          dd += '</div>'
+        }
+        /* build normal list of items */
+        out += `
+          <li class="nav-item ${item.dropdown ? 'dropdown' : ''}">
+              <a href="${item.url}" class="nav-link ${item.dropdown ? 'dropdown-toggle' : ''}"
+                                    ${item.dropdown ? ' data-toggle="dropdown"' : ''}
+                                    ${item.dropdown ? ' onclick="document.querySelector(\'lindat-header\').shadowRoot.querySelector(\'ul.nav.navbar-nav li.nav-item.dropdown div.dropdown-menu\').classList.toggle(\'show\'); return false;"' : ''}
+                                    >${item.name}</a>
+              ${item.dropdown ? dd : ''}
+          </li>
+        `
+      }
+      return out;
+    }
+
     connectedCallback(){
         let shadow = this.attachShadow({mode: 'open'})
         shadow.innerHTML = `
-        <nav class="navbar navbar-expand-lg justify-content-between navbar-dark ">
-  <div class="block block--clariah-theme-branding">
-  <a href="https://lindat.mff.cuni.cz/" class="navbar-brand d-flex align-items-center " aria-label="">
+ <nav class="navbar navbar-expand-lg justify-content-between navbar-dark ">
+    <div class="block block--clariah-theme-branding">
+        <a href="https://lindat.mff.cuni.cz/" class="navbar-brand d-flex align-items-center " aria-label="">
             <img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" width="auto" height="53" alt="LINDAT/CLARIAH-CZ logo" class="">
-  </a>
-  </div>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
-          onclick="document.querySelector('lindat-header').shadowRoot.querySelector('div.collapse.navbar-collapse').classList.toggle('show')">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse">
-                  <div class="mr-auto">
-  <div class="block block--clariah-theme-main-menu">
-  <ul class="nav navbar-nav">
-                <li class="nav-item  ">
-                      <a href="/#search" class="nav-link is-active" data-drupal-link-system-path="<front>">Search</a>
-                  </li>
-                                      <li class="nav-item  ">
-                      <a href="https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en" class="nav-link">Catalogue</a>
-                  </li>
-                                      <li class="nav-item  ">
-                      <a href="/#education" class="nav-link is-active" data-drupal-link-system-path="<front>">Education</a>
-                  </li>
-                                      <li class="nav-item  ">
-                      <a href="/#projects" class="nav-link is-active" data-drupal-link-system-path="<front>">Projects</a>
-                  </li>
-                                      <li class="nav-item  ">
-                      <a href="/#tools" class="nav-link is-active" data-drupal-link-system-path="<front>">Tools</a>
-                  </li>
-                                      <li class="nav-item  ">
-                      <a href="/en/services" class="nav-link" data-drupal-link-system-path="node/21">Services</a>
-                  </li>
-                                      <li class="nav-item  dropdown">
-                      <a href="/" class="nav-link dropdown-toggle is-active" data-toggle="dropdown" data-drupal-link-system-path="<front>"
-                      onclick="document.querySelector('lindat-header').shadowRoot.querySelector('ul.nav.navbar-nav li.nav-item.dropdown div.dropdown-menu').classList.toggle('show'); return false;"
-                      >About</a>
-                          <div class="dropdown-menu">
-          <a href="/partners" class="dropdown-item" data-drupal-link-system-path="node/2">Partners</a>
-          <a href="/files/mission-en.pdf" class="dropdown-item">Mission Statement</a>
-          <a href="https://www.clarin.eu/" class="dropdown-item">CLARIN</a>
-          <a href="https://www.dariah.eu/" class="dropdown-item">DARIAH</a>
-  </div>
-                              </li>
-    </ul>
-  </div>
-        </div>
-  <div class="block block--clariah-theme-account-menu">
-  <ul class="nav navbar-nav">
-                                          <li class="nav-item  ">
-                      <a class="nav-link nav-link-dariah" href="https://www.dariah.eu/"><img src="https://lindat.mff.cuni.cz/images/dariah-eu.png"></a>
-                  </li>
-                                      <li class="nav-item  ">
-                      <a class="nav-link nav-link-clarin" href="https://www.clarin.eu/"><img src="https://lindat.mff.cuni.cz/images/clarin.png"></a>
-                  </li>
-            </ul>
-  </div>
-  <slot name="languageswitcher"></slot>
+        </a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
+            onclick="document.querySelector('lindat-header').shadowRoot.querySelector('div.collapse.navbar-collapse').classList.toggle('show')">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+        <div class="mr-auto">
+            <div class="block block--clariah-theme-main-menu">
+                <ul class="nav navbar-nav">
+                    ${this.nav_items}
+                </ul>
             </div>
-  </nav>
+        </div>
+        <div class="block block--clariah-theme-account-menu">
+            <ul class="nav navbar-nav">
+                <li class="nav-item  ">
+                    <a class="nav-link nav-link-dariah" href="https://www.dariah.eu/"><img src="https://lindat.mff.cuni.cz/images/dariah-eu.png"></a>
+                </li>
+                <li class="nav-item  ">
+                    <a class="nav-link nav-link-clarin" href="https://www.clarin.eu/"><img src="https://lindat.mff.cuni.cz/images/clarin.png"></a>
+                </li>
+            </ul>
+        </div>
+        <slot name="languageswitcher"></slot>
+    </div>
+</nav>
         `
         const linkElement = document.createElement('link')
         linkElement.setAttribute('rel', 'stylesheet')
