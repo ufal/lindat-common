@@ -24,72 +24,146 @@ _paq.push(['enableLinkTracking']);
 })()
 
 class LindatFooter extends HTMLElement {
+    // [
+    //   {
+    //     'id': '',
+    //     'heading': {'content': '', 'url': ''},
+    //     'list': [{'content': '', 'url': ''}] | 'nestedList' : [{'tagline': '', 'list': [...]}]
+    //   }
+    //   ]
+
+    static footer_about_columns = [
+      {
+        'id': 'about-lindat',
+        'heading': {
+          'content': 'LINDAT/CLARIAH-CZ',
+          'url': 'https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf'
+        },
+        'list': [
+          {'content': 'Mission Statement', 'url': '/files/mission-en.pdf'},
+          {'content': 'Events', 'url': 'http://lindat.cz/events'},
+          {'content': 'Helpdesk', 'url': 'mailto:lindat-help@ufal.mff.cuni.cz'},
+          {'content': 'User Feedback Form', 'url': '/user_feedback'},
+          {'content': 'CLARIN Participation', 'url': 'https://www.clarin.eu/'},
+          {'content': 'DARIAH Participation', 'url': 'https://www.dariah.eu/'},
+          {'content': 'Acknowledge LINDAT/CLARIAH-CZ', 'url': '/acknowledgement'},
+        ]
+      },
+      {
+        'id': 'about-partners',
+        'heading': {
+          'content': 'Partners',
+          'url': '/partners'
+        },
+        'nestedList': [
+          {
+            'tagline': 'Charles University',
+            'list': [
+              {
+                'content': 'Faculty <i>of</i> Mathematics <i>and</i> Physics',
+                'url': 'https://lindat.cz/partners/mff-uk'
+              },
+              {'content': 'Faculty <i>of</i> Arts', 'url': 'https://lindat.cz/partners/ff-uk'},
+            ]
+          },
+          {
+            'tagline': 'Masaryk University',
+            'list': [
+              {'content': 'Faculty <i>of</i> Arts', 'url': 'https://lindat.cz/partners/ff-mu'},
+              {'content': 'Faculty  <i>of</i> Informatics', 'url': 'https://lindat.cz/partners/fi-mu'},
+            ]
+          },
+          {
+            'tagline': 'University of West Bohemia',
+            'list': [
+              {'content': 'Faculty <i>of</i> Applied Sciences', 'url': 'https://lindat.cz/partners/zcu'},
+            ]
+          },
+          {
+            'tagline': 'Czech Academy of Sciences',
+            'list': [
+              {'content': 'Czech Language Institute', 'url': 'https://lindat.cz/partners/ujc'},
+              {'content': 'Library <i>of</i> Academy', 'url': 'https://lindat.cz/partners/knav'},
+              {'content': 'Institute <i>of</i> History', 'url': 'https://lindat.cz/partners/hu'},
+              {'content': 'Institute <i>of</i> Philosophy', 'url': 'https://lindat.cz/partners/flu'},
+            ]
+          },
+          {
+            'tagline': 'Archives, Libraries and Galleries',
+            'list': [
+              {'content': 'National Library <i>of the Czech Republic</i>', 'url': 'https://lindat.cz/partners/nk'},
+              {'content': 'Moravian Library <i>in Brno</i>', 'url': 'https://lindat.cz/partners/mzk'},
+              {'content': 'National Gallery Prague', 'url': 'https://lindat.cz/partners/ng'},
+              {'content': 'National Film Archive', 'url': 'https://lindat.cz/partners/nfa'},
+            ]
+          },
+        ]
+      },
+      {
+        'id': 'about-website',
+        'heading': {'content': 'Services', 'url': '/services'},
+        'list': [
+          {'content': 'Service Status', 'url': 'https://lindat.mff.cuni.cz/en/monitoring'},
+          {
+            'content': 'About and Policies',
+            'url': 'https://lindat.mff.cuni.cz/repository/xmlui/page/about?locale-attribute=en'
+          },
+          {'content': 'Terms of Use', 'url': 'https://lindat.mff.cuni.cz/en/terms-of-use'},
+        ]
+      },
+    ];
+
+    about2html(about_obj){
+      let list_items = this.list2html(about_obj);
+      return `
+      <div id="${about_obj.id}">
+        <h4><a href="${about_obj.heading.url}">${about_obj.heading.content}</a></h4>
+        <ul>
+          ${list_items}
+        </ul>
+      </div>
+      `
+    }
+
+    list2html(about_obj){
+      if(about_obj.list){
+        return this.processList(about_obj.list)
+      }else {
+        let out = '';
+        for(const li_obj of about_obj.nestedList){
+          out += `
+            <li>${li_obj.tagline}
+                <ul>
+                    ${this.processList(li_obj.list)}
+                </ul>
+            </li>
+          `
+        }
+        return out;
+      }
+    }
+
+    processList(list){
+      let out=''
+      for(const li of list){
+        out += `
+          <li><a href="${li.url}">${li.content}</a></li>
+          `
+      }
+      return out;
+    }
 
     connectedCallback(){
         let shadow = this.attachShadow({mode: 'open'})
 
+        let about = '';
+        for(const about_item of LindatFooter.footer_about_columns){
+          about += this.about2html(about_item);
+        }
+
         shadow.innerHTML = `
  <footer>
-    <div id="about-lindat">
-        <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
-        <ul>
-            <li><a href="/files/mission-en.pdf">Mission Statement</a></li>
-            <li><a href="http://lindat.cz/events">Events</a></li>
-            <li><a href="mailto:lindat-help@ufal.mff.cuni.cz">Helpdesk</a></li>
-            <li><a href="/user_feedback">User Feedback Form</a></li>
-            <li><a href="https://www.clarin.eu/">CLARIN Participation</a></li>
-            <li><a href="https://www.dariah.eu/">DARIAH Participation</a></li>
-            <li><a href="/acknowledgement">Acknowledge LINDAT/CLARIAH-CZ</a></li>
-        </ul>
-    </div>
-
-    <div id="about-partners">
-        <h4><a href="/partners">Partners</a></h4>
-        <ul>
-            <li>Charles University
-                <ul>
-                    <li><a href="https://lindat.cz/partners/mff-uk">Faculty <i>of</i> Mathematics <i>and</i> Physics</a></li>
-                    <li><a href="https://lindat.cz/partners/ff-uk">Faculty <i>of</i> Arts</a></li>
-                </ul>
-            </li>
-            <li>Masaryk University
-                <ul>
-                    <li><a href="https://lindat.cz/partners/ff-mu">Faculty <i>of</i> Arts</a></li>
-                    <li><a href="https://lindat.cz/partners/fi-mu">Faculty  <i>of</i> Informatics</a></li>
-                </ul>
-            </li>
-            <li>University of West Bohemia
-                <ul>
-                    <li><a href="https://lindat.cz/partners/zcu">Faculty <i>of</i> Applied Sciences</a></li>
-                </ul>
-            </li>
-            <li>Czech Academy of Sciences
-                <ul>
-                    <li><a href="https://lindat.cz/partners/ujc">Czech Language Institute</a></li>
-                    <li><a href="https://lindat.cz/partners/knav">Library <i>of</i> Academy</a></li>
-                    <li><a href="https://lindat.cz/partners/hu">Institute <i>of</i> History</a></li>
-                    <li><a href="https://lindat.cz/partners/flu">Institute <i>of</i> Philosophy</a></li>
-                </ul>
-            </li>
-            <li>Archives, Libraries and Galleries
-                <ul>
-                    <li><a href="https://lindat.cz/partners/nk">National Library <i>of the Czech Republic</i></a></li>
-                    <li><a href="https://lindat.cz/partners/mzk">Moravian Library <i>in Brno</i></a></li>
-                    <li><a href="https://lindat.cz/partners/ng">National Gallery Prague</a></li>
-                    <li><a href="https://lindat.cz/partners/nfa">National Film Archive</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-
-    <div id="about-website">
-        <h4><a href="/services">Services</a></h4>
-        <ul>
-            <li><a href="https://lindat.mff.cuni.cz/en/monitoring">Service Status</a></li>
-            <li><a href="https://lindat.mff.cuni.cz/repository/xmlui/page/about?locale-attribute=en">About and Policies</a></li>
-            <li><a href="https://lindat.mff.cuni.cz/en/terms-of-use">Terms of Use</a></li>
-        </ul>
-    </div>
+    ${about}
 
     <div id="badges-a">
         <a href="https://www.clarin.eu/content/certified-centres"><img src="https://lindat.mff.cuni.cz/images/b-centre.png" alt="CLARIN CENTRE B"></a>
