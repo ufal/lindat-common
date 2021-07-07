@@ -62,8 +62,16 @@ function copyExample(){
   fs.copyFileSync('./new_theme/example/index.html', out_file)
 }
 
+function copyCss(){
+  const out = path.join(outdir, 'public/css')
+  fs.mkdirSync(out, {recursive: true})
+  const out_file = path.join(out, "lindat-dark.css")
+  fs.copyFileSync('./new_theme/public/css/lindat-dark.css', out_file)
+}
+
 fs.mkdirSync(outdir, {recursive: true})
 
 buildDist()
 buildWebComponents()
 copyExample()
+copyCss()
