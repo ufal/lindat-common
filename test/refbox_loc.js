@@ -13,24 +13,25 @@ describe('Refbox localizations ', function() {
       }).forEach(function (obj) {
           describe(obj.index, function () {
             var refbox = element(by.css('.lindat-refbox-footer'));
-            beforeEach(function () {
-              browser.get(obj.index);
+            beforeEach(async function () {
+              await browser.get(obj.index);
+              await browser.wait(EC.presenceOf(refbox), waitingTime);
+              await browser.wait(async function (){
+                return !!await refbox.element(by.css('.lindat-icon-share+h3')).getText();
+              }, waitingTime)
             });
 
-            it('should load', function () {
-              browser.wait(EC.presenceOf(refbox), waitingTime);
-
-              expect(browser.getTitle()).toEqual('LINDAT/CLARIAH-CZ Research Infrastructure');
+            it('should load', async function () {
+              expect(await browser.getTitle()).toEqual('LINDAT/CLARIAH-CZ Research Infrastructure');
             });
 
-            it('should be translated', function () {
-              browser.wait(EC.presenceOf(refbox), waitingTime);
+            it('should be translated', async function () {
               var testKey = "Share:";
               var testString = languages[obj.lang] ? languages[obj.lang][testKey] : obj.lang === 'en' ? testKey : undefined;
               expect(testString).toBeDefined();
 
-              var shareHeader = element.all(by.css('.lindat-refbox-footer h3')).last();
-              expect(shareHeader.getText()).toEqual(testString);
+              const shareHeaderText = await refbox.element(by.css('.lindat-icon-share+h3')).getText();
+              expect(shareHeaderText).toEqual(testString);
             });
           });
     });

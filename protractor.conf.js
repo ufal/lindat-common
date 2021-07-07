@@ -2,6 +2,7 @@
 /* global browser */
 
 var config = {
+  SELENIUM_PROMISE_MANAGER: false,
   framework: 'jasmine2',
   specs: [
     'test/*.js'

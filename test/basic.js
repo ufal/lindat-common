@@ -4,28 +4,28 @@ describe('Lindat Common', function() {
   var EC = protractor.ExpectedConditions;
   var waitingTime = 5000;
 
-  beforeEach(function() {
-    browser.get('index.html');
+  beforeEach(async function() {
+    await browser.get('index.html');
   });
 
-  it('should load', function() {
-    browser.wait(EC.presenceOf(footer), waitingTime);
-    browser.wait(EC.presenceOf(header), waitingTime);
+  it('should load', async function() {
+    await browser.wait(EC.presenceOf(footer), waitingTime);
+    await browser.wait(EC.presenceOf(header), waitingTime);
 
-    expect(browser.getTitle()).toEqual('LINDAT/CLARIAH-CZ Research Infrastructure');
+    expect(await browser.getTitle()).toEqual('LINDAT/CLARIAH-CZ Research Infrastructure');
   });
 
-  it('should have Lindat header', function () {
-    browser.wait(EC.presenceOf(header), waitingTime);
+  it('should have Lindat header', async function () {
+    await browser.wait(EC.presenceOf(header), waitingTime);
 
-    var menu = element(by.css('.lindat-menu'));
-    expect(menu.getCssValue('height')).toBe('53px');
+    var menu = await element(by.css('.lindat-menu'));
+    expect(await menu.getCssValue('height')).toBe('53px');
     var menuItems = element.all(by.css('.lindat-menu li'));
-    expect(menuItems.count()).toEqual(8);
+    expect(await menuItems.count()).toEqual(8);
   });
 
-  it('should have data-version', function (){
-    browser.wait(EC.presenceOf(footer), waitingTime);
-    expect(footer.getAttribute('data-version')).toMatch(/^.+$/);
+  it('should have data-version', async function (){
+    await browser.wait(EC.presenceOf(footer), waitingTime);
+    expect(await footer.getAttribute('data-version')).toMatch(/^.+$/);
   });
 });
