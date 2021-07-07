@@ -17,6 +17,7 @@ class FooterData {
             'list': [
                 {'content': 'Mission Statement', 'url': '/files/mission-en.pdf'},
                 {'content': 'Events', 'url': 'http://lindat.cz/events'},
+                {'content': 'FAQ', 'url': '/faq-repository'},
                 {'content': 'Helpdesk', 'url': 'mailto:lindat-help@ufal.mff.cuni.cz'},
                 {'content': 'User Feedback Form', 'url': '/user_feedback'},
                 {'content': 'CLARIN Participation', 'url': 'https://www.clarin.eu/'},
