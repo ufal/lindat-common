@@ -12,11 +12,11 @@ class FooterData {
             'id': 'about-lindat',
             'heading': {
                 'content': 'LINDAT/CLARIAH-CZ',
-                'url': 'https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf'
+                'url': '/sites/default/files/2021-01/lindat_clariah_flyer.pdf'
             },
             'list': [
                 {'content': 'Mission Statement', 'url': '/files/mission-en.pdf'},
-                {'content': 'Events', 'url': 'http://lindat.cz/events'},
+                {'content': 'Events', 'url': '/events'},
                 {'content': 'FAQ', 'url': '/faq-repository'},
                 {'content': 'Helpdesk', 'url': 'mailto:lindat-help@ufal.mff.cuni.cz'},
                 {'content': 'User Feedback Form', 'url': '/user_feedback'},
@@ -37,31 +37,31 @@ class FooterData {
                     'list': [
                         {
                             'content': 'Faculty <i>of</i> Mathematics <i>and</i> Physics',
-                            'url': 'https://lindat.cz/partners/mff-uk'
+                            'url': '/partners/mff-uk'
                         },
-                        {'content': 'Faculty <i>of</i> Arts', 'url': 'https://lindat.cz/partners/ff-uk'},
+                        {'content': 'Faculty <i>of</i> Arts', 'url': '/partners/ff-uk'},
                     ]
                 },
                 {
                     'tagline': 'Masaryk University',
                     'list': [
-                        {'content': 'Faculty <i>of</i> Arts', 'url': 'https://lindat.cz/partners/ff-mu'},
-                        {'content': 'Faculty  <i>of</i> Informatics', 'url': 'https://lindat.cz/partners/fi-mu'},
+                        {'content': 'Faculty <i>of</i> Arts', 'url': '/partners/ff-mu'},
+                        {'content': 'Faculty  <i>of</i> Informatics', 'url': '/partners/fi-mu'},
                     ]
                 },
                 {
                     'tagline': 'University of West Bohemia',
                     'list': [
-                        {'content': 'Faculty <i>of</i> Applied Sciences', 'url': 'https://lindat.cz/partners/zcu'},
+                        {'content': 'Faculty <i>of</i> Applied Sciences', 'url': '/partners/zcu'},
                     ]
                 },
                 {
                     'tagline': 'Czech Academy of Sciences',
                     'list': [
-                        {'content': 'Czech Language Institute', 'url': 'https://lindat.cz/partners/ujc'},
-                        {'content': 'Library <i>of</i> Academy', 'url': 'https://lindat.cz/partners/knav'},
-                        {'content': 'Institute <i>of</i> History', 'url': 'https://lindat.cz/partners/hu'},
-                        {'content': 'Institute <i>of</i> Philosophy', 'url': 'https://lindat.cz/partners/flu'},
+                        {'content': 'Czech Language Institute', 'url': '/partners/ujc'},
+                        {'content': 'Library <i>of</i> Academy', 'url': '/partners/knav'},
+                        {'content': 'Institute <i>of</i> History', 'url': '/partners/hu'},
+                        {'content': 'Institute <i>of</i> Philosophy', 'url': '/partners/flu'},
                     ]
                 },
                 {
@@ -69,11 +69,11 @@ class FooterData {
                     'list': [
                         {
                             'content': 'National Library <i>of the Czech Republic</i>',
-                            'url': 'https://lindat.cz/partners/nk'
+                            'url': '/partners/nk'
                         },
-                        {'content': 'Moravian Library <i>in Brno</i>', 'url': 'https://lindat.cz/partners/mzk'},
-                        {'content': 'National Gallery Prague', 'url': 'https://lindat.cz/partners/ng'},
-                        {'content': 'National Film Archive', 'url': 'https://lindat.cz/partners/nfa'},
+                        {'content': 'Moravian Library <i>in Brno</i>', 'url': '/partners/mzk'},
+                        {'content': 'National Gallery Prague', 'url': '/partners/ng'},
+                        {'content': 'National Film Archive', 'url': '/partners/nfa'},
                     ]
                 },
             ]
