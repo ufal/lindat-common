@@ -62,6 +62,21 @@ describe('lindat-common matches drupal', function (){
     expect(real_nav_items).toBe(expected_nav_items);
     //console.log(`========= ${real_nav_items}=${expected_nav_items}`)
     expect(real_dropdown_items).toBe(expected_dropdown_items);
-  })
+  });
+
+  it('footer should have the same number of links as lindat.cz', async function(){
+    //drupal footer
+    await browser.get('https://lindat.cz');
+    let footer = await element(by.css("footer"))
+    await browser.wait(EC.presenceOf(footer), waitingTime)
+    let expected_footer_anchors = await footer.all(by.css("a")).count()
+    expect(expected_footer_anchors).toBeDefined()
+
+    await browser.get('/dist/new_theme/example/index.html');
+    let common_footer = await element(footerLocator)
+    let real_footer_anchors = await common_footer.all(by.css("a")).count()
+
+    expect(real_footer_anchors).toBe(expected_footer_anchors);
+  });
 
 });
