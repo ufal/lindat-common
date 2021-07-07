@@ -12,6 +12,8 @@ class HeaderData{
         {'name': 'Mission Statement', 'url': '/files/mission-en.pdf'},
         {'name': 'CLARIN', 'url': 'https://www.clarin.eu/'},
         {'name': 'DARIAH', 'url': 'https://www.dariah.eu/'},
+        {'name': 'Service integrations', 'url': '/integration'}, //XXX
+        {'name': 'Project partnerships', 'url': '/partnership'}, //XXX
       ]}
   ];
   static nav_items(){
