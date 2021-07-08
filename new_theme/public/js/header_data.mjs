@@ -52,7 +52,7 @@ class HeaderData{
     <nav class="navbar navbar-expand-lg justify-content-between navbar-dark ">
         <div class="block block--clariah-theme-branding">
             <a href="https://lindat.mff.cuni.cz/" class="navbar-brand d-flex align-items-center " aria-label="">
-                <img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" width="auto" height="53" alt="LINDAT/CLARIAH-CZ logo" class="">
+                <img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" width="auto" height="53" alt="LINDAT/CLARIAH-CZ logo" class="" />
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
@@ -70,10 +70,10 @@ class HeaderData{
             <div class="block block--clariah-theme-account-menu">
                 <ul class="nav navbar-nav">
                     <li class="nav-item  ">
-                        <a class="nav-link nav-link-dariah" href="https://www.dariah.eu/"><img src="https://lindat.mff.cuni.cz/images/dariah-eu.png"></a>
+                        <a class="nav-link nav-link-dariah" href="https://www.dariah.eu/"><img src="https://lindat.mff.cuni.cz/images/dariah-eu.png" alt="DARIAH logo" /></a>
                     </li>
                     <li class="nav-item  ">
-                        <a class="nav-link nav-link-clarin" href="https://www.clarin.eu/"><img src="https://lindat.mff.cuni.cz/images/clarin.png"></a>
+                        <a class="nav-link nav-link-clarin" href="https://www.clarin.eu/"><img src="https://lindat.mff.cuni.cz/images/clarin.png" alt="CLARIN logo" /></a>
                     </li>
                 </ul>
             </div>
