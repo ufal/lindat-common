@@ -35,7 +35,7 @@ class HeaderData{
           <li class="lindat-nav-item ${item.dropdown ? 'lindat-dropdown' : ''}">
               <a href="${item.url}" class="lindat-nav-link ${item.dropdown ? 'lindat-dropdown-toggle' : ''}"
                                     ${item.dropdown ? ' data-toggle="dropdown"' : ''}
-                                    ${item.dropdown ? ' onclick="document.querySelector(\'lindat-header\').shadowRoot.querySelector(\'ul.lindat-nav.lindat-navbar-nav li.lindat-nav-item.lindat-dropdown div.lindat-dropdown-menu\').classList.toggle(\'lindat-show\'); return false;"' : ''}
+                                    ${item.dropdown ? ' onclick="this.parentNode.querySelector(\'.lindat-dropdown-toggle+div.lindat-dropdown-menu\').classList.toggle(\'lindat-show\'); return false;"' : ''}
                                     >${item.name}</a>
               ${item.dropdown ? dd : ''}
           </li>
@@ -57,7 +57,7 @@ class HeaderData{
             </a>
         </div>
         <button class="lindat-navbar-toggler" type="button" data-toggle="collapse" data-target=".lindat-navbar-collapse" aria-controls="lindat-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
-                onclick="document.querySelector('lindat-header').shadowRoot.querySelector('div.lindat-collapse.lindat-navbar-collapse').classList.toggle('lindat-show')">
+                onclick="this.parentNode.querySelector('.lindat-navbar-toggler+div.lindat-collapse.lindat-navbar-collapse').classList.toggle('lindat-show')">
             <span class="lindat-navbar-toggler-icon"></span>
         </button>
         <div class="lindat-collapse lindat-navbar-collapse">
