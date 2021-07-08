@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
+import less from 'less';
 import config from "./webpack/config.js"
 import {FooterData} from "./new_theme/public/js/footer_data.mjs";
 import {standaloneHtml} from "./new_theme/public/js/standalone_data.mjs";
@@ -62,11 +63,14 @@ function copyExample(){
   fs.copyFileSync('./new_theme/example/index.html', out_file)
 }
 
-function copyCss(){
-  const out = path.join(outdir, 'public/css')
+async function compileCss(){
+  const out = path.join(outdir, 'public/css');
   fs.mkdirSync(out, {recursive: true})
-  const out_file = path.join(out, "lindat-dark.css")
-  fs.copyFileSync('./new_theme/public/css/lindat-dark.css', out_file)
+  const out_file = path.join(out, "lindat.css");
+  let inLess = fs.readFileSync('./new_theme/public/less/lindat.less', 'utf-8');
+  //fs.copyFileSync('./new_theme/public/css/lindat.less', out_file)
+  let lessOut = await less.render(inLess, {math: 'strict'});
+  fs.writeFileSync(out_file, lessOut.css)
 }
 
 fs.mkdirSync(outdir, {recursive: true})
@@ -74,4 +78,4 @@ fs.mkdirSync(outdir, {recursive: true})
 buildDist()
 buildWebComponents()
 copyExample()
-copyCss()
+compileCss()
