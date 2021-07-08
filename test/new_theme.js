@@ -67,8 +67,8 @@ describe('lindat-common matches drupal', function (){
 
     let header = await element(headerLocator)
     await browser.wait(EC.presenceOf(header), waitingTime)
-    let real_nav_items = await header.all(by.css(".block--clariah-theme-main-menu .nav-item")).count()
-    let real_dropdown_items = await header.all(by.css(".block--clariah-theme-main-menu .nav-item .dropdown-item")).count()
+    let real_nav_items = await header.all(by.css(".lindat-block--clariah-theme-main-menu .lindat-nav-item")).count()
+    let real_dropdown_items = await header.all(by.css(".lindat-block--clariah-theme-main-menu .lindat-nav-item .lindat-dropdown-item")).count()
     expect(real_nav_items).toBe(expected_nav_items);
     //console.log(`========= ${real_nav_items}=${expected_nav_items}`)
     expect(real_dropdown_items).toBe(expected_dropdown_items);

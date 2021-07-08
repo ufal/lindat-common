@@ -204,6 +204,7 @@ class FooterData {
             about += FooterData.about2html(about_item);
         }
         return `
+<div class="lindat-common lindat-common-footer">
  <footer data-version="${version}" data-build="${build}">
     ${about}
 
@@ -225,7 +226,7 @@ class FooterData {
     <div id="ack-ufal">website © 2021 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
     ${trackingScripts}
 </footer>
-
+</div>
     `
     }
 

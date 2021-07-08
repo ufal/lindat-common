@@ -12,3 +12,7 @@ Why build?
  - multiple options to include header/footer ("partials", standalone, web components(?), ~~angular~~) but one place 
    to change everything.
  - interpolate variables (version, ga tracking code, piwik url)
+
+Why less and not pure css?
+
+ less is currently used only for nesting, Nesting inside `.lindat-common` makes sure we style only the header/footer

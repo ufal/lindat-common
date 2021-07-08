@@ -6,7 +6,7 @@ class LindatFooter extends HTMLElement {
     const linkElement = document.createElement('link')
     linkElement.setAttribute('rel', 'stylesheet')
     //linkElement.setAttribute('href', 'https://lindat.mff.cuni.cz/common/new_theme/public/css/lindat-dark.css')
-    linkElement.setAttribute('href', '/new_theme/public/css/lindat-dark.css')
+    linkElement.setAttribute('href', '/dist/new_theme/public/css/lindat.css')
     shadow.appendChild(linkElement)
   }
 }
