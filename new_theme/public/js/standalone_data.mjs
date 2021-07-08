@@ -1,4 +1,4 @@
-function standaloneHtml(actualContent){
+function standaloneHtml(actualContent, publicPath){
   return `
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@ function standaloneHtml(actualContent){
           Natural Language Processing, Multimedia, Czech language, Computational
           Linguistics, Speech, Text, Corpus, Corpora" />
   <meta name="description" content="LINDAT CLARIAH-CZ Research Infrastructure" />
-  <link href="https://lindat.mff.cuni.cz/common/public/css/lindat.css" rel="stylesheet" />
+  <link href="${publicPath}public/css/lindat.css" rel="stylesheet" />
 </head>
 <body id="lindat-tools">
  ${actualContent}

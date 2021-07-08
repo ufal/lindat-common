@@ -1,14 +1,20 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import less from 'less';
+import minimist from 'minimist';
 import config from "./webpack/config.js"
 import {FooterData} from "./new_theme/public/js/footer_data.mjs";
 import {standaloneHtml} from "./new_theme/public/js/standalone_data.mjs";
 import {HeaderData} from "./new_theme/public/js/header_data.mjs";
 
-const options = config(process.env, process.argv)
+const options = config(process.env, minimist(process.argv.slice(2)))
+//console.log("============" + JSON.stringify(process.env))
 //console.log("============" + JSON.stringify(options))
 const outdir = path.join(options.dist, 'new_theme')
+let publicPath = options.publicPath;
+if (publicPath === '/' ){
+  publicPath += 'dist/new_theme/'
+}
 
 async function buildDist(){
   const opts = Object.assign({'tracking': true}, options.globals)
@@ -26,7 +32,7 @@ async function buildDist(){
           file_suffix += '.htm'
           let out = path.join(outdir, language ? language : '')
           fs.mkdirSync(out, {recursive: true})
-          const content = standalone ? standaloneHtml(htmlContent[file]) : htmlContent[file]
+          const content = standalone ? standaloneHtml(htmlContent[file], publicPath) : htmlContent[file]
           promises.push(fs.writeFile(path.join(out, file + file_suffix), content, (err) => {
             if (err) throw err;
           } ))
@@ -47,7 +53,8 @@ function buildWebComponents(){
   ['header', 'footer'].forEach(function (file){
     const out_file = path.join(out, file + ".mjs")
     fs.copyFileSync(path.join('./new_theme/public/js/skeleton/', file + ".mjs"), out_file)
-    fs.appendFileSync(out_file, "\nconst HTML = `\n"+ htmlContent[file] +"\n`")
+    fs.appendFileSync(out_file, "\nconst HTML = `\n"+ htmlContent[file] +"\n`;")
+    fs.appendFileSync(out_file, "\nconst PUBLICPATH = \"" + publicPath +"\";")
   })
 
   const lindat_js_out = path.join(out, 'lindat.js')
