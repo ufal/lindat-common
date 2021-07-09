@@ -1,21 +1,14 @@
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+let header = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'header.json'), 'utf-8'));
+
 class HeaderData{
 
-  static header_nav_items = [
-    {'name': 'Search', 'url': '/#search'},
-    {'name': 'Catalogue', 'url': 'https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en'}, //XXX
-    {'name': 'Education', 'url': '/#education'},
-    {'name': 'Projects', 'url': '/#projects'},
-    {'name': 'Tools', 'url': '/#tools'},
-    {'name': 'Services', 'url': '/en/services'}, //XXX
-    {'name': 'About', 'url': '/', 'dropdown': [
-        {'name': 'Partners', 'url': '/partners'},
-        {'name': 'Mission Statement', 'url': '/files/mission-en.pdf'},
-        {'name': 'CLARIN', 'url': 'https://www.clarin.eu/'},
-        {'name': 'DARIAH', 'url': 'https://www.dariah.eu/'},
-        {'name': 'Service integrations', 'url': '/integration'}, //XXX
-        {'name': 'Project partnerships', 'url': '/partnership'}, //XXX
-      ]}
-  ];
+  static header_nav_items = header;
   static nav_items(){
     let out = ''
     for(const item of HeaderData.header_nav_items){

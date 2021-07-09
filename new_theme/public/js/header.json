@@ -1,0 +1,16 @@
+[
+  {"name": "Search", "url": "/#search"},
+  {"name": "Catalogue", "url": "https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en"},
+  {"name": "Education", "url": "/#education"},
+  {"name": "Projects", "url": "/#projects"},
+  {"name": "Tools", "url": "/#tools"},
+  {"name": "Services", "url": "/en/services"},
+  {"name": "About", "url": "/", "dropdown": [
+    {"name": "Partners", "url": "/partners"},
+    {"name": "Mission Statement", "url": "/files/mission-en.pdf"},
+    {"name": "CLARIN", "url": "https://www.clarin.eu/"},
+    {"name": "DARIAH", "url": "https://www.dariah.eu/"},
+    {"name": "Service integrations", "url": "/integration"},
+    {"name": "Project partnerships", "url": "/partnership"}
+  ]}
+]
