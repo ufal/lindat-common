@@ -8,10 +8,9 @@ let header = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'header.json'), 
 
 class HeaderData{
 
-  static header_nav_items = header;
-  static nav_items(){
+  static nav_items(header_nav_items){
     let out = ''
-    for(const item of HeaderData.header_nav_items){
+    for(const item of header_nav_items){
       /* build dropdown menu first if this item is a dropdown toggle */
       let dd = '';
       if(item.dropdown){
@@ -37,7 +36,7 @@ class HeaderData{
     return out;
   }
 
-  static buildHtml(options){
+  static buildHtml(options, lang){
     const version = options.VERSION
     const build = options.REV
     return `
@@ -57,7 +56,7 @@ class HeaderData{
             <div class="lindat-mr-auto">
                 <div class="lindat-block lindat-block--clariah-theme-main-menu">
                     <ul class="lindat-nav lindat-navbar-nav">
-                        ${HeaderData.nav_items()}
+                        ${HeaderData.nav_items(header[lang])}
                     </ul>
                 </div>
             </div>

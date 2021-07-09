@@ -20,19 +20,19 @@ async function buildDist(){
   const opts = Object.assign({'tracking': true}, options.globals)
   //console.log("----------------" + JSON.stringify(footerOpts))
   const htmlContent = {
-    footer: FooterData.buildHtml(opts),
-    header: HeaderData.buildHtml(opts)
+    footer: FooterData.buildHtml,
+    header: HeaderData.buildHtml
   }
   let promises = [];
   ['header', 'footer'].forEach(function (file) {
     [false, true].forEach(function (standalone) {
-      // TODO + 'cs
-      [false, 'en'].forEach(function (language) {
+      ['', 'en', 'cs'].forEach(function (language) {
           let file_suffix = standalone ? '-services-standalone' : ''
           file_suffix += '.htm'
-          let out = path.join(outdir, language ? language : '')
+          let out = path.join(outdir, language)
+          let actual_lang = language ? language : 'en';
           fs.mkdirSync(out, {recursive: true})
-          const content = standalone ? standaloneHtml(htmlContent[file], publicPath) : htmlContent[file]
+          const content = standalone ? standaloneHtml(htmlContent[file](opts, actual_lang), publicPath) : htmlContent[file](opts, actual_lang);
           promises.push(fs.writeFile(path.join(out, file + file_suffix), content, (err) => {
             if (err) throw err;
           } ))
@@ -47,8 +47,9 @@ function buildWebComponents(){
   fs.mkdirSync(out, {recursive: true})
   const opts = Object.assign({}, options.globals)
   const htmlContent = {
-    footer: FooterData.buildHtml(opts),
-    header: HeaderData.buildHtml(opts)
+    // TODO web components currently english only
+    footer: FooterData.buildHtml(opts,'en'),
+    header: HeaderData.buildHtml(opts, 'en')
   };
   ['header', 'footer'].forEach(function (file){
     const out_file = path.join(out, file + ".mjs")

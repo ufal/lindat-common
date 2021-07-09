@@ -189,7 +189,8 @@ class FooterData {
       `
     }
 
-    static buildHtml(options) {
+    static buildHtml(options, lang) {
+        console.log(`The lang option "${lang}" is ignored on footer`);
         const version = options.VERSION
         const build = options.REV
         const tracking = options.tracking
