@@ -1,16 +1,114 @@
-[
-  {"name": "Search", "url": "/#search"},
-  {"name": "Catalogue", "url": "https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en"},
-  {"name": "Education", "url": "/#education"},
-  {"name": "Projects", "url": "/#projects"},
-  {"name": "Tools", "url": "/#tools"},
-  {"name": "Services", "url": "/en/services"},
-  {"name": "About", "url": "/", "dropdown": [
-    {"name": "Partners", "url": "/partners"},
-    {"name": "Mission Statement", "url": "/files/mission-en.pdf"},
-    {"name": "CLARIN", "url": "https://www.clarin.eu/"},
-    {"name": "DARIAH", "url": "https://www.dariah.eu/"},
-    {"name": "Service integrations", "url": "/integration"},
-    {"name": "Project partnerships", "url": "/partnership"}
-  ]}
-]
+{
+  "en": [
+    {
+      "name": "Search",
+      "url": "https://lindat.cz/#search"
+    },
+    {
+      "name": "Catalogue",
+      "url": "https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en"
+    },
+    {
+      "name": "Education",
+      "url": "https://lindat.cz/#education"
+    },
+    {
+      "name": "Projects",
+      "url": "https://lindat.cz/#projects"
+    },
+    {
+      "name": "Tools",
+      "url": "https://lindat.cz/#tools"
+    },
+    {
+      "name": "Services",
+      "url": "https://lindat.cz/en/services"
+    },
+    {
+      "name": "About",
+      "url": "https://lindat.cz/",
+      "dropdown": [
+        {
+          "name": "Partners",
+          "url": "https://lindat.cz/partners"
+        },
+        {
+          "name": "Mission Statement",
+          "url": "https://lindat.cz/files/mission-en.pdf"
+        },
+        {
+          "name": "CLARIN",
+          "url": "https://www.clarin.eu/"
+        },
+        {
+          "name": "DARIAH",
+          "url": "https://www.dariah.eu/"
+        },
+        {
+          "name": "Service integrations",
+          "url": "https://lindat.cz/integration"
+        },
+        {
+          "name": "Project partnerships",
+          "url": "https://lindat.cz/partnership"
+        }
+      ]
+    }
+  ],
+  "cs": [
+    {
+      "name": "Hledání",
+      "url": "https://lindat.cz/index.php/cs#search"
+    },
+    {
+      "name": "Katalog",
+      "url": "https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=cs"
+    },
+    {
+      "name": "Vzdělávání",
+      "url": "https://lindat.cz/index.php/cs#education"
+    },
+    {
+      "name": "Projekty",
+      "url": "https://lindat.cz/index.php/cs#projects"
+    },
+    {
+      "name": "Nástroje",
+      "url": "https://lindat.cz/index.php/cs#tools"
+    },
+    {
+      "name": "Služby",
+      "url": "https://lindat.cz/index.php/cs/sluzby"
+    },
+    {
+      "name": "O nás",
+      "url": "https://lindat.cz/index.php/cs",
+      "dropdown": [
+        {
+          "name": "Partneři",
+          "url": "https://lindat.cz/index.php/cs/partneri"
+        },
+        {
+          "name": "Prohlášení o poslání",
+          "url": "https://lindat.cz/index.php/files/mission-en.pdf"
+        },
+        {
+          "name": "CLARIN",
+          "url": "https://www.clarin.eu/"
+        },
+        {
+          "name": "DARIAH",
+          "url": "https://www.dariah.eu/"
+        },
+        {
+          "name": "Integrace služeb",
+          "url": "https://lindat.cz/index.php/cs/integrace"
+        },
+        {
+          "name": "Projektové partnerství",
+          "url": "https://lindat.cz/index.php/cs/partnerstvi"
+        }
+      ]
+    }
+  ]
+}
