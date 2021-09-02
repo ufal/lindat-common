@@ -14,7 +14,7 @@ describe('Refbox localizations ', function() {
           describe(obj.index, function () {
             var refbox = element(by.css('.lindat-refbox-footer'));
             beforeEach(async function () {
-              await browser.get(obj.index);
+              await browser.get('dist/example/' + obj.index);
               await browser.wait(EC.presenceOf(refbox), waitingTime);
               await browser.wait(async function (){
                 return !!await refbox.element(by.css('.lindat-icon-share+h3')).getText();

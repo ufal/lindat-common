@@ -39,6 +39,7 @@ class HeaderData{
   static buildHtml(options, lang){
     const version = options.VERSION
     const build = options.REV
+    const onclick = options.angular ? '' : `onclick="this.parentNode.querySelector('.lindat-navbar-toggler+div.lindat-collapse.lindat-navbar-collapse').classList.toggle('lindat-show')"`;
     return `
 <div class="lindat-common lindat-common-header">
 <header data-version="${version}" data-build="${build}">
@@ -49,7 +50,7 @@ class HeaderData{
             </a>
         </div>
         <button class="lindat-navbar-toggler" type="button" data-toggle="collapse" data-target=".lindat-navbar-collapse" aria-controls="lindat-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
-                onclick="this.parentNode.querySelector('.lindat-navbar-toggler+div.lindat-collapse.lindat-navbar-collapse').classList.toggle('lindat-show')">
+                ${onclick}>
             <span class="lindat-navbar-toggler-icon"></span>
         </button>
         <div class="lindat-collapse lindat-navbar-collapse">

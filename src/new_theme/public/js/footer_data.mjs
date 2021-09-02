@@ -168,6 +168,11 @@ class FooterData {
       const ga_script = FooterData.getGaTrackingScript(options.GA_TRACKING_CODE)
       const PIWIK_URL = options.PIWIK_URL;
       const piwik_script = FooterData.getPiwikTrackingScript(PIWIK_URL)
+      if(options.angular){
+        return `
+        <ngp-piwik ngp-set-js-url="${PIWIK_URL}piwik.js"> </ngp-piwik>
+        `
+      }
       return `
   <!-- TRACKING CODE -->
 

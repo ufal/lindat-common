@@ -1,5 +1,6 @@
 var argv = process.argv.slice(2);
-if (argv.length != 1) {
+
+if (argv.length < 1) {
   process.stderr.write("Provide path to be deleted. Received + `" + argv.join(",") + "`");
   process.exit(1)
 }
@@ -23,4 +24,7 @@ var deleteRecursive = function (path) {
   }
 };
 
-deleteRecursive(argv[0]);
+for(let i=0; i < argv.length; i++){
+  process.stdout.write("Deleting " + argv[i] + "\n");
+  deleteRecursive(argv[i]);
+}

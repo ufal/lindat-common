@@ -1,13 +1,13 @@
 var angular = require('angular');
 
-require('./lindat.less');
+require('./new_theme/public/less/lindat.less');
 
 require('angular-piwik');
 require('angular-google-analytics');
 
 module.exports = angular.module('lindat', ['piwik', 'angular-google-analytics'])
   .constant('piwikUrl', PIWIK_URL)
-  .constant('refboxRestAPI', DEBUG ? DEV_REST_API : REST_API)
+  .constant('refboxRestAPI', REST_API)
   .directive({
     lindatRefbox: require('./angular/refbox'),
     lindatHeader: require('./angular/header'),

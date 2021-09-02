@@ -17,13 +17,13 @@ describe('Lindat Common new_theme', function() {
   }
 
   beforeEach(async function() {
-    await browser.get('/dist/new_theme/example/index.html');
+    await browser.get('/dist/example/index.html');
     await browser.wait(EC.presenceOf(element(headerLocator)), waitingTime)
     await browser.wait(EC.presenceOf(element(footerLocator)), waitingTime)
   });
 
   it('should load', async function() {
-    expect(await browser.getTitle()).toEqual('Test page title');
+    expect(await browser.getTitle()).toEqual('LINDAT/CLARIAH-CZ Research Infrastructure');
   });
 
   it('footer should have data-version', async function (){
@@ -59,7 +59,7 @@ describe('lindat-common matches drupal', function (){
     await browser.wait(EC.presenceOf(footer), waitingTime)
     expected_footer_anchors = await footer.all(by.css("a")).count()
 
-    await browser.get('/dist/new_theme/example/index.html');
+    await browser.get('/dist/example/index.html');
   })
 
   it('common header should have the same number of items as lindat.cz', async function(){

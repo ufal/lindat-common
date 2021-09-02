@@ -7,3 +7,4 @@ dist/
 .tmp/
 *.iml
 npm-debug.log
+.build

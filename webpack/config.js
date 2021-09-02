@@ -17,8 +17,6 @@ var globals = {
   GA_TRACKING_CODE: 'UA-27008245-2',
   PIWIK_URL: '//lindat.mff.cuni.cz/piwik/', // include trailing slash
   REST_API: 'https://lindat.mff.cuni.cz/repository/rest',
-  //DEV_REST_API: 'https://ufal-point-dev.ms.mff.cuni.cz/repository/rest'; ufal-point-dev no longer accessible
-  DEV_REST_API: 'https://lindat.mff.cuni.cz/repository/rest'
 };
 
 module.exports = function(env, argv){
@@ -31,9 +29,8 @@ module.exports = function(env, argv){
   return {
     root: root,
     src: path.join(root, 'src'),
-    dist: path.join(root, 'dist'),
-    pages: path.join(root, 'pages'),
-    partials: path.join(root, 'src', 'partials'),
+    dist: pages ? path.join(root, 'pages')
+                : path.join(root, 'dist'),
     publicPath: debug ? '/' :
                (pages ? 'https://ufal.github.io/lindat-common/' :
                         'https://lindat.mff.cuni.cz/common/'),

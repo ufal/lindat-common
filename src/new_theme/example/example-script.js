@@ -1,9 +1,4 @@
-var $ = require('jquery');
-var lindatRefBox = require('./refbox/main');
-require('./refbox');
-
-require('./lindat.less');
-
+/*
 var partials = {
   cs: {
     header: require('./partials/header.html?lang=cs'),
@@ -14,13 +9,16 @@ var partials = {
     footer: require('./partials/footer.html?lang=en')
   }
 };
+*/
 
+/*
 function switchLang(lang) {
   var header = partials[lang].header.replace(/<script[^>]*>/gi, ' <!-- ').replace(/<\/script>/gi, ' --> ');
   var footer = partials[lang].footer.replace(/<script[^>]*>/gi, ' <!-- ').replace(/<\/script>/gi, ' --> ');
   document.querySelector('header').innerHTML = header;
   document.querySelector('footer').innerHTML = footer;
 }
+*/
 
 function updateLoadedStyles() {
   $('#loaded-styles').empty();
@@ -55,17 +53,19 @@ function injectStylesheets(url) {
 }
 
 function switchHandle(handle, title) {
-  var refbox = document.querySelector('#refbox');
+  var refbox = $('#refbox');
   localStorage.setItem('handle', handle);
   localStorage.setItem('title', title);
-  refbox.setAttribute('handle', handle);
-  refbox.setAttribute('title', title);
-  lindatRefBox(refbox, {
-    rest: DEBUG ? DEV_REST_API : REST_API
+  refbox.attr('handle', handle);
+  refbox.attr('title', title);
+  // REST_API from config.js
+  refbox.lindatRefBox({
+    rest: 'https://lindat.mff.cuni.cz/repository/rest'
   });
 }
 
 function init() {
+/*
   Array.prototype.slice.call(document.querySelectorAll('.lang-select')).forEach(function(elm) {
     var value = elm.getAttribute('value');
     elm.addEventListener('click', function() {
@@ -73,6 +73,7 @@ function init() {
       switchLang(value);
     });
   });
+*/
 
   Array.prototype.slice.call(document.querySelectorAll('.project-select')).forEach(function(elm) {
     var value = elm.getAttribute('value');
@@ -107,7 +108,7 @@ function init() {
   injectStylesheets(url);
   switchHandle(handle, title);
   document.body.setAttribute('id', project);
-  switchLang(lang);
+  //switchLang(lang);
 }
 
 $(init); // Execute on page load

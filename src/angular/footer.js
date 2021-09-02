@@ -1,7 +1,9 @@
+var footer = require('../../.build/footer.json');
+
 /* @ngInject */
 module.exports = function LindatFooterDirective() {
   return {
     restrict: 'AE',
-    template: require('../partials/footer.html?{lang: "en", angular: true}')
+    template: footer.template
   };
 };

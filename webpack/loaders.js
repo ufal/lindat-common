@@ -16,7 +16,14 @@ module.exports = function (src, globals, generateStyleSheetFile) {
             loader: 'postcss-loader',
             options: {plugins: [require('autoprefixer')]}
           },
-          'less-loader'
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                strictMath: true
+              }
+            }
+          }
         ]
       },
       {
@@ -44,17 +51,7 @@ module.exports = function (src, globals, generateStyleSheetFile) {
         use: 'url-loader?limit=10000&mimetype=application/octet-stream&prefix=fonts'
       },
       {
-        test: /\.html$/,
-        use: [
-          'html-loader?-attrs',
-          {
-            loader: 'swig-loader',
-            options: merge({raw: true}, globals)
-          }
-        ]
-      },
-      {
-        // for refbox, in theory it should be possible to use swig loader
+        // for refbox
         test: /\.template$/,
         use: ['mustache-loader']
       },

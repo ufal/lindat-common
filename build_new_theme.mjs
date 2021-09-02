@@ -6,14 +6,15 @@ import config from "./webpack/config.js"
 import {FooterData} from "./src/new_theme/public/js/footer_data.mjs";
 import {standaloneHtml} from "./src/new_theme/public/js/standalone_data.mjs";
 import {HeaderData} from "./src/new_theme/public/js/header_data.mjs";
+import {default as languages} from "./src/refbox/languages.js";
 
 const options = config(process.env, minimist(process.argv.slice(2)))
 //console.log("============" + JSON.stringify(process.env))
 //console.log("============" + JSON.stringify(options))
-const outdir = path.join(options.dist, 'new_theme')
+const outdir = options.dist;
 let publicPath = options.publicPath;
 if (publicPath === '/' ){
-  publicPath += 'dist/new_theme/'
+  publicPath += 'dist/'
 }
 
 async function buildDist(){
@@ -43,7 +44,7 @@ async function buildDist(){
 }
 
 function buildWebComponents(){
-  const out = path.join(outdir, 'js')
+  const out = path.join(outdir, 'public/js')
   fs.mkdirSync(out, {recursive: true})
   const opts = Object.assign({}, options.globals)
   const htmlContent = {
@@ -64,11 +65,33 @@ function buildWebComponents(){
   fs.appendFileSync(lindat_js_out, FooterData.getPiwikTrackingScript(opts.PIWIK_URL))
 }
 
+/**
+ * examples are also used in tests
+ */
 function copyExample(){
   const out = path.join(outdir, 'example')
   fs.mkdirSync(out, {recursive: true})
-  const out_file = path.join(out, "index.html")
-  fs.copyFileSync('./src/new_theme/example/index.html', out_file)
+
+  const example_dir = './src/new_theme/example';
+  fs.readdirSync(example_dir).forEach(function (file){
+    const out_file = path.join(out, file)
+    //copy to dist
+    fs.copyFileSync(path.join(example_dir, file), out_file)
+    // generate examples with localized refbox
+    if(out_file.endsWith(".html")){
+      const html_content = fs.readFileSync(out_file, 'utf-8');
+      //console.log(JSON.stringify(languages));
+      Object.keys(languages).forEach(function(lang){
+        //console.error("========== forEach " + lang)
+        if(languages[lang]){
+          const localized_file = file.replace('.html',  '_' + lang + '.html');
+          const localized_content = html_content.replace('public/js', 'public/js/' + lang);
+          //console.error("==========" + path.join(out, localized_file))
+          fs.writeFileSync(path.join(out, localized_file), localized_content);
+        }
+      })
+    }
+  })
 }
 
 async function compileCss(){
@@ -81,9 +104,26 @@ async function compileCss(){
   fs.writeFileSync(out_file, lessOut.css)
 }
 
+function prepareAngular(){
+  const out = path.normalize('./.build')
+  fs.mkdirSync(out, {recursive: true});
+  const opts = Object.assign({"angular": true, "tracking": true}, options.globals);
+  const header = {
+    template: HeaderData.buildHtml(opts, 'en')
+  };
+  const footer = {
+    template: FooterData.buildHtml(opts, 'en')
+  };
+  const angular_header_template = path.join(out, 'header.json')
+  const angular_footer_template = path.join(out, 'footer.json')
+  fs.writeFileSync(angular_header_template, JSON.stringify(header))
+  fs.writeFileSync(angular_footer_template, JSON.stringify(footer))
+}
+
 fs.mkdirSync(outdir, {recursive: true})
 
 buildDist()
 buildWebComponents()
 copyExample()
 compileCss()
+prepareAngular()
