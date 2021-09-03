@@ -44,7 +44,7 @@ describe('Lindat Common new_theme', function() {
 
 describe('lindat-common matches drupal', function (){
 
-  let epected_nav_items, expected_dropdown_items, expected_footer_anchors;
+  let epected_nav_items, expected_dropdown_items, expected_links, expected_footer_anchors_count;
 
   beforeAll(async function(){
     //drupal header
@@ -57,7 +57,14 @@ describe('lindat-common matches drupal', function (){
     //drupal footer
     let footer = await element(by.css("footer"))
     await browser.wait(EC.presenceOf(footer), waitingTime)
-    expected_footer_anchors = await footer.all(by.css("a")).count()
+    let expected_footer_anchors = footer.all(by.css("a"));
+    expected_footer_anchors_count = await expected_footer_anchors.count();
+
+    expected_links = [];
+    await expected_footer_anchors.each(async function (e, index){
+      let link = await e.getAttribute('href');
+      expected_links.push(link.replace('http:', 'https:'));
+    });
 
     await browser.get('/dist/example/index.html');
   })
@@ -75,12 +82,26 @@ describe('lindat-common matches drupal', function (){
   });
 
   it('footer should have the same number of links as lindat.cz', async function(){
-    expect(expected_footer_anchors).toBeDefined()
+    expect(expected_footer_anchors_count).toBeDefined()
 
     let common_footer = await element(footerLocator)
     let real_footer_anchors = await common_footer.all(by.css("a")).count()
 
-    expect(real_footer_anchors).toBe(expected_footer_anchors);
+    expect(real_footer_anchors).toBe(expected_footer_anchors_count);
   });
+
+  it('footer links should be the same on lindat.cz', async function(){
+    expect(expected_footer_anchors_count).toBeDefined()
+
+    let common_footer = await element(footerLocator)
+    let real_footer_anchors = common_footer.all(by.css("a"))
+    let real_links = [];
+    await real_footer_anchors.each(async function (e, index){
+      let link = await e.getAttribute('href');
+      real_links.push(link);
+    });
+    expect(real_links.sort()).toEqual(expected_links.sort());
+
+  })
 
 });

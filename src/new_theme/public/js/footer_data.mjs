@@ -12,24 +12,24 @@ class FooterData {
             'id': 'about-lindat',
             'heading': {
                 'content': 'LINDAT/CLARIAH-CZ',
-                'url': '/sites/default/files/2021-01/lindat_clariah_flyer.pdf'
+                'url': 'https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf'
             },
             'list': [
-                {'content': 'Mission Statement', 'url': '/files/mission-en.pdf'},
-                {'content': 'Events', 'url': '/events'},
-                {'content': 'FAQ', 'url': '/faq-repository'},
+                {'content': 'Mission Statement', 'url': 'https://lindat.cz/files/mission-en.pdf'},
+                {'content': 'Events', 'url': 'https://lindat.cz/events'},
+                {'content': 'FAQ', 'url': 'https://lindat.cz/faq-repository'},
                 {'content': 'Helpdesk', 'url': 'mailto:lindat-help@ufal.mff.cuni.cz'},
-                {'content': 'User Feedback Form', 'url': '/user_feedback'},
+                {'content': 'User Feedback Form', 'url': 'https://lindat.cz/user_feedback'},
                 {'content': 'CLARIN Participation', 'url': 'https://www.clarin.eu/'},
                 {'content': 'DARIAH Participation', 'url': 'https://www.dariah.eu/'},
-                {'content': 'Acknowledge LINDAT/CLARIAH-CZ', 'url': '/acknowledgement'},
+                {'content': 'Acknowledge LINDAT/CLARIAH-CZ', 'url': 'https://lindat.cz/acknowledgement'},
             ]
         },
         {
             'id': 'about-partners',
             'heading': {
                 'content': 'Partners',
-                'url': '/partners'
+                'url': 'https://lindat.cz/partners'
             },
             'nestedList': [
                 {
@@ -37,31 +37,31 @@ class FooterData {
                     'list': [
                         {
                             'content': 'Faculty <i>of</i> Mathematics <i>and</i> Physics',
-                            'url': '/partners/mff-uk'
+                            'url': 'https://lindat.cz/partners/mff-uk'
                         },
-                        {'content': 'Faculty <i>of</i> Arts', 'url': '/partners/ff-uk'},
+                        {'content': 'Faculty <i>of</i> Arts', 'url': 'https://lindat.cz/partners/ff-uk'},
                     ]
                 },
                 {
                     'tagline': 'Masaryk University',
                     'list': [
-                        {'content': 'Faculty <i>of</i> Arts', 'url': '/partners/ff-mu'},
-                        {'content': 'Faculty  <i>of</i> Informatics', 'url': '/partners/fi-mu'},
+                        {'content': 'Faculty <i>of</i> Arts', 'url': 'https://lindat.cz/partners/ff-mu'},
+                        {'content': 'Faculty  <i>of</i> Informatics', 'url': 'https://lindat.cz/partners/fi-mu'},
                     ]
                 },
                 {
                     'tagline': 'University of West Bohemia',
                     'list': [
-                        {'content': 'Faculty <i>of</i> Applied Sciences', 'url': '/partners/zcu'},
+                        {'content': 'Faculty <i>of</i> Applied Sciences', 'url': 'https://lindat.cz/partners/zcu'},
                     ]
                 },
                 {
                     'tagline': 'Czech Academy of Sciences',
                     'list': [
-                        {'content': 'Czech Language Institute', 'url': '/partners/ujc'},
-                        {'content': 'Library <i>of</i> Academy', 'url': '/partners/knav'},
-                        {'content': 'Institute <i>of</i> History', 'url': '/partners/hu'},
-                        {'content': 'Institute <i>of</i> Philosophy', 'url': '/partners/flu'},
+                        {'content': 'Czech Language Institute', 'url': 'https://lindat.cz/partners/ujc'},
+                        {'content': 'Library <i>of</i> Academy', 'url': 'https://lindat.cz/partners/knav'},
+                        {'content': 'Institute <i>of</i> History', 'url': 'https://lindat.cz/partners/hu'},
+                        {'content': 'Institute <i>of</i> Philosophy', 'url': 'https://lindat.cz/partners/flu'},
                     ]
                 },
                 {
@@ -69,18 +69,18 @@ class FooterData {
                     'list': [
                         {
                             'content': 'National Library <i>of the Czech Republic</i>',
-                            'url': '/partners/nk'
+                            'url': 'https://lindat.cz/partners/nk'
                         },
-                        {'content': 'Moravian Library <i>in Brno</i>', 'url': '/partners/mzk'},
-                        {'content': 'National Gallery Prague', 'url': '/partners/ng'},
-                        {'content': 'National Film Archive', 'url': '/partners/nfa'},
+                        {'content': 'Moravian Library <i>in Brno</i>', 'url': 'https://lindat.cz/partners/mzk'},
+                        {'content': 'National Gallery Prague', 'url': 'https://lindat.cz/partners/ng'},
+                        {'content': 'National Film Archive', 'url': 'https://lindat.cz/partners/nfa'},
                     ]
                 },
             ]
         },
         {
             'id': 'about-website',
-            'heading': {'content': 'Services', 'url': '/services'},
+            'heading': {'content': 'Services', 'url': 'https://lindat.cz/services'},
             'list': [
                 {'content': 'Service Status', 'url': 'https://lindat.mff.cuni.cz/en/monitoring'},
                 {
@@ -222,7 +222,7 @@ class FooterData {
 
     <div id="badges-b">
         <a href="https://twitter.com/lindatclariahcz">Follow us on Twitter <img src="https://lindat.mff.cuni.cz/images/twitter-circular.svg" alt="Link to Profile" /></a>
-        <a href="/user/login"><img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" alt="Home Page" /></a>
+        <a href="https://lindat.cz/user/login"><img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" alt="Home Page" /></a>
     </div>
 
     <div id="ack-msmt">
