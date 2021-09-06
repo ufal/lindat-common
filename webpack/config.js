@@ -29,6 +29,7 @@ module.exports = function(env, argv){
   return {
     root: root,
     src: path.join(root, 'src'),
+    pages: pages,
     dist: pages ? path.join(root, 'pages')
                 : path.join(root, 'dist'),
     publicPath: debug ? '/' :

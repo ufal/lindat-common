@@ -66,30 +66,33 @@ function buildWebComponents(){
 }
 
 /**
- * examples are also used in tests
+ * examples are also used in tests and pages
  */
 function copyExample(){
-  const out = path.join(outdir, 'example')
+  const out = options.pages ? outdir : path.join(outdir, 'example');
   fs.mkdirSync(out, {recursive: true})
 
   const example_dir = './src/new_theme/example';
   fs.readdirSync(example_dir).forEach(function (file){
     const out_file = path.join(out, file)
-    //copy to dist
-    fs.copyFileSync(path.join(example_dir, file), out_file)
-    // generate examples with localized refbox
+    // generate examples with localized refbox and correct path when building pages
     if(out_file.endsWith(".html")){
-      const html_content = fs.readFileSync(out_file, 'utf-8');
-      //console.log(JSON.stringify(languages));
+      let html_content = fs.readFileSync(path.join(example_dir, file), 'utf-8');
+      if(options.pages){
+        html_content = html_content.replace('/dist/', publicPath);
+      }
+      //a copy; but might have replaced publicPath
+      fs.writeFileSync(out_file, html_content);
       Object.keys(languages).forEach(function(lang){
-        //console.error("========== forEach " + lang)
         if(languages[lang]){
           const localized_file = file.replace('.html',  '_' + lang + '.html');
           const localized_content = html_content.replace('public/js', 'public/js/' + lang);
-          //console.error("==========" + path.join(out, localized_file))
           fs.writeFileSync(path.join(out, localized_file), localized_content);
         }
       })
+    }else{
+      //copy to dist (out dir more precisely)
+      fs.copyFileSync(path.join(example_dir, file), out_file)
     }
   })
 }
