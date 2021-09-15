@@ -1,3 +1,20 @@
+class LindatHeader extends HTMLElement {
+
+
+  connectedCallback(){
+    let shadow = this.attachShadow({mode: 'open'})
+    shadow.innerHTML = HTML
+    const linkElement = document.createElement('link')
+    linkElement.setAttribute('rel', 'stylesheet')
+    linkElement.setAttribute('href', `${PUBLICPATH}public/css/lindat.css`)
+
+    shadow.appendChild(linkElement)
+  }
+}
+
+export {LindatHeader}
+
+const HTML = `
 
 <div class="lindat-common lindat-common-header">
 <header data-version="2.4.0" data-build="1303a0406ada3f8c34a34324a9357a9ecbfbf945">
@@ -103,3 +120,5 @@
 </header>
 </div>
     
+`;
+const PUBLICPATH = "https://lindat.mff.cuni.cz/common/";
