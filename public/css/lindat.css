@@ -1,6 +1,27 @@
 @charset "UTF-8";
+.lindat-common.lindat-common-header {
+  background-color: var(--navbar-background-color, red);
+}
+.lindat-common.lindat-common-footer {
+  background-color: var(--footer-background-color);
+}
 .lindat-common {
   font-size: medium;
+  display: flex;
+  justify-content: center;
+  /* this can't hang on :root */
+  --navbar-color: #ffffff;
+  --navbar-background-color: #39688b;
+  --footer-color: #fffc;
+  --footer-background-color: #07426eff;
+  --partners-color: #9cb3c5;
+  /* styling for light theme; maybe this can get set from outside?
+  --navbar-color: #000000;
+  --navbar-background-color: #f0f0f0;
+  --footer-color: #408080;
+  --footer-background-color: #f0f0f0;
+  --partners-color: #408080;
+   */
   /* XXX svg? */
   /* XXX fade? */
   /* roboto-slab-regular - latin_latin-ext */
@@ -47,19 +68,6 @@
   color: #212529;
   text-align: left;
   background-color: #fff;
-  /* this can't hang on :root */
-  --navbar-color: #ffffff;
-  --navbar-background-color: #39688b;
-  --footer-color: #fffc;
-  --footer-background-color: #07426eff;
-  --partners-color: #9cb3c5;
-  /* styling for light theme; maybe this can get set from outside?
-    --navbar-color: #000000;
-    --navbar-background-color: #f0f0f0;
-    --footer-color: #408080;
-    --footer-background-color: #f0f0f0;
-    --partners-color: #408080;
-     */
 }
 .lindat-common footer,
 .lindat-common header,
@@ -322,6 +330,11 @@
   }
   .lindat-common .lindat-navbar-expand-lg .lindat-navbar-toggler {
     display: none;
+  }
+}
+@media (min-width: 1250px) {
+  .lindat-common #margin-filler {
+    min-width: 5em;
   }
 }
 .lindat-common .lindat-navbar-dark .lindat-navbar-brand {
