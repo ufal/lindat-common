@@ -54,7 +54,7 @@ class HeaderData{
             <span class="lindat-navbar-toggler-icon"></span>
         </button>
         <div class="lindat-collapse lindat-navbar-collapse">
-            <div class="lindat-mr-auto">
+            <div class="">
                 <div class="lindat-block lindat-block--clariah-theme-main-menu">
                     <ul class="lindat-nav lindat-navbar-nav">
                         ${HeaderData.nav_items(header[lang])}
@@ -63,6 +63,7 @@ class HeaderData{
             </div>
             <div class="lindat-block lindat-block--clariah-theme-account-menu">
                 <ul class="lindat-nav lindat-navbar-nav">
+                    <li class="lindat-nav-item" id="margin-filler"></li>
                     <li class="lindat-nav-item  ">
                         <a class="lindat-nav-link lindat-nav-link-dariah" href="https://www.dariah.eu/"><img src="https://lindat.mff.cuni.cz/images/dariah-eu.png" alt="DARIAH logo" /></a>
                     </li>
