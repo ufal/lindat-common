@@ -10,7 +10,7 @@
   display: flex;
   justify-content: center;
   /* this can't hang on :root */
-  --navbar-color: #ffffff;
+  --navbar-color: #ffffff !important;
   --navbar-background-color: #39688b;
   --footer-color: #fffc;
   --footer-background-color: #07426eff;
