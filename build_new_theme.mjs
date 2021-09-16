@@ -73,20 +73,22 @@ function copyExample(){
   fs.mkdirSync(out, {recursive: true})
 
   const example_dir = './src/new_theme/example';
+  const dist_re = new RegExp('/dist/', 'g');
+  const public_js_re = new RegExp('public/js', 'g');
   fs.readdirSync(example_dir).forEach(function (file){
     const out_file = path.join(out, file)
     // generate examples with localized refbox and correct path when building pages
     if(out_file.endsWith(".html")){
       let html_content = fs.readFileSync(path.join(example_dir, file), 'utf-8');
       if(options.pages){
-        html_content = html_content.replace('/dist/', publicPath);
+        html_content = html_content.replace(dist_re, publicPath);
       }
       //a copy; but might have replaced publicPath
       fs.writeFileSync(out_file, html_content);
       Object.keys(languages).forEach(function(lang){
         if(languages[lang]){
           const localized_file = file.replace('.html',  '_' + lang + '.html');
-          const localized_content = html_content.replace('public/js', 'public/js/' + lang);
+          const localized_content = html_content.replace(public_js_re, 'public/js/' + lang);
           fs.writeFileSync(path.join(out, localized_file), localized_content);
         }
       })
