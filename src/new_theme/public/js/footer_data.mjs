@@ -210,7 +210,7 @@ class FooterData {
             about += FooterData.about2html(about_item);
         }
         return `
-<div class="lindat-common lindat-common-footer">
+<div class="lindat-common2 lindat-common-footer">
  <footer data-version="${version}" data-build="${build}">
     ${about}
 

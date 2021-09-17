@@ -41,7 +41,7 @@ class HeaderData{
     const build = options.REV
     const onclick = options.angular ? '' : `onclick="this.parentNode.querySelector('.lindat-navbar-toggler+div.lindat-collapse.lindat-navbar-collapse').classList.toggle('lindat-show')"`;
     return `
-<div class="lindat-common lindat-common-header">
+<div class="lindat-common2 lindat-common-header">
 <header data-version="${version}" data-build="${build}">
     <nav class="lindat-navbar lindat-navbar-expand-lg lindat-justify-content-between lindat-navbar-dark ">
         <div class="lindat-block lindat-block--clariah-theme-branding">
