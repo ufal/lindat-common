@@ -1,3 +1,20 @@
+class LindatHeader extends HTMLElement {
+
+
+  connectedCallback(){
+    let shadow = this.attachShadow({mode: 'open'})
+    shadow.innerHTML = HTML
+    const linkElement = document.createElement('link')
+    linkElement.setAttribute('rel', 'stylesheet')
+    linkElement.setAttribute('href', `${PUBLICPATH}public/css/lindat.css`)
+
+    shadow.appendChild(linkElement)
+  }
+}
+
+export {LindatHeader}
+
+const HTML = `
 
 <div class="lindat-common lindat-common-header">
 <header data-version="3.0.0" data-build="8ffffaf75938f506f17a47a286306557a224c540">
@@ -17,70 +34,70 @@
                     <ul class="lindat-nav lindat-navbar-nav">
                         
           <li class="lindat-nav-item ">
-              <a href="https://lindat.cz/index.php/cs#search" class="lindat-nav-link "
+              <a href="https://lindat.cz/#search" class="lindat-nav-link "
                                     
                                     
-                                    >Hledání</a>
+                                    >Search</a>
               
           </li>
         
           <li class="lindat-nav-item ">
-              <a href="https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=cs" class="lindat-nav-link "
+              <a href="https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en" class="lindat-nav-link "
                                     
                                     
-                                    >Katalog</a>
+                                    >Catalogue</a>
               
           </li>
         
           <li class="lindat-nav-item ">
-              <a href="https://lindat.cz/index.php/cs#education" class="lindat-nav-link "
+              <a href="https://lindat.cz/#education" class="lindat-nav-link "
                                     
                                     
-                                    >Vzdělávání</a>
+                                    >Education</a>
               
           </li>
         
           <li class="lindat-nav-item ">
-              <a href="https://lindat.cz/index.php/cs#projects" class="lindat-nav-link "
+              <a href="https://lindat.cz/#projects" class="lindat-nav-link "
                                     
                                     
-                                    >Projekty</a>
+                                    >Projects</a>
               
           </li>
         
           <li class="lindat-nav-item ">
-              <a href="https://lindat.cz/index.php/cs#tools" class="lindat-nav-link "
+              <a href="https://lindat.cz/#tools" class="lindat-nav-link "
                                     
                                     
-                                    >Nástroje</a>
+                                    >Tools</a>
               
           </li>
         
           <li class="lindat-nav-item ">
-              <a href="https://lindat.cz/index.php/cs/sluzby" class="lindat-nav-link "
+              <a href="https://lindat.cz/en/services" class="lindat-nav-link "
                                     
                                     
-                                    >Služby</a>
+                                    >Services</a>
               
           </li>
         
           <li class="lindat-nav-item lindat-dropdown">
-              <a href="https://lindat.cz/index.php/cs" class="lindat-nav-link lindat-dropdown-toggle"
+              <a href="https://lindat.cz/" class="lindat-nav-link lindat-dropdown-toggle"
                                      data-toggle="dropdown"
                                      onclick="this.parentNode.querySelector('.lindat-dropdown-toggle+div.lindat-dropdown-menu').classList.toggle('lindat-show'); return false;"
-                                    >O nás</a>
+                                    >About</a>
               <div class="lindat-dropdown-menu">
-               <a href="https://lindat.cz/index.php/cs/partneri" class="lindat-dropdown-item">Partneři</a>
+               <a href="https://lindat.cz/partners" class="lindat-dropdown-item">Partners</a>
             
-               <a href="https://lindat.cz/index.php/files/mission-en.pdf" class="lindat-dropdown-item">Prohlášení o poslání</a>
+               <a href="https://lindat.cz/files/mission-en.pdf" class="lindat-dropdown-item">Mission Statement</a>
             
                <a href="https://www.clarin.eu/" class="lindat-dropdown-item">CLARIN</a>
             
                <a href="https://www.dariah.eu/" class="lindat-dropdown-item">DARIAH</a>
             
-               <a href="https://lindat.cz/index.php/cs/integrace" class="lindat-dropdown-item">Integrace služeb</a>
+               <a href="https://lindat.cz/integration" class="lindat-dropdown-item">Service integrations</a>
             
-               <a href="https://lindat.cz/index.php/cs/partnerstvi" class="lindat-dropdown-item">Projektové partnerství</a>
+               <a href="https://lindat.cz/partnership" class="lindat-dropdown-item">Project partnerships</a>
             </div>
           </li>
         
@@ -104,3 +121,5 @@
 </header>
 </div>
     
+`;
+const PUBLICPATH = "https://lindat.mff.cuni.cz/common/";
