@@ -17,7 +17,7 @@ export {LindatHeader}
 const HTML = `
 
 <div class="lindat-common2 lindat-common-header">
-<header data-version="3.0.1" data-build="f61f341c7f30e18998531fb6941c1649e3d0f283">
+<header data-version="3.0.2" data-build="a54e1d160c6b755a3cff8b73d6daa9f766baedd9">
     <nav class="lindat-navbar lindat-navbar-expand-lg lindat-justify-content-between lindat-navbar-dark ">
         <div class="lindat-block lindat-block--clariah-theme-branding">
             <a href="https://lindat.mff.cuni.cz/" class="lindat-navbar-brand lindat-d-flex lindat-align-items-center " aria-label="">
