@@ -16,12 +16,13 @@ class FooterData {
             },
             'list': [
                 {'content': 'Mission Statement', 'url': 'https://lindat.cz/files/mission-en.pdf'},
+                {'content': 'Advisory Board', 'url': 'https://lindat.cz/ab'},
                 {'content': 'Events', 'url': 'https://lindat.cz/events'},
+                {'content': 'CLARIN Participation', 'url': 'https://www.clarin.eu/'},
+                {'content': 'DARIAH Participation', 'url': 'https://www.dariah.eu/', 'space_after': true},
                 {'content': 'FAQ', 'url': 'https://lindat.cz/faq-repository'},
                 {'content': 'Helpdesk', 'url': 'mailto:lindat-help@ufal.mff.cuni.cz'},
-                {'content': 'User Feedback Form', 'url': 'https://lindat.cz/user_feedback'},
-                {'content': 'CLARIN Participation', 'url': 'https://www.clarin.eu/'},
-                {'content': 'DARIAH Participation', 'url': 'https://www.dariah.eu/'},
+                {'content': 'User Feedback Form', 'url': 'https://lindat.cz/user_feedback', 'space_after': true},
                 {'content': 'Acknowledge LINDAT/CLARIAH-CZ', 'url': 'https://lindat.cz/acknowledgement'},
             ]
         },
@@ -128,6 +129,9 @@ class FooterData {
             out += `
           <li><a href="${li.url}">${li.content}</a></li>
           `
+          if(li.space_after){
+            out += '<br/>'
+          }
         }
         return out;
     }
