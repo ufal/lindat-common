@@ -15,7 +15,7 @@ export {LindatFooter}
 const HTML = `
 
 <div class="lindat-common2 lindat-common-footer">
- <footer data-version="3.0.1" data-build="25660a6a1de30e3603b3302da2172a127782f9df">
+ <footer data-version="3.0.2" data-build="05a311f04b5d3bfabeabcdb741c89805b89e1ea1">
     
       <div id="about-lindat">
         <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
@@ -133,8 +133,8 @@ const HTML = `
     <div id="ack-msmt">
         THE LINDAT/CLARIAH-CZ PROJECT (LM2018101; formerly LM2010013, LM2015071) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS AND YOUTH OF THE CZECH REPUBLIC UNDER THE&#160;PROGRAMME LM OF "LARGE INFRASTRUCTURES"
     </div>
-    <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by CC 3.0 BY</div>
-    <div id="ack-ufal">website © 2021 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
+    <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a></div>
+    <div id="ack-ufal">website © 2022 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a> under <a href="https://creativecommons.org/licenses/by/4.0/">CC 4.0 BY</a></div>
     
 </footer>
 </div>
