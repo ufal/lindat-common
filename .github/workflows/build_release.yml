@@ -1,0 +1,55 @@
+name: Build and release
+on:
+  push:
+    branches-ignore:
+      - edge
+      - releases
+      - gh-pages
+      - no-tracking-release
+    tags:
+      - v*
+env:
+  TRAVIS: 'true'
+  TRAVIS_JOB_NUMBER:  ${{ github.run_id }}
+  TRAVIS_BUILD_NUMBER: ${{ github.run_number }}
+jobs:
+  build_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+            node-version: '12'
+      - name: Install dependencies
+        run: npm install
+      - uses: saucelabs/sauce-connect-action@v2
+        with:
+          username: ${{ secrets.SAUCE_USERNAME }}
+          accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
+          tunnelIdentifier: ${{ github.run_id }}
+      - name: Test via sauce connect
+        run: npm run test
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+      - name: Prepare release artifacts
+        run: ci/build_release.sh
+      - name: Github release (when tagged)
+        if: ${{ github.ref_type == 'tag' }}
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist.tar.gz
+            dist.zip
+      - name: Update pages and edge
+        if: ${{ github.ref_type == 'branch' &&  github.ref_name == 'master' }}
+        run: ci/push_build.sh
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Update releases
+        if: ${{ github.ref_type == 'tag' }}
+        run: ci/push_build.sh
+        env:
+          TRAVIS_TAG: ${{ github.ref_name }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      # TODO cache node_modules; bower_components?, npm release?
