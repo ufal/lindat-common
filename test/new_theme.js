@@ -58,12 +58,20 @@ describe('lindat-common matches drupal', function (){
     let footer = await element(by.css("footer"))
     await browser.wait(EC.presenceOf(footer), waitingTime)
     let expected_footer_anchors = footer.all(by.css("a"));
-    expected_footer_anchors_count = await expected_footer_anchors.count();
 
     expected_links = [];
     await expected_footer_anchors.each(async function (e, index){
       let link = await e.getAttribute('href');
-      expected_links.push(link.replace('http:', 'https:'));
+      let parent = await e.element(by.xpath('..'));
+      let parent_id = await parent.getAttribute('id');
+      // The drupal footer adds `under <a href="https://creativecommons.org/licenses/by/4.0/">CC 4.0 BY</a></div>`
+      // it would be confusing if repo or services had this statement too
+      if (parent_id === 'ack-ufal' && link.includes('creativecommons.org')){
+        ;
+      }else {
+        expected_links.push(link.replace('http:', 'https:'));
+      }
+    expected_footer_anchors_count = expected_links.length;
     });
 
     await browser.get('/dist/example/index.html');
