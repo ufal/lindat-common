@@ -49,7 +49,7 @@
   },
   "devDependencies": {
     "angular-google-analytics": "^1.1.3",
-    "angular-piwik": "git://github.com/mike-spainhower/angular-piwik.git",
+    "angular-piwik": "git+https://github.com/mike-spainhower/angular-piwik.git",
     "autoprefixer": "^9.8.6",
     "css-loader": "^3.6.0",
     "i18n-webpack-plugin": "^1.0.0",
