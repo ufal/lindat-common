@@ -58,7 +58,7 @@
   "cs": [
     {
       "name": "Hledání",
-      "url": "https://lindat.cz/index.php/cs#search"
+      "url": "https://lindat.cz/cs#search"
     },
     {
       "name": "Katalog",
@@ -66,31 +66,31 @@
     },
     {
       "name": "Vzdělávání",
-      "url": "https://lindat.cz/index.php/cs#education"
+      "url": "https://lindat.cz/cs#education"
     },
     {
       "name": "Projekty",
-      "url": "https://lindat.cz/index.php/cs#projects"
+      "url": "https://lindat.cz/cs#projects"
     },
     {
       "name": "Nástroje",
-      "url": "https://lindat.cz/index.php/cs#tools"
+      "url": "https://lindat.cz/cs#tools"
     },
     {
       "name": "Služby",
-      "url": "https://lindat.cz/index.php/cs/sluzby"
+      "url": "https://lindat.cz/cs/sluzby"
     },
     {
       "name": "O nás",
-      "url": "https://lindat.cz/index.php/cs",
+      "url": "https://lindat.cz/cs",
       "dropdown": [
         {
           "name": "Partneři",
-          "url": "https://lindat.cz/index.php/cs/partneri"
+          "url": "https://lindat.cz/cs/partneri"
         },
         {
           "name": "Prohlášení o poslání",
-          "url": "https://lindat.cz/index.php/files/mission-en.pdf"
+          "url": "https://lindat.cz/files/mission-en.pdf"
         },
         {
           "name": "CLARIN",
@@ -102,11 +102,11 @@
         },
         {
           "name": "Integrace služeb",
-          "url": "https://lindat.cz/index.php/cs/integrace"
+          "url": "https://lindat.cz/cs/integrace"
         },
         {
           "name": "Projektové partnerství",
-          "url": "https://lindat.cz/index.php/cs/partnerstvi"
+          "url": "https://lindat.cz/cs/partnerstvi"
         }
       ]
     }

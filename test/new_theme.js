@@ -44,7 +44,7 @@ describe('Lindat Common new_theme', function() {
 
 describe('lindat-common matches drupal', function (){
 
-  let epected_nav_items, expected_dropdown_items, expected_links, expected_footer_anchors_count;
+  let epected_nav_items, expected_dropdown_items, expected_links, expected_footer_anchors_count, expected_cs_header_links;
 
   beforeAll(async function(){
     //drupal header
@@ -73,6 +73,19 @@ describe('lindat-common matches drupal', function (){
       }
     expected_footer_anchors_count = expected_links.length;
     });
+
+    //drupal cs header
+    expected_cs_header_links = [];
+    await browser.get('https://lindat.cz/cs');
+    let cs_menu = await element(by.css(".block--clariah-theme-main-menu"));
+    await browser.wait(EC.presenceOf(cs_menu), waitingTime);
+    let expected_cs_header_anchors = cs_menu.all(by.css("a"));
+    await expected_cs_header_anchors.each(async function (e, index){
+      let link = await e.getAttribute('href');
+      expected_cs_header_links.push(link);
+
+    });
+
 
     await browser.get('/dist/example/index.html');
   })
@@ -111,5 +124,20 @@ describe('lindat-common matches drupal', function (){
     expect(real_links.sort()).toEqual(expected_links.sort());
 
   })
+
+  it('cs header links should match', async function(){
+    await browser.get('/dist/cs/header-services-standalone.htm');
+    expect(expected_cs_header_links).toBeDefined();
+
+    let common_header = await element(by.css(".lindat-block--clariah-theme-main-menu"));
+    let real_header_anchors = common_header.all(by.css("a"))
+    let real_links = [];
+    await real_header_anchors.each(async function (e, index){
+      let link = await e.getAttribute('href');
+      real_links.push(link);
+    });
+    expect(real_links.sort()).toEqual(expected_cs_header_links.sort());
+
+  });
 
 });
