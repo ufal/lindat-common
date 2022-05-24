@@ -1,0 +1,29 @@
+name: Scheduled test
+on:
+  schedule:
+    - cron: '23 7 14,28 * *'
+env:
+  TRAVIS: 'true'
+  TRAVIS_JOB_NUMBER:  ${{ github.run_id }}
+  TRAVIS_BUILD_NUMBER: ${{ github.run_number }}
+jobs:
+  scheduled_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+            node-version: '12'
+            cache: 'npm'
+      - name: Install dependencies
+        run: npm install
+      - uses: saucelabs/sauce-connect-action@v2
+        with:
+          username: ${{ secrets.SAUCE_USERNAME }}
+          accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
+          tunnelIdentifier: ${{ github.run_id }}
+      - name: Test via sauce connect
+        run: npm run test
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
