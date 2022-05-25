@@ -15,7 +15,7 @@ export {LindatFooter}
 const HTML = `
 
 <div class="lindat-common2 lindat-common-footer">
- <footer data-version="3.0.4" data-build="fd7323b2ed4c3380f6dafb147b5bbb0007f00b74">
+ <footer data-version="3.0.5" data-build="05eff1186f12528f221a63b021c7b7dc81301429">
     
       <div id="about-lindat">
         <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
