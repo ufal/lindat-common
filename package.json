@@ -1,6 +1,6 @@
 {
   "name": "lindat-common",
-  "version": "3.0.5",
+  "version": "3.1.0",
   "main": "public/js/angular-lindat.js",
   "description": "Common Lindat Theme (header and footer)",
   "license": "MIT",
@@ -39,7 +39,7 @@
     "build-refbox_and_angular": "webpack --mode production --config webpack/production.js",
     "prestart": "npm run build-new_theme -- --debug && npm run build-refbox_and_angular",
     "start": "webpack-dev-server -p --debug --quiet",
-    "scrape": "protractor --specs=new_theme/scripts/scrape.js",
+    "scrape": "protractor --specs=src/new_theme/scripts/scrape.js",
     "serve-pages": "webpack-dev-server -p --debug --quiet --content-base=pages",
     "pretest": "webdriver-manager update --standalone",
     "prepublish": "npm run clean && npm run build",
