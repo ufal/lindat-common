@@ -17,7 +17,7 @@ export {LindatHeader}
 const HTML = `
 
 <div class="lindat-common2 lindat-common-header">
-<header data-version="3.0.5" data-build="05eff1186f12528f221a63b021c7b7dc81301429">
+<header data-version="3.0.5" data-build="23e2cfc2186c98231dba8eebd249a44bf5b96031">
     <nav class="lindat-navbar lindat-navbar-expand-lg lindat-justify-content-between lindat-navbar-dark ">
         <div class="lindat-block lindat-block--clariah-theme-branding">
             <a href="https://lindat.mff.cuni.cz/" class="lindat-navbar-brand lindat-d-flex lindat-align-items-center " aria-label="">
@@ -34,10 +34,10 @@ const HTML = `
                     <ul class="lindat-nav lindat-navbar-nav">
                         
           <li class="lindat-nav-item ">
-              <a href="https://lindat.cz/#search" class="lindat-nav-link "
+              <a href="https://lindat.cz/services/catalog/" class="lindat-nav-link "
                                     
                                     
-                                    >Search</a>
+                                    >Catalog</a>
               
           </li>
         
@@ -45,7 +45,7 @@ const HTML = `
               <a href="https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en" class="lindat-nav-link "
                                     
                                     
-                                    >Catalogue</a>
+                                    >Repository</a>
               
           </li>
         
