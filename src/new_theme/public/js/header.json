@@ -1,11 +1,11 @@
 {
   "en": [
     {
-      "name": "Search",
-      "url": "https://lindat.cz/#search"
+      "name": "Catalog",
+      "url": "https://lindat.cz/services/catalog/"
     },
     {
-      "name": "Catalogue",
+      "name": "Repository",
       "url": "https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en"
     },
     {
@@ -57,11 +57,11 @@
   ],
   "cs": [
     {
-      "name": "Hledání",
-      "url": "https://lindat.cz/cs#search"
+      "name": "Katalog",
+      "url": "https://lindat.cz/services/catalog/"
     },
     {
-      "name": "Katalog",
+      "name": "Repozitář",
       "url": "https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=cs"
     },
     {
