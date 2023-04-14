@@ -57,12 +57,20 @@ class FooterData {
                     ]
                 },
                 {
+                  'tagline': 'Terezín',
+                  'list': [
+                    {'content': 'Terezín Initiative Institute', 'url': 'https://lindat.cz/partners/iti'},
+                    {'content': 'Terezín Memorial', 'url': 'https://lindat.cz/partners/pt'},
+                  ]
+                },
+                {
                     'tagline': 'Czech Academy of Sciences',
                     'list': [
                         {'content': 'Czech Language Institute', 'url': 'https://lindat.cz/partners/ujc'},
                         {'content': 'Library <i>of</i> Academy', 'url': 'https://lindat.cz/partners/knav'},
                         {'content': 'Institute <i>of</i> History', 'url': 'https://lindat.cz/partners/hu'},
                         {'content': 'Institute <i>of</i> Philosophy', 'url': 'https://lindat.cz/partners/flu'},
+                        {'content': 'Masaryk Institute <i>and</i> Archives', 'url': 'https://lindat.cz/partners/mua'},
                     ]
                 },
                 {
@@ -75,6 +83,7 @@ class FooterData {
                         {'content': 'Moravian Library <i>in Brno</i>', 'url': 'https://lindat.cz/partners/mzk'},
                         {'content': 'National Gallery Prague', 'url': 'https://lindat.cz/partners/ng'},
                         {'content': 'National Film Archive', 'url': 'https://lindat.cz/partners/nfa'},
+                        {'content': 'National Archives', 'url': 'https://lindat.cz/partners/na'},
                     ]
                 },
             ]
