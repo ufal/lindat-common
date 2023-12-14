@@ -15,7 +15,7 @@ export {LindatFooter}
 const HTML = `
 
 <div class="lindat-common2 lindat-common-footer">
- <footer data-version="3.2.0" data-build="ce204db1afa6b344bf67dcddd4f28025c385990a">
+ <footer data-version="3.3.0" data-build="f76ac50e673ebad6bbb135f3430f125498e287de">
     
       <div id="about-lindat">
         <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
@@ -37,6 +37,8 @@ const HTML = `
           
           <li><a href="https://lindat.cz/user_feedback">User Feedback Form</a></li>
           <br/>
+          <li><a href="https://ufal.mff.cuni.cz/grants/lindatclariah-cz/en">Hosting Institution</a></li>
+          
           <li><a href="https://lindat.cz/acknowledgement">Acknowledge LINDAT/CLARIAH-CZ</a></li>
           
         </ul>
