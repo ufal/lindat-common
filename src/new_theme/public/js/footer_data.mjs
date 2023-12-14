@@ -23,6 +23,7 @@ class FooterData {
                 {'content': 'FAQ', 'url': 'https://lindat.cz/faq-repository'},
                 {'content': 'Helpdesk', 'url': 'mailto:lindat-help@ufal.mff.cuni.cz'},
                 {'content': 'User Feedback Form', 'url': 'https://lindat.cz/user_feedback', 'space_after': true},
+                {'content': 'Hosting Institution', 'url': 'https://ufal.mff.cuni.cz/grants/lindatclariah-cz/en'},
                 {'content': 'Acknowledge LINDAT/CLARIAH-CZ', 'url': 'https://lindat.cz/acknowledgement'},
             ]
         },
