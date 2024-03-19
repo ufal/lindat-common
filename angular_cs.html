@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="lindat-common" ng-strict-di="true">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>LINDAT/CLARIAH-CZ Research Infrastructure</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="keywords" content="Language Resources, Infrastructure, Research,
+          Natural Language Processing, Multimedia, Czech language, Computational
+          Linguistics, Speech, Text, Corpus, Corpora" />
+  <meta name="description" content="LINDAT CLARIAH-CZ Research Infrastructure" />
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    section {
+      flex: 1;
+      max-width: 750px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js" integrity="sha512-7oYXeK0OxTFxndh0erL8FsjGvrl2VMDor6fVqzlLGfwOQQqTbYsGPv4ZZ15QHfSk80doyaM0ZJdvkyDcVO7KFA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://ufal.github.io/lindat-common/public/js/cs/angular-lindat.js"></script>
+  <script type="text/javascript">
+    function HomeController($scope){
+      var vm = this;
+
+      vm.handle = '11858/00-097C-0000-0023-1AAF-3';
+      vm.title = 'Prague Dependency Treebank 3.0';
+
+      vm.testingHandles = [
+        { handle: 'non_existing', title: 'Non existing handle' },
+        { handle: '11234/1-1508', title: 'HamleDT 3.0' },
+        { handle: '11858/00-097C-0000-0023-1AAF-3', title: 'Prague Dependency Treebank 3.0' }
+      ];
+
+      vm.changeHandle = function (handle, title) {
+        vm.handle = handle;
+        vm.title = title;
+      };
+
+      vm.destroy = function () {
+        $scope.$destroy();
+      };
+
+    }
+    HomeController.$inject = ["$scope"];
+
+    (function(angular) {
+      'use strict';
+      var myAppModule = angular.module('lindat-common', ['lindat']);
+
+      myAppModule.controller('HomeController', HomeController);
+
+    })(window.angular);
+
+  </script>
+</head>
+<body id="lindat-home">
+<!-- HEADER -->
+<lindat-header></lindat-header>
+<section ng-controller="HomeController as vm">
+  <h1>LINDAT/CLARIAH-CZ Common Theme</h1>
+  <p>
+    Select the theme you want...
+  </p>
+  <p>
+    <label for="selector">Select active project:</label>
+    <select id="selector">
+      <option value="lindat-home">Home</option>
+      <option value="lindat-repository">Repository</option>
+      <option value="lindat-pmltq">PML-TQ</option>
+      <option value="lindat-tools">Any</option>
+    </select>
+  </p>
+  <h1>Refbox</h1>
+  <button ng-click="vm.destroy()">Test Destroy</button>
+  <p>
+    <label>Switch items:</label>
+    <button ng-repeat="item in vm.testingHandles" ng-click="vm.changeHandle(item.handle, item.title)" ng-bind="item.title"></button>
+  </p>
+  <lindat-refbox handle="vm.handle" title="vm.title"></lindat-refbox>
+</section>
+<lindat-footer></lindat-footer>
+</body>
+</html>

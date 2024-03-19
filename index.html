@@ -1,0 +1,73 @@
+<html>
+        <head>
+                <meta charset="UTF-8">
+                <title>LINDAT/CLARIAH-CZ Research Infrastructure</title>
+                <style>
+                  body {
+                    display: flex;
+                    min-height: 100vh;
+                    flex-direction: column;
+                  }
+                  section {
+                    flex: 1;
+                    max-width: 750px;
+                    margin-left: auto;
+                    margin-right: auto;
+                  }
+                </style>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script src="https://ufal.github.io/lindat-common/public/js/lindat-refbox.js"></script>
+        </head>
+        <body>
+                <lindat-header>Header: if everything works you don't see this text.
+                    <div slot="languageswitcher">
+                            <button onclick="alert('I\'m a custom language switcher')">English</button>
+                    </div>
+                </lindat-header>
+                <section class="">
+                  <h1>LINDAT/CLARIAH-CZ Common Theme</h1>
+                  <p>
+                    Select the theme you want...
+                  </p>
+                  <div>
+                    <label>Load other project CSS (to check header/footer isn't messed up with this css):</label>
+                    <button class="css-select" value="">Clear</button>
+                    <button class="css-select" value="https://lindat.mff.cuni.cz/repository/xmlui/">Lindat Repository</button>
+                    <button class="css-select" value="https://ufal-point-dev.ms.mff.cuni.cz/dspace5l/xmlui/">UFAL Point Dev</button>
+                    <button class="css-select" value="http://lindat.mff.cuni.cz/services/pmltq/">PML-TQ</button>
+                    <button class="css-select" value="https://lindat.mff.cuni.cz/services/kontext/corpora/corplist">Kontext</button>
+                    <pre id="loaded-styles"></pre>
+                  </div>
+                  <p>
+                    <s>
+                    <label>Select Language:</label>
+                    <button class="lang-select" value="en">English</button>
+                    <button class="lang-select" value="cs">Czech</button>
+                    </s>
+                  </p>
+                  <p>
+                    <s>
+                      <label>Select active project:</label>
+                      <button class="project-select" value="lindat-home">Home</button>
+                      <button class="project-select" value="lindat-repository">Repository</button>
+                      <button class="project-select" value="lindat-pmltq">PML-TQ</button>
+                      <button class="project-select" value="lindat-tools">Any</button>
+                    </s>
+                  </p>
+                  <h1>Refbox</h1>
+                  <p>
+                    <label>Switch items:</label>
+                    <button class="handle-select" value="non_existing">Non existing handle</button>
+                    <button class="handle-select" value="11234/1-1508">HamleDT 3.0</button>
+                    <button class="handle-select" value="11858/00-097C-0000-0023-1AAF-3">Prague Dependency Treebank 3.0</button>
+                  </p>
+                  <div id="refbox">
+                  </div>
+                </section>
+
+                <lindat-footer>Footer: if everything works you don't see this text.</lindat-footer>
+                <script type="module" src="https://ufal.github.io/lindat-common/public/js/lindat.js">
+                </script>
+                <script src="example-script.js"></script>
+        </body>
+</html>
