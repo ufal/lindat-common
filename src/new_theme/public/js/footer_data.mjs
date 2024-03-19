@@ -231,7 +231,7 @@ class FooterData {
     <div id="badges-a">
         <a href="https://www.clarin.eu/content/certified-centres"><img src="https://lindat.mff.cuni.cz/images/b-centre.png" alt="CLARIN CENTRE B" /></a>
         <a href="https://www.clarin.eu/content/knowledge-centres"><img src="https://lindat.mff.cuni.cz/images/k-centre.png" alt="CLARIN CENTRE K" style="filter:brightness(0.88)" /></a>
-        <a href="https://www.coretrustseal.org/wp-content/uploads/2019/08/LINDAT-CLARIN.pdf"><img src="https://lindat.mff.cuni.cz/images/core-trust-seal-mono.png" alt="CoreTrustSeal Certification" /></a>
+        <a href="https://hdl.handle.net/11234/6-CTS"><img src="https://lindat.mff.cuni.cz/images/core-trust-seal-mono.png" alt="CoreTrustSeal Certification" /></a>
     </div>
 
     <div id="badges-b">
@@ -243,7 +243,7 @@ class FooterData {
         THE LINDAT/CLARIAH-CZ PROJECT (LM2023062; formerly LM2010013, LM2015071, LM2018101) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS AND YOUTH OF THE CZECH REPUBLIC UNDER THE&#160;PROGRAMME LM OF "LARGE INFRASTRUCTURES"
     </div>
     <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a></div>
-    <div id="ack-ufal">website © 2023 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
+    <div id="ack-ufal">website © 2024 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
     ${trackingScripts}
 </footer>
 </div>
