@@ -8,7 +8,13 @@ var config = {
     'test/*.js'
   ],
   multiCapabilities: [{
-    browserName: 'chrome'
+          browserName: 'chrome',
+          chromeOptions: {
+                  'args': ['--headless']
+          }
+  },
+  {
+    browserName: 'firefox'
   }],
   jasmineNodeOpts: {
     isVerbose: true,
