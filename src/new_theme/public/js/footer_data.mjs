@@ -25,6 +25,7 @@ class FooterData {
                 {'content': 'User Feedback Form', 'url': 'https://lindat.cz/user_feedback', 'space_after': true},
                 {'content': 'Hosting Institution', 'url': 'https://ufal.mff.cuni.cz/grants/lindatclariah-cz/en'},
                 {'content': 'Acknowledge LINDAT/CLARIAH-CZ', 'url': 'https://lindat.cz/acknowledgement'},
+                {'content': 'Research Organization Registry', 'url': 'https://ror.org/00dd4fz34'},
             ]
         },
         {
@@ -243,7 +244,7 @@ class FooterData {
         THE LINDAT/CLARIAH-CZ PROJECT (LM2023062; formerly LM2010013, LM2015071, LM2018101) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS AND YOUTH OF THE CZECH REPUBLIC UNDER THE&#160;PROGRAMME LM OF "LARGE INFRASTRUCTURES"
     </div>
     <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a></div>
-    <div id="ack-ufal">website © 2024 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
+    <div id="ack-ufal">website © 2025 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
     ${trackingScripts}
 </footer>
 </div>
