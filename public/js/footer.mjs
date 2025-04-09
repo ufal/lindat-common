@@ -15,7 +15,7 @@ export {LindatFooter}
 const HTML = `
 
 <div class="lindat-common2 lindat-common-footer">
- <footer data-version="3.4.1" data-build="cd5cf72c9b99a8184350885fcba6492c2c4bcef3">
+ <footer data-version="3.4.1" data-build="8939f6c01270c315923d41e80da97fc4b0992a46">
     
       <div id="about-lindat">
         <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
@@ -40,6 +40,8 @@ const HTML = `
           <li><a href="https://ufal.mff.cuni.cz/grants/lindatclariah-cz/en">Hosting Institution</a></li>
           
           <li><a href="https://lindat.cz/acknowledgement">Acknowledge LINDAT/CLARIAH-CZ</a></li>
+          
+          <li><a href="https://ror.org/00dd4fz34">Research Organization Registry</a></li>
           
         </ul>
       </div>
@@ -150,7 +152,7 @@ const HTML = `
         THE LINDAT/CLARIAH-CZ PROJECT (LM2023062; formerly LM2010013, LM2015071, LM2018101) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS AND YOUTH OF THE CZECH REPUBLIC UNDER THE&#160;PROGRAMME LM OF "LARGE INFRASTRUCTURES"
     </div>
     <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a></div>
-    <div id="ack-ufal">website © 2024 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
+    <div id="ack-ufal">website © 2025 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
     
 </footer>
 </div>
